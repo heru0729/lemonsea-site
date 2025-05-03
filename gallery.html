@@ -11,6 +11,7 @@
       padding: 2em;
       max-width: 1000px;
       margin: auto;
+      transition: background 0.3s, color 0.3s;
     }
     h1 {
       color: #2a7b59;
@@ -26,6 +27,8 @@
       border-radius: 8px;
       transition: transform 0.2s;
       cursor: pointer;
+      object-fit: cover;
+      aspect-ratio: 4/3;
     }
     .gallery img:hover {
       transform: scale(1.03);
@@ -36,7 +39,40 @@
       color: #666;
     }
 
-    /* モーダル表示用 */
+    /* ダークモード */
+    body.dark {
+      background: #121212;
+      color: #f0f0f0;
+    }
+    body.dark a, body.dark h1 {
+      color: #90ee90;
+    }
+    body.dark footer {
+      color: #aaa;
+    }
+    body.dark #modal {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    /* ダークモード切替ボタン */
+    #toggleDarkMode {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 10000;
+      background: #2a7b59;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    #toggleDarkMode:hover {
+      background: #1e5c42;
+    }
+
+    /* モーダル */
     #modal {
       display: none;
       position: fixed;
@@ -70,9 +106,30 @@
       right: 30px;
       cursor: pointer;
     }
+
+    /* モーダルボタン */
+    #modalControls {
+      margin-top: 1em;
+      display: flex;
+      gap: 1em;
+    }
+    .modalBtn {
+      background: #2a7b59;
+      color: white;
+      border: none;
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .modalBtn:hover {
+      background: #1e5c42;
+    }
   </style>
 </head>
 <body>
+  <button id="toggleDarkMode">🌙 ダークモード</button>
+
   <h1>🖼️ ギャラリー</h1>
   <p>れもんしーサーバーの建築や風景を集めたギャラリーページです。随時更新予定！<br>
     アップしてほしい画像は <a href="https://discord.gg/bheyZtN454" target="_blank">Discord</a> で！</p>
@@ -84,6 +141,11 @@
     <div id="modalClose">✖</div>
     <img id="modalImage" src="" alt="">
     <h2 id="modalTitle"></h2>
+    <div id="modalControls">
+      <button class="modalBtn" id="prevBtn">◀ 前へ</button>
+      <button class="modalBtn" id="saveBtn">💾 保存</button>
+      <button class="modalBtn" id="nextBtn">次へ ▶</button>
+    </div>
   </div>
 
   <footer>
@@ -91,34 +153,70 @@
   </footer>
 
   <script>
-    // JSONデータ読み込み
+    let currentIndex = 0;
+    let imageList = [];
+
+    const darkModeBtn = document.getElementById('toggleDarkMode');
+    darkModeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const dark = document.body.classList.contains('dark');
+      darkModeBtn.textContent = dark ? '☀️ ライトモード' : '🌙 ダークモード';
+    });
+
     async function loadGalleryImages() {
       const response = await fetch('images.json');
-      const images = await response.json();
+      imageList = await response.json();
 
       const gallery = document.getElementById('gallery');
 
-      images.forEach(image => {
+      imageList.forEach((image, index) => {
         const imgElement = document.createElement('img');
         imgElement.src = image.src;
         imgElement.alt = image.alt;
 
-        // 画像クリック時にモーダル表示
         imgElement.addEventListener('click', () => {
-          modalImage.src = imgElement.src;
-          modalTitle.textContent = imgElement.alt;
-          modal.style.display = 'flex';
+          showModal(index);
         });
 
         gallery.appendChild(imgElement);
       });
     }
 
-    // モーダル閉じる
+    function showModal(index) {
+      currentIndex = index;
+      const image = imageList[currentIndex];
+      modalImage.src = image.src;
+      modalTitle.textContent = image.alt;
+      modal.style.display = 'flex';
+    }
+
+    function showNextImage() {
+      currentIndex = (currentIndex + 1) % imageList.length;
+      showModal(currentIndex);
+    }
+
+    function showPrevImage() {
+      currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+      showModal(currentIndex);
+    }
+
+    // 保存ボタン
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      const image = imageList[currentIndex];
+      const a = document.createElement('a');
+      a.href = image.src;
+      a.download = image.src.split('/').pop();
+      a.click();
+    });
+
+    // モーダル制御
     const modal = document.getElementById('modal');
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
     const modalClose = document.getElementById('modalClose');
+
+    document.getElementById('nextBtn').addEventListener('click', showNextImage);
+    document.getElementById('prevBtn').addEventListener('click', showPrevImage);
 
     modalClose.addEventListener('click', () => {
       modal.style.display = 'none';
@@ -130,7 +228,6 @@
       }
     });
 
-    // ページ読み込み時にギャラリー画像を読み込む
     loadGalleryImages();
   </script>
 </body>
