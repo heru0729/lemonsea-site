@@ -71,6 +71,29 @@
       cursor: pointer;
     }
 
+    /* ランダム画像ボタン */
+    .random-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2em;
+    }
+
+    .random-button button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #2a7b59;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .random-button button:hover {
+      background-color: #4bbd89;
+    }
+
+    /* ランダム画像の表示エリア */
     .random-image {
       display: flex;
       justify-content: center;
@@ -90,9 +113,14 @@
   <p>れもんしーサーバーの建築や風景を集めたギャラリーページです。随時更新予定！<br>
     アップしてほしい画像は <a href="https://discord.gg/bheyZtN454" target="_blank">Discord</a> で！</p>
 
+  <!-- ランダム画像ボタン -->
+  <div class="random-button">
+    <button onclick="showRandomImage()">ランダム画像を表示</button>
+  </div>
+
   <!-- ランダム画像 -->
-  <div class="random-image">
-    <img src="images/random1.png" alt="ランダム画像">
+  <div class="random-image" id="randomImageContainer">
+    <img src="images/random1.png" alt="ランダム画像" id="randomImage">
   </div>
 
   <div class="gallery">
@@ -120,6 +148,20 @@
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
     const modalClose = document.getElementById('modalClose');
+
+    const randomImages = [
+      'images/random1.png',
+      'images/random2.png',
+      'images/random3.png',
+      'images/random4.png'
+    ];
+
+    // ランダム画像を表示する関数
+    function showRandomImage() {
+      const randomIndex = Math.floor(Math.random() * randomImages.length);
+      const randomImage = randomImages[randomIndex];
+      document.getElementById('randomImage').src = randomImage;
+    }
 
     images.forEach(img => {
       img.addEventListener('click', () => {
