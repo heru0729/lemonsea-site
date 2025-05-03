@@ -5,12 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>都市ワールド紹介 | Lemon Sea</title>
   <style>
-    body { font-family: sans-serif; background: #fefefe; padding: 2em; max-width: 800px; margin: auto; }
-    h1 { color: #2a7b59; }
-    details { margin-bottom: 1.5em; background: #f2f2f2; padding: 1em; border-radius: 8px; }
-    summary { font-weight: bold; font-size: 1.1em; cursor: pointer; }
-    p { margin-top: 0.5em; }
-    footer { margin-top: 2em; text-align: center; color: #666; }
+    :root {
+      --bg: #fefefe;
+      --text: #000;
+      --accent: #2a7b59;
+      --card-bg: #f2f2f2;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #eee;
+      --accent: #66cdaa;
+      --card-bg: #1e1e1e;
+    }
+
+    body {
+      font-family: sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1 {
+      color: var(--accent);
+    }
+
+    details {
+      margin-bottom: 1.5em;
+      background: var(--card-bg);
+      padding: 1em;
+      border-radius: 8px;
+    }
+
+    summary {
+      font-weight: bold;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+
+    p {
+      margin-top: 0.5em;
+    }
+
+    footer {
+      margin-top: 2em;
+      text-align: center;
+      color: var(--text);
+    }
+
+    #darkToggle {
+      position: fixed;
+      bottom: 1em;
+      right: 1em;
+      padding: 0.5em 1em;
+      font-size: 0.9em;
+      border: none;
+      background-color: var(--accent);
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #darkToggle:hover {
+      background-color: #458c6a;
+    }
   </style>
 </head>
 <body>
@@ -96,5 +158,18 @@
   <footer>
     <a href="index.html">← ホームに戻る</a>
   </footer>
+
+  <button id="darkToggle">🌙 ダークモード切替</button>
+  <script>
+    const btn = document.getElementById('darkToggle');
+    const body = document.body;
+    if (localStorage.getItem('darkmode') === 'true') {
+      body.classList.add('dark');
+    }
+    btn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      localStorage.setItem('darkmode', body.classList.contains('dark'));
+    });
+  </script>
 </body>
 </html>
