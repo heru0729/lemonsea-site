@@ -11,25 +11,59 @@
       padding: 2em;
       max-width: 1000px;
       margin: auto;
+      transition: background 0.3s, color 0.3s;
     }
+
     h1 {
       color: #2a7b59;
       text-align: center;
     }
+
+    .dark h1, .dark a {
+      color: #9ee1c2;
+    }
+
+    .toggle-btn {
+      text-align: center;
+      margin: 1em 0;
+    }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1em;
     }
-    .gallery img {
+
+    .item {
+      text-align: center;
+    }
+
+    .item img {
       width: 100%;
       border-radius: 8px;
       transition: transform 0.2s;
       cursor: pointer;
     }
-    .gallery img:hover {
+
+    .item img:hover {
       transform: scale(1.03);
     }
+
+    .item p {
+      margin-top: 0.5em;
+      font-size: 0.9em;
+      color: #333;
+    }
+
+    .dark {
+      background: #1e1e1e;
+      color: #eee;
+    }
+
+    .dark .item p {
+      color: #ccc;
+    }
+
     footer {
       text-align: center;
       margin-top: 2em;
@@ -78,12 +112,31 @@
     アップしてほしい画像は <a href="https://discord.gg/bheyZtN454" target="_blank">Discord</a> で！
   </p>
 
+  <div class="toggle-btn">
+    <button onclick="toggleDarkMode()">🌓 ダークモード切替</button>
+  </div>
+
   <div class="gallery">
-    <img src="images/1.png" alt="旧都市鯖の風景(檸檬山周辺)">
-    <img src="images/2.png" alt="新都市鯖の風景(桜木山)">
-    <img src="images/3.png" alt="初野駅改札">
-    <img src="images/4.png" alt="檸檬駅A1出口">
-    <img src="images/5.png" alt="瞻星台">
+    <div class="item">
+      <img src="images/1.png" alt="旧都市鯖の風景(檸檬山周辺)">
+      <p>旧都市鯖の風景(檸檬山周辺)</p>
+    </div>
+    <div class="item">
+      <img src="images/2.png" alt="新都市鯖の風景(桜木山)">
+      <p>新都市鯖の風景(桜木山)</p>
+    </div>
+    <div class="item">
+      <img src="images/3.png" alt="初野駅改札">
+      <p>初野駅改札</p>
+    </div>
+    <div class="item">
+      <img src="images/4.png" alt="檸檬駅A1出口">
+      <p>檸檬駅A1出口</p>
+    </div>
+    <div class="item">
+      <img src="images/5.png" alt="瞻星台">
+      <p>瞻星台</p>
+    </div>
   </div>
 
   <!-- モーダル -->
@@ -121,6 +174,10 @@
         modal.style.display = 'none';
       }
     });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
   </script>
 </body>
 </html>
