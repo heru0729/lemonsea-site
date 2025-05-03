@@ -1,22 +1,22 @@
 [
   {
-    "src": "images/1.png",
+    "src": "images/old_town.png",
     "alt": "旧都市鯖の風景(檸檬山周辺)"
   },
   {
-    "src": "images/2.png",
+    "src": "images/new_town.png",
     "alt": "新都市鯖の風景(桜木山)"
   },
   {
-    "src": "images/3.png",
+    "src": "images/hatsuno.png",
     "alt": "初野駅改札"
   },
   {
-    "src": "images/4.png",
+    "src": "images/lemona1.png",
     "alt": "檸檬駅A1出口"
   },
   {
-    "src": "images/5.png",
+    "src": "images/observatory.png",
     "alt": "瞻星台"
   }
 ]
