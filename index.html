@@ -119,11 +119,11 @@
         .then(response => response.json())
         .then(data => {
           if (data.online) {
-            statusMessage.textContent = "Status Online🟢";
+            statusMessage.textContent = "Online🟢";
             onlinePlayers.textContent = data.players.online;
             maxPlayers.textContent = data.players.max;
           } else {
-            statusMessage.textContent = "Status Offline🔴";
+            statusMessage.textContent = "Offline🔴";
             onlinePlayers.textContent = "0";
             maxPlayers.textContent = "0";
           }
