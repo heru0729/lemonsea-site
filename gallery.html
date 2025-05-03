@@ -11,67 +11,32 @@
       padding: 2em;
       max-width: 1000px;
       margin: auto;
-      transition: background-color 0.3s, color 0.3s;
     }
-
-    body.dark-mode {
-      background-color: #181818;
-      color: #fefefe;
-    }
-
     h1 {
       color: #2a7b59;
       text-align: center;
     }
-
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1em;
-      opacity: 0;
-      animation: fadeIn 1s forwards;
     }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
     .gallery img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
       border-radius: 8px;
-      transition: transform 0.2s, filter 0.3s;
+      transition: transform 0.2s;
       cursor: pointer;
     }
-
     .gallery img:hover {
-      transform: scale(1.05);
-      filter: brightness(0.8);
+      transform: scale(1.03);
     }
-
-    button {
-      background-color: #2a7b59;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      margin: 10px 5px;
-      font-size: 1em;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #1f5d44;
-    }
-
     footer {
       text-align: center;
       margin-top: 2em;
       color: #666;
     }
 
+    /* モーダル表示用 */
     #modal {
       display: none;
       position: fixed;
@@ -80,7 +45,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.85);
+      background-color: rgba(0,0,0,0.8);
       align-items: center;
       justify-content: center;
       flex-direction: column;
@@ -95,55 +60,40 @@
     #modal h2 {
       color: white;
       margin-top: 1em;
-      text-align: center;
-    }
-
-    #modalClose, #prevBtn, #nextBtn {
-      position: absolute;
-      top: 20px;
-      background: #2a7b59;
-      color: white;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
     }
 
     #modalClose {
+      color: white;
+      font-size: 2em;
+      position: absolute;
+      top: 20px;
       right: 30px;
+      cursor: pointer;
     }
 
-    #prevBtn {
-      left: 30px;
-      bottom: 100px;
+    .random-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2em;
     }
 
-    #nextBtn {
-      right: 30px;
-      bottom: 100px;
-    }
-
-    #darkModeToggle, #randomImageBtn {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-    }
-
-    #randomImageBtn {
-      right: 150px;
+    .random-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <button id="darkModeToggle">🌙 ダークモード切替</button>
-  <button id="randomImageBtn">🎲 ランダム画像</button>
-
   <h1>🖼️ ギャラリー</h1>
-  <p>
-    れもんしーサーバーの建築や風景を集めたギャラリーページです。随時更新予定！<br>
-    アップしてほしい画像は <a href="https://discord.gg/bheyZtN454" target="_blank">Discord</a> で！
-  </p>
+  <p>れもんしーサーバーの建築や風景を集めたギャラリーページです。随時更新予定！<br>
+    アップしてほしい画像は <a href="https://discord.gg/bheyZtN454" target="_blank">Discord</a> で！</p>
+
+  <!-- ランダム画像 -->
+  <div class="random-image">
+    <img src="images/random1.png" alt="ランダム画像">
+  </div>
 
   <div class="gallery">
     <img src="images/1.png" alt="旧都市鯖の風景(檸檬山周辺)">
@@ -153,12 +103,11 @@
     <img src="images/5.png" alt="瞻星台">
   </div>
 
+  <!-- モーダル -->
   <div id="modal">
-    <button id="modalClose">✖ 閉じる</button>
+    <div id="modalClose">✖</div>
     <img id="modalImage" src="" alt="">
     <h2 id="modalTitle"></h2>
-    <button id="prevBtn">← 前へ</button>
-    <button id="nextBtn">次へ →</button>
   </div>
 
   <footer>
@@ -171,54 +120,23 @@
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
     const modalClose = document.getElementById('modalClose');
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const randomImageBtn = document.getElementById('randomImageBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
 
-    let currentIndex = 0;
-
-    function openModal(index) {
-      currentIndex = index;
-      modalImage.src = images[index].src;
-      modalTitle.textContent = images[index].alt;
-      modal.style.display = 'flex';
-    }
-
-    images.forEach((img, i) => {
-      img.addEventListener('click', () => openModal(i));
-
-      img.addEventListener('contextmenu', e => {
-        e.preventDefault();
-        const link = document.createElement('a');
-        link.href = img.src;
-        link.download = img.alt + '.png';
-        link.click();
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        modalImage.src = img.src;
+        modalTitle.textContent = img.alt;
+        modal.style.display = 'flex';
       });
     });
 
-    modalClose.addEventListener('click', () => modal.style.display = 'none');
-    modal.addEventListener('click', e => {
-      if (e.target === modal) modal.style.display = 'none';
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
     });
 
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      openModal(currentIndex);
-    });
-
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      openModal(currentIndex);
-    });
-
-    darkModeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-    });
-
-    randomImageBtn.addEventListener('click', () => {
-      const rand = Math.floor(Math.random() * images.length);
-      openModal(rand);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
     });
   </script>
 </body>
