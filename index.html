@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lemon Sea (Server)</title>
+  <link rel="icon" href="Lemonsea.png" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f9f7;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #ffe66d;
+      padding: 1em;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+    }
+    header img {
+      height: 50px;
+    }
+    header h1 {
+      margin: 0;
+    }
+    main {
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 2em;
+    }
+    .status {
+      background-color: #e2f3e4;
+      padding: 1em;
+      border-radius: 8px;
+    }
+    footer {
+      text-align: center;
+      padding: 1em;
+      background-color: #eee;
+    }
+    a {
+      color: #2a7b59;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
+    <h1>Lemon Sea Server</h1>
+  </header>
+  <main>
+    <section>
+      <h2>🎉ようこそ！</h2>
+      <p>
+        この鯖はできたてほやほやのマイクラサーバー！<br />
+        🎮 Javaサーバーだよ♥️<br />
+        🗳️ このサーバーは住民からの要望、意見で成り立ってるから不明な点などがあったらすぐに対応するよ！<br />
+        🐔 まぁ平和なサーバーなので参加よろしく！<br />
+        <a href="https://discord.gg/bheyZtN454" target="_blank">💬 Discordに参加</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>🌍 サーバー情報</h2>
+      <ul>
+        <li><strong>アドレス：</strong>own-amazing.joinmc.link</li>
+        <li><strong>推奨バージョン：</strong>Java 1.20.4</li>
+        <li><strong>スタイル：</strong>都市建設、ミニゲーム</li>
+        <li><strong>プラグイン：</strong>IronElevator、Traincarts、GSitなどなど</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🚪 参加方法</h2>
+      <p>マイクラの「マルチプレイ」から <strong>own-amazing.joinmc.link</strong> を入力するだけ！</p>
+    </section>
+
+    <section id="server-status">
+      <h2>🖥️ サーバーステータス</h2>
+      <div class="status">
+        <p id="status-message">読み込み中...</p>
+        <p><strong>オンライン人数：</strong><span id="online-players">0</span></p>
+        <p><strong>最大人数：</strong><span id="max-players">0</span></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>📄 その他リンク</h2>
+      <ul>
+        <li><a href="rules.html">📘 利用規約・ルール</a></li>
+        <li><a href="city.html">🏙️ 都市ワールドの紹介</a></li>
+        <li><a href="gallery.html">📷️ ギャラリー</a></li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Lemon Sea Server
+  </footer>
+
+  <script>
+    const serverAddress = "own-amazing.joinmc.link"; // サーバーアドレス
+    const statusMessage = document.getElementById("status-message");
+    const onlinePlayers = document.getElementById("online-players");
+    const maxPlayers = document.getElementById("max-players");
+
+    // サーバーステータスを取得する関数
+    function fetchServerStatus() {
+      fetch(`https://api.mcsrvstat.us/3/${serverAddress}`, {
+        headers: {
+          'User-Agent': 'LemonSeaServerStatus/1.0'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.online) {
+            statusMessage.textContent = "サーバーはオンラインです!";
+            onlinePlayers.textContent = data.players.online;
+            maxPlayers.textContent = data.players.max;
+          } else {
+            statusMessage.textContent = "サーバーはオフラインです。";
+            onlinePlayers.textContent = "0";
+            maxPlayers.textContent = "0";
+          }
+        })
+        .catch(error => {
+          console.error("エラーが発生しました:", error);
+          statusMessage.textContent = "ステータスの取得に失敗しました。";
+        });
+    }
+
+    // ページロード時にステータスを取得
+    fetchServerStatus();
+  </script>
+</body>
+</html>

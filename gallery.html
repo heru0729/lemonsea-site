@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ギャラリー | Lemon Sea</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fefefe;
+      padding: 2em;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1 {
+      color: #2a7b59;
+      text-align: center;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1em;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+    footer {
+      text-align: center;
+      margin-top: 2em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>🖼️ ギャラリー</h1>
+  <p>れもんしーサーバーの建築や風景を集めたギャラリーページです。随時更新予定！</p>
+  <div class="gallery">
+    <img src="images/1.png" alt="旧都市鯖の風景">
+    <img src="images/2.png" alt="初野駅改札">
+    <img src="images/3.png" alt="檸檬駅A1出口">
+    <img src="images/4.png" alt="瞻星台">
+
+  </div>
+
+  <footer>
+    <a href="index.html">← ホームに戻る</a>
+  </footer>
+</body>
+</html>
