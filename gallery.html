@@ -70,42 +70,6 @@
       right: 30px;
       cursor: pointer;
     }
-
-    /* ランダム画像ボタン */
-    .random-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 2em;
-    }
-
-    .random-button button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #2a7b59;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .random-button button:hover {
-      background-color: #4bbd89;
-    }
-
-    /* ランダム画像の表示エリア */
-    .random-image {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 2em;
-    }
-
-    .random-image img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 8px;
-    }
   </style>
 </head>
 <body>
@@ -113,23 +77,7 @@
   <p>れもんしーサーバーの建築や風景を集めたギャラリーページです。随時更新予定！<br>
     アップしてほしい画像は <a href="https://discord.gg/bheyZtN454" target="_blank">Discord</a> で！</p>
 
-  <!-- ランダム画像ボタン -->
-  <div class="random-button">
-    <button onclick="showRandomImage()">ランダム画像を表示</button>
-  </div>
-
-  <!-- ランダム画像 -->
-  <div class="random-image" id="randomImageContainer">
-    <img src="images/random1.png" alt="ランダム画像" id="randomImage">
-  </div>
-
-  <div class="gallery">
-    <img src="images/1.png" alt="旧都市鯖の風景(檸檬山周辺)">
-    <img src="images/2.png" alt="新都市鯖の風景(桜木山)">
-    <img src="images/3.png" alt="初野駅改札">
-    <img src="images/4.png" alt="檸檬駅A1出口">
-    <img src="images/5.png" alt="瞻星台">
-  </div>
+  <div class="gallery" id="gallery"></div>
 
   <!-- モーダル -->
   <div id="modal">
@@ -143,33 +91,34 @@
   </footer>
 
   <script>
-    const images = document.querySelectorAll('.gallery img');
+    // JSONデータ読み込み
+    async function loadGalleryImages() {
+      const response = await fetch('images.json');
+      const images = await response.json();
+
+      const gallery = document.getElementById('gallery');
+
+      images.forEach(image => {
+        const imgElement = document.createElement('img');
+        imgElement.src = image.src;
+        imgElement.alt = image.alt;
+
+        // 画像クリック時にモーダル表示
+        imgElement.addEventListener('click', () => {
+          modalImage.src = imgElement.src;
+          modalTitle.textContent = imgElement.alt;
+          modal.style.display = 'flex';
+        });
+
+        gallery.appendChild(imgElement);
+      });
+    }
+
+    // モーダル閉じる
     const modal = document.getElementById('modal');
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
     const modalClose = document.getElementById('modalClose');
-
-    const randomImages = [
-      'images/random1.png',
-      'images/random2.png',
-      'images/random3.png',
-      'images/random4.png'
-    ];
-
-    // ランダム画像を表示する関数
-    function showRandomImage() {
-      const randomIndex = Math.floor(Math.random() * randomImages.length);
-      const randomImage = randomImages[randomIndex];
-      document.getElementById('randomImage').src = randomImage;
-    }
-
-    images.forEach(img => {
-      img.addEventListener('click', () => {
-        modalImage.src = img.src;
-        modalTitle.textContent = img.alt;
-        modal.style.display = 'flex';
-      });
-    });
 
     modalClose.addEventListener('click', () => {
       modal.style.display = 'none';
@@ -180,6 +129,9 @@
         modal.style.display = 'none';
       }
     });
+
+    // ページ読み込み時にギャラリー画像を読み込む
+    loadGalleryImages();
   </script>
 </body>
 </html>
