@@ -200,14 +200,13 @@
       showModal(currentIndex);
     }
 
-    // 保存ボタン
-    document.getElementById('saveBtn').addEventListener('click', () => {
-      const image = imageList[currentIndex];
-      const a = document.createElement('a');
-      a.href = image.src;
-      a.download = image.src.split('/').pop();
-      a.click();
-    });
+document.getElementById('saveBtn').addEventListener('click', () => {
+  const image = imageList[currentIndex];
+  const a = document.createElement('a');
+  a.href = image.src;
+  a.download = image.name;  // 画像のnameをダウンロード時のファイル名として使用
+  a.click();
+});
 
     // モーダル制御
     const modal = document.getElementById('modal');
