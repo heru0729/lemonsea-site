@@ -40,7 +40,6 @@
       padding: 1em;
       display: flex;
       align-items: center;
-      gap: 1em;
       justify-content: space-between;
     }
 
@@ -50,31 +49,15 @@
 
     header h1 {
       margin: 0;
+      font-size: 1.5em;
     }
 
     #menu-toggle {
-      font-size: 2em;
+      font-size: 1.8em;
       background: none;
       border: none;
       color: var(--text);
       cursor: pointer;
-    }
-
-    #theme-toggle {
-      background: var(--text);
-      color: var(--bg);
-      border-radius: 50%;
-      padding: 0.5em;
-      cursor: pointer;
-      font-size: 1.5em;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-
-    #theme-toggle:hover {
-      background-color: var(--accent);
     }
 
     main {
@@ -131,6 +114,24 @@
       background-color: var(--bg);
     }
 
+    #theme-toggle {
+      background: var(--text);
+      color: var(--bg);
+      border-radius: 50%;
+      padding: 0.5em;
+      cursor: pointer;
+      font-size: 1.5em;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      border: none;
+    }
+
+    #theme-toggle:hover {
+      background-color: var(--accent);
+    }
+
     @media (max-width: 600px) {
       header {
         flex-direction: column;
@@ -140,10 +141,6 @@
       header img {
         height: 40px;
       }
-
-      #theme-toggle {
-        margin: 0.5em 0 0 auto;
-      }
     }
   </style>
 </head>
@@ -151,10 +148,10 @@
   <header>
     <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
     <h1>Lemon Sea Server</h1>
-    <button id="menu-toggle" aria-label="メニューを開く">☰</button>
+    <button id="menu-toggle" aria-label="メニュー">☰</button>
   </header>
 
-  <nav id="menu" class="menu">
+  <nav id="menu">
     <ul>
       <li><a href="rules.html">📘 利用規約・ルール</a></li>
       <li><a href="city.html">🏙️ 都市ワールドの紹介</a></li>
@@ -204,6 +201,9 @@
     &copy; 2025 Lemon Sea Server
   </footer>
 
+  <!-- ダークモード切替ボタン（右下） -->
+  <button id="theme-toggle" aria-label="テーマ切替">🌙</button>
+
   <script>
     const serverAddress = "own-amazing.joinmc.link";
     const statusMessage = document.getElementById("status-message");
@@ -211,9 +211,7 @@
     const maxPlayers = document.getElementById("max-players");
 
     function fetchServerStatus() {
-      fetch(`https://api.mcsrvstat.us/3/${serverAddress}`, {
-        headers: { 'User-Agent': 'LemonSeaServerStatus/1.0' }
-      })
+      fetch(`https://api.mcsrvstat.us/3/${serverAddress}`)
         .then(res => res.json())
         .then(data => {
           if (data.online && data.players) {
@@ -255,16 +253,12 @@
     const saved = localStorage.getItem("theme") || "light";
     setTheme(saved);
 
-    // ハンバーガーメニューの開閉
+    // ハンバーガーメニュー
     const menuToggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
 
     menuToggle.addEventListener("click", () => {
-      if (menu.style.display === "block") {
-        menu.style.display = "none";
-      } else {
-        menu.style.display = "block";
-      }
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
     });
   </script>
 </body>
