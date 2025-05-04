@@ -53,15 +53,6 @@
       margin: 0;
     }
 
-    #theme-toggle {
-      background: none;
-      border: 1px solid var(--text);
-      border-radius: 4px;
-      padding: 0.5em 1em;
-      cursor: pointer;
-      color: var(--text);
-    }
-
     #menu-toggle {
       font-size: 1.5em;
       background: none;
@@ -140,18 +131,35 @@
       header img {
         height: 40px;
       }
-
-      #theme-toggle {
-        margin: 0.5em 0 0 auto;
-      }
     }
+
+    /* ダークモードボタンのスタイル */
+    #theme-toggle {
+      background: var(--accent);
+      border: none;
+      border-radius: 50%;
+      padding: 1em;
+      font-size: 1.5em;
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9999;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    #theme-toggle:hover {
+      transform: scale(1.1);
+      background-color: #ffda44;
+    }
+
   </style>
 </head>
 <body>
   <header>
     <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
     <h1>Lemon Sea Server</h1>
-    <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
     <button id="menu-toggle" aria-label="メニュー">☰</button>
   </header>
 
