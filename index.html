@@ -277,11 +277,18 @@
 
     menuToggle.addEventListener("click", () => {
       menu.classList.toggle("open");
+      // メニューを開閉した時に位置を調整
+      if (menu.classList.contains("open")) {
+        menu.style.transform = 'translateX(0)';
+      } else {
+        menu.style.transform = 'translateX(-200px)';
+      }
     });
 
     document.addEventListener("click", (event) => {
       if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
         menu.classList.remove("open");
+        menu.style.transform = 'translateX(-200px)';
       }
     });
   </script>
