@@ -27,8 +27,26 @@
       color: var(--text);
       margin: 0;
       padding: 0;
-      transition: background-color 0.3s, color 0.3s;
+      background-image: url("images/2.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: background-color 0.3s, color 0.3s, background-image 0.5s ease-in-out;
     }
+
+    body.fade {
+      animation: fadeBg 0.5s ease-in-out;
+    }
+
+    @keyframes fadeBg {
+      0% {
+        opacity: 0.6;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
     header {
       background-color: var(--accent);
       padding: 1em;
@@ -171,11 +189,9 @@
         });
     }
 
-    // 初回読み込み + 自動更新
     fetchServerStatus();
     setInterval(fetchServerStatus, 30000);
 
-    // ダークモード切替
     const themeToggle = document.getElementById("theme-toggle");
     const htmlEl = document.documentElement;
 
@@ -183,6 +199,13 @@
       htmlEl.setAttribute("data-theme", mode);
       localStorage.setItem("theme", mode);
       themeToggle.textContent = mode === "dark" ? "☀️" : "🌙";
+
+      const bg = mode === "dark" ? "images/6.png" : "images/2.png";
+      document.body.classList.add("fade");
+      document.body.style.backgroundImage = `url('${bg}')`;
+      setTimeout(() => {
+        document.body.classList.remove("fade");
+      }, 500);
     }
 
     themeToggle.addEventListener("click", () => {
@@ -190,8 +213,8 @@
       setTheme(current === "dark" ? "light" : "dark");
     });
 
-    // 初期テーマ
     const saved = localStorage.getItem("theme") || "light";
+    document.body.style.backgroundImage = `url('${saved === "dark" ? "images/6.png" : "images/2.png"}')`;
     setTheme(saved);
   </script>
 </body>
