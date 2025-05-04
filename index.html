@@ -40,10 +40,9 @@
       padding: 1em;
       display: flex;
       align-items: center;
+      gap: 1em;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: relative;
     }
 
     header img {
@@ -52,21 +51,15 @@
 
     header h1 {
       margin: 0;
-      font-size: 1.5em;
     }
 
     #theme-toggle {
-      position: fixed;
-      bottom: 1em;
-      right: 1em;
-      background: var(--accent);
+      background: none;
       border: 1px solid var(--text);
-      border-radius: 50%;
-      padding: 0.5em 0.6em;
-      font-size: 1.2em;
+      border-radius: 4px;
+      padding: 0.5em 1em;
       cursor: pointer;
       color: var(--text);
-      z-index: 1001;
     }
 
     #menu-toggle {
@@ -75,7 +68,8 @@
       border: none;
       color: var(--text);
       cursor: pointer;
-      z-index: 1001;
+      position: absolute;
+      right: 20px;
     }
 
     main {
@@ -108,13 +102,17 @@
       display: none;
       position: fixed;
       top: 0;
-      right: 0;
+      right: -200px; /* 初期位置を画面外に設定 */
       background-color: var(--accent);
       padding: 1em;
       width: 200px;
       height: 100%;
-      z-index: 1000;
-      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    #menu.open {
+      transform: translateX(-200px); /* メニュー開くとき */
     }
 
     #menu ul {
@@ -142,15 +140,18 @@
       header img {
         height: 40px;
       }
+
+      #theme-toggle {
+        margin: 0.5em 0 0 auto;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div style="display: flex; align-items: center; gap: 1em;">
-      <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
-      <h1>Lemon Sea Server</h1>
-    </div>
+    <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
+    <h1>Lemon Sea Server</h1>
+    <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
     <button id="menu-toggle" aria-label="メニュー">☰</button>
   </header>
 
@@ -163,7 +164,7 @@
     </ul>
   </nav>
 
-  <main id="main-content">
+  <main>
     <section aria-labelledby="welcome-title" class="box">
       <h2 id="welcome-title">🎉ようこそ！</h2>
       <p>
@@ -188,6 +189,7 @@
     <section aria-labelledby="join-title" class="box">
       <h2 id="join-title">🚪 参加方法</h2>
       <p>マイクラの「マルチプレイ」から <strong>own-amazing.joinmc.link</strong> を入力するだけ！</p>
+      <p>参加には、Discordサーバーでの認証が必要です。まずは <a href="https://discord.gg/bheyZtN454" target="_blank">こちらからDiscordに参加</a> して、認証を受けてください。</p>
     </section>
 
     <section id="server-status" aria-labelledby="status-title" class="box">
@@ -203,8 +205,6 @@
   <footer>
     &copy; 2025 Lemon Sea Server
   </footer>
-
-  <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
 
   <script>
     const serverAddress = "own-amazing.joinmc.link";
@@ -250,29 +250,25 @@
     }
 
     themeToggle.addEventListener("click", () => {
-      const current = htmlEl.getAttribute("data-theme");
-      setTheme(current === "dark" ? "light" : "dark");
+      const currentTheme = htmlEl.getAttribute("data-theme");
+      setTheme(currentTheme === "dark" ? "light" : "dark");
     });
 
-    const saved = localStorage.getItem("theme") || "light";
-    setTheme(saved);
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) setTheme(savedTheme);
+    else setTheme("light");
 
     // メニュー開閉
     const menuToggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
 
     menuToggle.addEventListener("click", () => {
-      menu.style.display = "block";
+      menu.classList.toggle("open");
     });
 
-    // 背景クリックでメニューを閉じる
     document.addEventListener("click", (event) => {
-      if (
-        menu.style.display === "block" &&
-        !menu.contains(event.target) &&
-        !menuToggle.contains(event.target)
-      ) {
-        menu.style.display = "none";
+      if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+        menu.classList.remove("open");
       }
     });
   </script>
