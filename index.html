@@ -42,6 +42,7 @@
       align-items: center;
       justify-content: space-between;
       position: relative;
+      flex-direction: column;
     }
 
     header img {
@@ -54,14 +55,23 @@
       flex-grow: 1;
     }
 
-    #menu-toggle {
-      font-size: 1.5em;
-      background: none;
-      border: none;
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
       color: var(--text);
-      cursor: pointer;
-      position: absolute;
-      right: 20px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    nav a:hover {
+      color: var(--accent);
     }
 
     main {
@@ -88,51 +98,6 @@
 
     a {
       color: #2a7b59;
-    }
-
-    #menu {
-      display: none;
-      position: fixed;
-      top: 0;
-      right: 0;
-      background-color: var(--accent);
-      padding: 1em;
-      width: 200px;
-      height: 100%;
-      z-index: 999;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    #menu.open {
-      display: block;
-      transform: translateX(0);
-    }
-
-    #menu ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    #menu a {
-      display: block;
-      padding: 1em;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    #menu a:hover {
-      background-color: var(--bg);
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      header img {
-        height: 40px;
-      }
     }
 
     /* ダークモードボタンのスタイル */
@@ -162,17 +127,13 @@
   <header>
     <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
     <h1>Lemon Sea Server</h1>
-    <button id="menu-toggle" aria-label="メニュー">☰</button>
+    <nav>
+      <a href="rules.html">📘 利用規約・ルール</a>
+      <a href="city.html">🏙️ 都市ワールドの紹介</a>
+      <a href="gallery.html">📷️ ギャラリー</a>
+      <a href="https://discord.gg/bheyZtN454" target="_blank">💬 Discordに参加</a>
+    </nav>
   </header>
-
-  <nav id="menu" class="menu">
-    <ul>
-      <li><a href="rules.html">📘 利用規約・ルール</a></li>
-      <li><a href="city.html">🏙️ 都市ワールドの紹介</a></li>
-      <li><a href="gallery.html">📷️ ギャラリー</a></li>
-      <li><a href="https://discord.gg/bheyZtN454" target="_blank">💬 Discordに参加</a></li>
-    </ul>
-  </nav>
 
   <main>
     <section aria-labelledby="welcome-title" class="box">
@@ -271,26 +232,6 @@
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) setTheme(savedTheme);
     else setTheme("light");
-
-    // メニュー開閉
-    const menuToggle = document.getElementById("menu-toggle");
-    const menu = document.getElementById("menu");
-
-    menuToggle.addEventListener("click", () => {
-      menu.classList.toggle("open");
-      if (menu.classList.contains("open")) {
-        menu.style.display = "block"; // メニューを表示
-      } else {
-        menu.style.display = "none"; // メニューを非表示
-      }
-    });
-
-    document.addEventListener("click", (event) => {
-      if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
-        menu.classList.remove("open");
-        menu.style.display = "none"; // メニューを非表示
-      }
-    });
   </script>
 </body>
 </html>
