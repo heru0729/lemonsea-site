@@ -59,6 +59,10 @@
       padding: 0.5em 1em;
       cursor: pointer;
       color: var(--text);
+      position: fixed;
+      bottom: 1em;
+      right: 1em;
+      z-index: 1000;
     }
 
     #menu-toggle {
@@ -143,10 +147,7 @@
   <header>
     <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
     <h1>Lemon Sea Server</h1>
-    <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
-    <button id="menu-toggle" aria-label="メニュー">
-      ☰
-    </button>
+    <button id="menu-toggle" aria-label="メニュー">☰</button>
   </header>
 
   <nav id="menu" class="menu">
@@ -198,6 +199,8 @@
   <footer>
     &copy; 2025 Lemon Sea Server
   </footer>
+
+  <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
 
   <script>
     const serverAddress = "own-amazing.joinmc.link";
