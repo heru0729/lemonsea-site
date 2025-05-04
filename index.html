@@ -90,20 +90,21 @@
       color: #2a7b59;
     }
 
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-      header img {
-        height: 40px;
-      }
+  header img {
+    height: 40px;
+  }
 
-      #theme-toggle {
-        margin: 0.5em 0 0 auto;
-      }
-    }
+  #theme-toggle {
+    align-self: flex-end;
+    margin: 0.5em 0 0 0;
+  }
+}
   </style>
 </head>
 <body>
