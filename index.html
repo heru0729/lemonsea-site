@@ -41,6 +41,7 @@
       display: flex;
       align-items: center;
       gap: 1em;
+      justify-content: space-between;
     }
 
     header img {
@@ -52,14 +53,20 @@
     }
 
     #theme-toggle {
-      margin-left: auto;
-      margin-top: 0.5em; /* 下に移動 */
       background: none;
       border: 1px solid var(--text);
       border-radius: 4px;
       padding: 0.5em 1em;
       cursor: pointer;
       color: var(--text);
+    }
+
+    #menu-toggle {
+      font-size: 1.5em;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
     }
 
     main {
@@ -88,6 +95,34 @@
       color: #2a7b59;
     }
 
+    #menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: var(--accent);
+      padding: 1em;
+      width: 200px;
+      height: 100%;
+      z-index: 999;
+    }
+
+    #menu ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #menu a {
+      display: block;
+      padding: 1em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    #menu a:hover {
+      background-color: var(--bg);
+    }
+
     @media (max-width: 600px) {
       header {
         flex-direction: column;
@@ -109,7 +144,20 @@
     <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
     <h1>Lemon Sea Server</h1>
     <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
+    <button id="menu-toggle" aria-label="メニュー">
+      ☰
+    </button>
   </header>
+
+  <nav id="menu" class="menu">
+    <ul>
+      <li><a href="rules.html">📘 利用規約・ルール</a></li>
+      <li><a href="city.html">🏙️ 都市ワールドの紹介</a></li>
+      <li><a href="gallery.html">📷️ ギャラリー</a></li>
+      <li><a href="https://discord.gg/bheyZtN454" target="_blank">💬 Discordに参加</a></li>
+    </ul>
+  </nav>
+
   <main>
     <section aria-labelledby="welcome-title" class="box">
       <h2 id="welcome-title">🎉ようこそ！</h2>
@@ -145,16 +193,8 @@
         <p><strong>最大人数：</strong><span id="max-players">-</span></p>
       </div>
     </section>
-
-    <section aria-labelledby="links-title" class="box">
-      <h2 id="links-title">📄 その他リンク</h2>
-      <ul>
-        <li><a href="rules.html" aria-label="利用規約とルールページ">📘 利用規約・ルール</a></li>
-        <li><a href="city.html" aria-label="都市ワールド紹介ページ">🏙️ 都市ワールドの紹介</a></li>
-        <li><a href="gallery.html" aria-label="ギャラリーページ">📷️ ギャラリー</a></li>
-      </ul>
-    </section>
   </main>
+
   <footer>
     &copy; 2025 Lemon Sea Server
   </footer>
@@ -209,6 +249,14 @@
 
     const saved = localStorage.getItem("theme") || "light";
     setTheme(saved);
+
+    // ハンバーガーメニューの開閉
+    const menuToggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+
+    menuToggle.addEventListener("click", () => {
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    });
   </script>
 </body>
 </html>
