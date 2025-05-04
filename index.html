@@ -182,32 +182,36 @@
     const onlinePlayers = document.getElementById("online-players");
     const maxPlayers = document.getElementById("max-players");
 
-    function fetchServerStatus() {
-      fetch(`https://api.mcsrvstat.us/3/${serverAddress}`, {
-        headers: { 'User-Agent': 'LemonSeaServerStatus/1.0' }
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.online && data.players) {
-            statusMessage.textContent = "Online 🟢";
-            onlinePlayers.textContent = data.players.online ?? "不明";
-            maxPlayers.textContent = data.players.max ?? "不明";
-          } else {
-            statusMessage.textContent = "Offline 🔴";
-            onlinePlayers.textContent = "0";
-            maxPlayers.textContent = "0";
-          }
-        })
-        .catch(err => {
-          console.error("エラー:", err);
-          statusMessage.textContent = "ステータスの取得に失敗しました。";
-          onlinePlayers.textContent = "-";
-          maxPlayers.textContent = "-";
-        });
+function fetchServerStatus() {
+  fetch(`https://api.mcsrvstat.us/3/${serverAddress}`, {
+    headers: { 
+      'User-Agent': 'LemonSeaServerStatus/1.0',
+      'Cache-Control': 'no-cache'  // キャッシュを無視する
     }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.online && data.players) {
+        statusMessage.textContent = "Online 🟢";
+        onlinePlayers.textContent = data.players.online ?? "不明";
+        maxPlayers.textContent = data.players.max ?? "不明";
+      } else {
+        statusMessage.textContent = "Offline 🔴";
+        onlinePlayers.textContent = "0";
+        maxPlayers.textContent = "0";
+      }
+    })
+    .catch(err => {
+      console.error("エラー:", err);
+      statusMessage.textContent = "ステータスの取得に失敗しました。";
+      onlinePlayers.textContent = "-";
+      maxPlayers.textContent = "-";
+    });
+}
 
-    fetchServerStatus();
-    setInterval(fetchServerStatus, 30000);
+fetchServerStatus();
+setInterval(fetchServerStatus, 30000);  // 30秒ごとに更新
+
 
     // ダークモード切替
     const themeToggle = document.createElement("button");
