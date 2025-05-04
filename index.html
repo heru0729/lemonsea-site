@@ -60,10 +60,11 @@
       justify-content: center;
       width: 100%;
       margin-top: 10px;
+      flex-wrap: wrap;
     }
 
     nav a {
-      margin: 0 15px;
+      margin: 5px 15px;
       text-decoration: none;
       color: var(--text);
       font-weight: bold;
@@ -121,6 +122,34 @@
       background-color: #ffda44;
     }
 
+    /* スマホ対応のレスポンシブデザイン */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;  /* ヘッダー内の要素を縦並びに */
+        align-items: center;
+      }
+
+      nav {
+        flex-direction: column;  /* メニューを縦に並べる */
+        align-items: center;  /* 中央寄せ */
+        margin-top: 1em;  /* 上部に少しスペースを追加 */
+      }
+
+      nav a {
+        margin: 10px 0;  /* 上下に間隔を設けてアイテムを並べる */
+        font-size: 1.2em;  /* フォントサイズを少し大きく */
+      }
+
+      #server-status {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 1em;  /* 小さな画面ではフォントサイズを小さく */
+      }
+    }
   </style>
 </head>
 <body>
@@ -182,36 +211,35 @@
     const onlinePlayers = document.getElementById("online-players");
     const maxPlayers = document.getElementById("max-players");
 
-function fetchServerStatus() {
-  fetch(`https://api.mcsrvstat.us/3/${serverAddress}`, {
-    headers: { 
-      'User-Agent': 'LemonSeaServerStatus/1.0',
-      'Cache-Control': 'no-cache'  // キャッシュを無視する
+    function fetchServerStatus() {
+      fetch(`https://api.mcsrvstat.us/3/${serverAddress}`, {
+        headers: { 
+          'User-Agent': 'LemonSeaServerStatus/1.0',
+          'Cache-Control': 'no-cache'  // キャッシュを無視する
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.online && data.players) {
+            statusMessage.textContent = "Online 🟢";
+            onlinePlayers.textContent = data.players.online ?? "不明";
+            maxPlayers.textContent = data.players.max ?? "不明";
+          } else {
+            statusMessage.textContent = "Offline 🔴";
+            onlinePlayers.textContent = "0";
+            maxPlayers.textContent = "0";
+          }
+        })
+        .catch(err => {
+          console.error("エラー:", err);
+          statusMessage.textContent = "ステータスの取得に失敗しました。";
+          onlinePlayers.textContent = "-";
+          maxPlayers.textContent = "-";
+        });
     }
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.online && data.players) {
-        statusMessage.textContent = "Online 🟢";
-        onlinePlayers.textContent = data.players.online ?? "不明";
-        maxPlayers.textContent = data.players.max ?? "不明";
-      } else {
-        statusMessage.textContent = "Offline 🔴";
-        onlinePlayers.textContent = "0";
-        maxPlayers.textContent = "0";
-      }
-    })
-    .catch(err => {
-      console.error("エラー:", err);
-      statusMessage.textContent = "ステータスの取得に失敗しました。";
-      onlinePlayers.textContent = "-";
-      maxPlayers.textContent = "-";
-    });
-}
 
-fetchServerStatus();
-setInterval(fetchServerStatus, 30000);  // 30秒ごとに更新
-
+    fetchServerStatus();
+    setInterval(fetchServerStatus, 30000);  // 30秒ごとに更新
 
     // ダークモード切替
     const themeToggle = document.createElement("button");
