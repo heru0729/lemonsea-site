@@ -10,15 +10,17 @@
       --bg: #f5f9f7;
       --text: #333;
       --accent: #ffe66d;
-      --section-bg: #e2f3e4;
+      --section-bg: rgba(226, 243, 228, 0.85);
       --footer-bg: #eee;
+      --bg-image: url('images/2.png');
     }
     [data-theme="dark"] {
       --bg: #121212;
       --text: #eee;
       --accent: #ffda44;
-      --section-bg: #1e2d1f;
+      --section-bg: rgba(30, 45, 31, 0.85);
       --footer-bg: #1c1c1c;
+      --bg-image: url('images/6.png');
     }
 
     body {
@@ -27,24 +29,10 @@
       color: var(--text);
       margin: 0;
       padding: 0;
-      background-image: url("images/2.png");
+      background-image: var(--bg-image);
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      transition: background-color 0.3s, color 0.3s, background-image 0.5s ease-in-out;
-    }
-
-    body.fade {
-      animation: fadeBg 0.5s ease-in-out;
-    }
-
-    @keyframes fadeBg {
-      0% {
-        opacity: 0.6;
-      }
-      100% {
-        opacity: 1;
-      }
+      transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
     }
 
     header {
@@ -54,12 +42,15 @@
       align-items: center;
       gap: 1em;
     }
+
     header img {
       height: 50px;
     }
+
     header h1 {
       margin: 0;
     }
+
     #theme-toggle {
       margin-left: auto;
       background: none;
@@ -69,35 +60,43 @@
       cursor: pointer;
       color: var(--text);
     }
+
     main {
       padding: 2em;
       max-width: 800px;
       margin: auto;
     }
+
     section {
       margin-bottom: 2em;
     }
-    .status {
+
+    .box {
       background-color: var(--section-bg);
       padding: 1em;
       border-radius: 8px;
     }
+
     footer {
       text-align: center;
       padding: 1em;
       background-color: var(--footer-bg);
     }
+
     a {
       color: #2a7b59;
     }
+
     @media (max-width: 600px) {
       header {
         flex-direction: column;
         align-items: flex-start;
       }
+
       header img {
         height: 40px;
       }
+
       #theme-toggle {
         margin: 0.5em 0 0 auto;
       }
@@ -111,7 +110,7 @@
     <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
   </header>
   <main>
-    <section aria-labelledby="welcome-title">
+    <section aria-labelledby="welcome-title" class="box">
       <h2 id="welcome-title">🎉ようこそ！</h2>
       <p>
         この鯖はできたてほやほやのマイクラサーバー！<br />
@@ -122,7 +121,7 @@
       </p>
     </section>
 
-    <section aria-labelledby="info-title">
+    <section aria-labelledby="info-title" class="box">
       <h2 id="info-title">🌍 サーバー情報</h2>
       <ul>
         <li><strong>アドレス：</strong>own-amazing.joinmc.link</li>
@@ -132,21 +131,21 @@
       </ul>
     </section>
 
-    <section aria-labelledby="join-title">
+    <section aria-labelledby="join-title" class="box">
       <h2 id="join-title">🚪 参加方法</h2>
       <p>マイクラの「マルチプレイ」から <strong>own-amazing.joinmc.link</strong> を入力するだけ！</p>
     </section>
 
-    <section id="server-status" aria-labelledby="status-title">
+    <section id="server-status" aria-labelledby="status-title" class="box">
       <h2 id="status-title">🖥️ サーバーステータス</h2>
-      <div class="status">
+      <div>
         <p id="status-message">読み込み中...</p>
         <p><strong>オンライン人数：</strong><span id="online-players">-</span></p>
         <p><strong>最大人数：</strong><span id="max-players">-</span></p>
       </div>
     </section>
 
-    <section aria-labelledby="links-title">
+    <section aria-labelledby="links-title" class="box">
       <h2 id="links-title">📄 その他リンク</h2>
       <ul>
         <li><a href="rules.html" aria-label="利用規約とルールページ">📘 利用規約・ルール</a></li>
@@ -192,6 +191,7 @@
     fetchServerStatus();
     setInterval(fetchServerStatus, 30000);
 
+    // ダークモード切替
     const themeToggle = document.getElementById("theme-toggle");
     const htmlEl = document.documentElement;
 
@@ -199,13 +199,6 @@
       htmlEl.setAttribute("data-theme", mode);
       localStorage.setItem("theme", mode);
       themeToggle.textContent = mode === "dark" ? "☀️" : "🌙";
-
-      const bg = mode === "dark" ? "images/6.png" : "images/2.png";
-      document.body.classList.add("fade");
-      document.body.style.backgroundImage = `url('${bg}')`;
-      setTimeout(() => {
-        document.body.classList.remove("fade");
-      }, 500);
     }
 
     themeToggle.addEventListener("click", () => {
@@ -214,7 +207,6 @@
     });
 
     const saved = localStorage.getItem("theme") || "light";
-    document.body.style.backgroundImage = `url('${saved === "dark" ? "images/6.png" : "images/2.png"}')`;
     setTheme(saved);
   </script>
 </body>
