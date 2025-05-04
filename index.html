@@ -142,6 +142,25 @@
         margin: 0.5em 0 0 auto;
       }
     }
+
+    /* ハンバーガーメニュー（右下に配置） */
+    #menu-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--accent);
+      color: var(--text);
+      border: none;
+      padding: 1em;
+      font-size: 2em;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #menu-toggle:hover {
+      background-color: var(--bg);
+    }
   </style>
 </head>
 <body>
@@ -149,9 +168,6 @@
     <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
     <h1>Lemon Sea Server</h1>
     <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
-    <button id="menu-toggle" aria-label="メニュー">
-      ☰
-    </button>
   </header>
 
   <nav id="menu" class="menu">
