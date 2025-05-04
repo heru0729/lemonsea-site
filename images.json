@@ -23,5 +23,10 @@
     "src": "images/5.png",
     "alt": "瞻星台",
     "name": "observatory.png"
+  },
+  {
+    "src": "images/6.png",
+    "alt": "桜木山(夜)",
+    "name": "sakuragi_night.png"
   }
 ]
