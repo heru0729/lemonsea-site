@@ -191,56 +191,6 @@
       <p>マイクラの「マルチプレイ」から <strong>own-amazing.joinmc.link</strong> を入力してdiscordと連携するだけ！</p>
     </section>
 
-    <section id="server-status" aria-labelledby="status-title" class="box">
-      <h2 id="status-title">🖥️ サーバーステータス</h2>
-      <div>
-        <p id="status-message">読み込み中...</p>
-        <p><strong>オンライン人数：</strong><span id="online-players">-</span></p>
-        <p><strong>最大人数：</strong><span id="max-players">-</span></p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 Lemon Sea Server
-  </footer>
-
-  <script>
-    const serverAddress = "own-amazing.joinmc.link";
-    const statusMessage = document.getElementById("status-message");
-    const onlinePlayers = document.getElementById("online-players");
-    const maxPlayers = document.getElementById("max-players");
-
-    function fetchServerStatus() {
-      fetch(`https://api.mcsrvstat.us/3/${serverAddress}`, {
-        headers: { 
-          'User-Agent': 'LemonSeaServerStatus/1.0',
-          'Cache-Control': 'no-cache'  // キャッシュを無視する
-        }
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.online && data.players) {
-            statusMessage.textContent = "Online 🟢";
-            onlinePlayers.textContent = data.players.online ?? "不明";
-            maxPlayers.textContent = data.players.max ?? "不明";
-          } else {
-            statusMessage.textContent = "Offline 🔴";
-            onlinePlayers.textContent = "0";
-            maxPlayers.textContent = "0";
-          }
-        })
-        .catch(err => {
-          console.error("エラー:", err);
-          statusMessage.textContent = "ステータスの取得に失敗しました。";
-          onlinePlayers.textContent = "-";
-          maxPlayers.textContent = "-";
-        });
-    }
-
-    fetchServerStatus();
-    setInterval(fetchServerStatus, 30000);  // 30秒ごとに更新
-
     // ダークモード切替
     const themeToggle = document.createElement("button");
     themeToggle.id = "theme-toggle";
