@@ -40,6 +40,7 @@
       padding: 1em;
       display: flex;
       align-items: center;
+      gap: 1em;
       justify-content: space-between;
     }
 
@@ -49,11 +50,26 @@
 
     header h1 {
       margin: 0;
-      font-size: 1.5em;
+      flex-grow: 1;
+    }
+
+    #theme-toggle {
+      position: fixed;
+      bottom: 1em;
+      right: 1em;
+      background: var(--accent);
+      border: 1px solid var(--text);
+      border-radius: 50%;
+      padding: 0.5em;
+      cursor: pointer;
+      font-size: 1.2em;
+      z-index: 1000;
+      color: var(--text);
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
 
     #menu-toggle {
-      font-size: 1.8em;
+      font-size: 1.5em;
       background: none;
       border: none;
       color: var(--text);
@@ -114,24 +130,6 @@
       background-color: var(--bg);
     }
 
-    #theme-toggle {
-      background: var(--text);
-      color: var(--bg);
-      border-radius: 50%;
-      padding: 0.5em;
-      cursor: pointer;
-      font-size: 1.5em;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      border: none;
-    }
-
-    #theme-toggle:hover {
-      background-color: var(--accent);
-    }
-
     @media (max-width: 600px) {
       header {
         flex-direction: column;
@@ -151,7 +149,7 @@
     <button id="menu-toggle" aria-label="メニュー">☰</button>
   </header>
 
-  <nav id="menu">
+  <nav id="menu" class="menu">
     <ul>
       <li><a href="rules.html">📘 利用規約・ルール</a></li>
       <li><a href="city.html">🏙️ 都市ワールドの紹介</a></li>
@@ -201,8 +199,7 @@
     &copy; 2025 Lemon Sea Server
   </footer>
 
-  <!-- ダークモード切替ボタン（右下） -->
-  <button id="theme-toggle" aria-label="テーマ切替">🌙</button>
+  <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
 
   <script>
     const serverAddress = "own-amazing.joinmc.link";
@@ -235,7 +232,7 @@
     fetchServerStatus();
     setInterval(fetchServerStatus, 30000);
 
-    // ダークモード切替
+    // テーマ切替
     const themeToggle = document.getElementById("theme-toggle");
     const htmlEl = document.documentElement;
 
@@ -253,12 +250,19 @@
     const saved = localStorage.getItem("theme") || "light";
     setTheme(saved);
 
-    // ハンバーガーメニュー
+    // メニュー切り替え
     const menuToggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
 
-    menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
       menu.style.display = menu.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (menu.style.display === "block" && !menu.contains(e.target) && !menuToggle.contains(e.target)) {
+        menu.style.display = "none";
+      }
     });
   </script>
 </body>
