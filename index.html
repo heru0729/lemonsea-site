@@ -122,22 +122,41 @@
       background-color: #ffda44;
     }
 
+    /* お問い合わせボタンのスタイル */
+    .contact-button {
+      display: inline-block;
+      padding: 0.75em 1.5em;
+      background-color: var(--accent);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease;
+      text-align: center;
+    }
+
+    .contact-button:hover {
+      background-color: #ffd700;
+    }
+
     /* スマホ対応のレスポンシブデザイン */
     @media (max-width: 768px) {
       header {
-        flex-direction: column;  /* ヘッダー内の要素を縦並びに */
+        flex-direction: column;
         align-items: center;
       }
 
       nav {
-        flex-direction: column;  /* メニューを縦に並べる */
-        align-items: center;  /* 中央寄せ */
-        margin-top: 1em;  /* 上部に少しスペースを追加 */
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1em;
       }
 
       nav a {
-        margin: 10px 0;  /* 上下に間隔を設けてアイテムを並べる */
-        font-size: 1.2em;  /* フォントサイズを少し大きく */
+        margin: 10px 0;
+        font-size: 1.2em;
       }
 
       #server-status {
@@ -147,7 +166,7 @@
 
     @media (max-width: 480px) {
       nav a {
-        font-size: 1em;  /* 小さな画面ではフォントサイズを小さく */
+        font-size: 1em;
       }
     }
   </style>
@@ -190,6 +209,18 @@
       <h2 id="join-title">🚪 参加方法</h2>
       <p>マイクラの「マルチプレイ」から <strong>own-amazing.joinmc.link</strong> を入力してdiscordと連携するだけ！</p>
     </section>
+
+    <section aria-labelledby="contact-title" class="box">
+      <h2 id="contact-title">📩 お問い合わせ</h2>
+      <p>バグ報告、要望、通報などはこちらからどうぞ！</p>
+      <p>
+        <a href="https://forms.gle/k1K5NLms5NL2HVCS8" target="_blank" class="contact-button" aria-label="Googleフォームでお問い合わせ">
+          Googleフォームを開く →
+        </a>
+      </p>
+    </section>
+  </main>
+
   <script>
     // ダークモード切替
     const themeToggle = document.createElement("button");
