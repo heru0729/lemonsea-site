@@ -94,7 +94,7 @@
       display: none;
       position: fixed;
       top: 0;
-      right: -200px; /* 初期位置を画面外に設定 */
+      right: 0;
       background-color: var(--accent);
       padding: 1em;
       width: 200px;
@@ -104,7 +104,8 @@
     }
 
     #menu.open {
-      transform: translateX(-200px); /* メニュー開くとき */
+      display: block;
+      transform: translateX(0);
     }
 
     #menu ul {
@@ -277,18 +278,17 @@
 
     menuToggle.addEventListener("click", () => {
       menu.classList.toggle("open");
-      // メニューを開閉した時に位置を調整
       if (menu.classList.contains("open")) {
-        menu.style.transform = 'translateX(0)';
+        menu.style.display = "block"; // メニューを表示
       } else {
-        menu.style.transform = 'translateX(-200px)';
+        menu.style.display = "none"; // メニューを非表示
       }
     });
 
     document.addEventListener("click", (event) => {
       if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
         menu.classList.remove("open");
-        menu.style.transform = 'translateX(-200px)';
+        menu.style.display = "none"; // メニューを非表示
       }
     });
   </script>
