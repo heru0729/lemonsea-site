@@ -40,7 +40,6 @@
       padding: 1em;
       display: flex;
       align-items: center;
-      gap: 1em;
       justify-content: space-between;
       position: relative;
     }
@@ -51,6 +50,8 @@
 
     header h1 {
       margin: 0;
+      text-align: center;
+      flex-grow: 1;
     }
 
     #menu-toggle {
@@ -248,7 +249,11 @@
     setInterval(fetchServerStatus, 30000);
 
     // ダークモード切替
-    const themeToggle = document.getElementById("theme-toggle");
+    const themeToggle = document.createElement("button");
+    themeToggle.id = "theme-toggle";
+    themeToggle.textContent = "🌙";
+    document.body.appendChild(themeToggle);
+
     const htmlEl = document.documentElement;
 
     function setTheme(mode) {
