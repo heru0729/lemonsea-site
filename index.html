@@ -52,14 +52,16 @@
     }
 
     #theme-toggle {
-      margin-left: auto;
-      margin-top: 0.5em; /* 下に移動 */
+      position: fixed;
+      top: 1em;
+      right: 1em;
       background: none;
       border: 1px solid var(--text);
       border-radius: 4px;
       padding: 0.5em 1em;
       cursor: pointer;
       color: var(--text);
+      z-index: 10;
     }
 
     main {
@@ -108,7 +110,6 @@
   <header>
     <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
     <h1>Lemon Sea Server</h1>
-    <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
   </header>
   <main>
     <section aria-labelledby="welcome-title" class="box">
