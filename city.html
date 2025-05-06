@@ -73,9 +73,29 @@
     #darkToggle:hover {
       background-color: #458c6a;
     }
+
+    #backHome {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+      padding: 0.5em 1em;
+      background-color: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9em;
+      transition: background 0.3s;
+      z-index: 1000;
+    }
+
+    #backHome:hover {
+      background-color: #458c6a;
+    }
   </style>
 </head>
 <body>
+  <a href="index.html" id="backHome">← ホームに戻る</a>
+
   <h1>🏙️ 都市ワールド紹介</h1>
   <p>
     サーバー内には、建設スタイルの異なる2つの都市があります。興味がある方をチェックしてね！<br>
@@ -142,7 +162,7 @@
       ちゃんと鉄道も稼働中です。<br>
       建物などが数多くあり、動画撮影に向いているワールドとなっています。
     </p>
-  
+
     <details>
       <summary>🏙️ 自治体一覧</summary>
       <ul>
@@ -151,7 +171,7 @@
         <li>鮭島村</li>
       </ul>
     </details>
-  
+
     <details>
       <summary>🚆 鉄道一覧</summary>
       <p>旧都市鯖において運行されている路線は以下の通りです。</p>
@@ -165,7 +185,7 @@
   </details>
 
   <footer>
-    <a href="index.html">← ホームに戻る</a>
+    <!-- 画面右上固定にしたためここは空でOK -->
   </footer>
 
   <button id="darkToggle">🌙 ダークモード切替</button>
