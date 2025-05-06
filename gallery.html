@@ -72,6 +72,27 @@
       background: #1e5c42;
     }
 
+    /* ← ホームに戻るボタン */
+    #backHome {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 10000;
+      background: #2a7b59;
+      color: white;
+      padding: 0.5em 1em;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+    #backHome:hover {
+      background: #1e5c42;
+    }
+    body.dark #backHome {
+      background: #90ee90;
+      color: #000;
+    }
+
     /* モーダル */
     #modal {
       display: none;
@@ -128,14 +149,15 @@
   </style>
 </head>
 <body>
+  <a href="index.html" id="backHome">← ホームに戻る</a>
   <button id="toggleDarkMode">🌙 ダークモード</button>
 
   <h1>🖼️ ギャラリー</h1>
   <p>れもんしーサーバーの建築や風景を集めたギャラリーページです。随時更新予定！<br>
 
   <p style="text-align: center; margin-bottom: 1em;">
-  <a href="https://forms.gle/k1K5NLms5NL2HVCS8" target="_blank" class="modalBtn" style="text-decoration: none; display: inline-block;">📤 画像申請（Googleフォーム）</a>
-</p>
+    <a href="https://forms.gle/k1K5NLms5NL2HVCS8" target="_blank" class="modalBtn" style="text-decoration: none; display: inline-block;">📤 画像申請（Googleフォーム）</a>
+  </p>
 
   <div class="gallery" id="gallery"></div>
 
@@ -203,15 +225,14 @@
       showModal(currentIndex);
     }
 
-document.getElementById('saveBtn').addEventListener('click', () => {
-  const image = imageList[currentIndex];
-  const a = document.createElement('a');
-  a.href = image.src;
-  a.download = image.name;  // 画像のnameをダウンロード時のファイル名として使用
-  a.click();
-});
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      const image = imageList[currentIndex];
+      const a = document.createElement('a');
+      a.href = image.src;
+      a.download = image.name;
+      a.click();
+    });
 
-    // モーダル制御
     const modal = document.getElementById('modal');
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
