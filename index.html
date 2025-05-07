@@ -5,603 +5,603 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lemon Sea Server</title>
     <link rel="icon" href="Lemonsea.png" />
-    <style>
-        :root {
-            --bg: #f5f9f7;
-            --text: #222;
-            --accent: #ffe66d;
-            --section-bg: rgba(226, 243, 228, 0.85);
-            --footer-bg: #eee;
-            --bg-image: url('images/2.png');
-            --border-color: #ccc;
-        }
-        [data-theme="dark"] {
-            --bg: #181818;
-            --text: #eee;
-            --accent: #ffda44;
-            --section-bg: rgba(30, 45, 31, 0.85);
-            --footer-bg: #1c1c1c;
-            --bg-image: url('images/6.png');
-            --border-color: #555;
-        }
+<style>
+    :root {
+        --bg: #f5f9f7;
+        --text: #222;
+        --accent: #ffe66d;
+        --section-bg: rgba(226, 243, 228, 0.85);
+        --footer-bg: #eee;
+        --bg-image: url('images/2.png');
+        --border-color: #ccc;
+    }
+    [data-theme="dark"] {
+        --bg: #181818;
+        --text: #eee;
+        --accent: #ffda44;
+        --section-bg: rgba(30, 45, 31, 0.85);
+        --footer-bg: #1c1c1c;
+        --bg-image: url('images/6.png');
+        --border-color: #555;
+    }
 
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        margin: 0;
+        padding: 0;
+        background-image: var(--bg-image);
+        background-size: cover;
+        background-position: center;
+        transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
+        font-size: 1.0em;
+        line-height: 1.5;
+    }
+
+    header {
+        background-color: var(--accent);
+        padding: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        flex-direction: column;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    header img {
+        height: 40px;
+    }
+
+    header h1 {
+        margin: 0.3em 0;
+        text-align: center;
+        flex-grow: 1;
+        font-size: 1.4em;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 1em;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--border-color);
+        padding-top: 0.3em;
+    }
+
+    nav a {
+        margin: 0.5em 1em;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: bold;
+        font-size: 0.9em;
+        cursor: pointer;
+        padding: 0.2em 0.4em;
+        border-radius: 5px;
+        transition: color 0.3s;
+    }
+
+    nav a:hover {
+        color: #007bff;
+    }
+
+    main {
+        padding: 1.5em;
+        max-width: 900px;
+        margin: 1.5em auto;
+    }
+
+    section {
+        margin-bottom: 1.8em;
+        padding: 0.9em;
+        border-radius: 8px;
+        background-color: var(--section-bg);
+        border: 1px solid var(--border-color);
+    }
+
+    h1, h2, h3 {
+        margin-top: 1.3em;
+        margin-bottom: 0.5em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+        padding-bottom: 0.15em;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    h3 {
+        font-size: 1.1em;
+        margin-top: 0.9em;
+    }
+
+    ul, ol {
+        padding-left: 1.4em;
+        margin-bottom: 1em;
+    }
+
+    li {
+        margin-bottom: 0.6em;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: underline;
+    }
+
+    a:hover {
+        color: #0056b3;
+    }
+
+    /* ダークモードボタンのスタイル */
+    #theme-toggle {
+        background: var(--accent);
+        border: none;
+        border-radius: 50%;
+        padding: 0.8em;
+        font-size: 1.1em;
+        position: fixed;
+        right: 15px;
+        bottom: 15px;
+        z-index: 9999;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    #theme-toggle:hover {
+        transform: scale(1.1);
+        background-color: #ffda44;
+    }
+
+    /* お問い合わせボタンのスタイル */
+    .contact-button {
+        display: inline-block;
+        padding: 0.6em 1.2em;
+        background-color: var(--accent);
+        color: #000;
+        font-weight: bold;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 0.9em;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        text-align: center;
+    }
+
+    .contact-button:hover {
+        background-color: #ffd700;
+    }
+
+    /* スマホ対応のレスポンシブデザイン */
+    @media (max-width: 768px) {
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-            background-image: var(--bg-image);
-            background-size: cover;
-            background-position: center;
-            transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
-            font-size: 1.0em; /* 基本フォントサイズをさらに微調整 */
-            line-height: 1.5; /* 行間をさらに微調整 */
+            font-size: 0.9em;
+            line-height: 1.4;
         }
-
         header {
-            background-color: var(--accent);
-            padding: 1em; /* ヘッダーのpaddingを小さく */
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            flex-direction: column;
-            border-bottom: 1px solid var(--border-color); /* ヘッダー下部のボーダーを細く */
+            padding: 0.8em;
         }
-
         header img {
-            height: 40px; /* ロゴのサイズを小さく */
+            height: 35px;
         }
-
         header h1 {
-            margin: 0.3em 0; /* タイトルの上下marginを小さく */
-            text-align: center;
-            flex-grow: 1;
-            font-size: 1.4em; /* タイトルのフォントサイズを小さく */
+            font-size: 1.2em;
+            margin: 0.2em 0;
         }
-
         nav {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-top: 1em; /* ナビゲーションのmargin-topを小さく */
-            flex-wrap: wrap;
-            border-top: 1px solid var(--border-color); /* ナビゲーション上部のボーダーを細く */
-            padding-top: 0.3em; /* ナビゲーションのpadding-topを小さく */
+            margin-top: 0.8em;
+            padding-top: 0.2em;
         }
-
         nav a {
-            margin: 0.5em 1em; /* ナビゲーションリンクのmarginを小さく */
-            text-decoration: none;
-            color: var(--text);
-            font-weight: bold;
-            font-size: 0.9em; /* ナビゲーションリンクのフォントサイズを小さく */
-            cursor: pointer;
-            padding: 0.2em 0.4em;
-            border-radius: 5px;
-            transition: color 0.3s;
+            margin: 0.3em 0.8em;
+            font-size: 0.8em;
         }
-
-        nav a:hover {
-            color: #007bff;
-        }
-
         main {
-            padding: 1.5em;
-            max-width: 900px;
-            margin: 1.5em auto; /* mainのmarginも調整 */
+            padding: 1em;
+            margin: 1.5em auto;
         }
-
         section {
-            margin-bottom: 1.8em; /* sectionのmargin-bottomも調整 */
-            padding: 0.9em; /* sectionのpaddingも調整 */
-            border-radius: 8px;
-            background-color: var(--section-bg);
-            border: 1px solid var(--border-color);
+            margin-bottom: 1.5em;
+            padding: 0.8em;
         }
-
-        h1, h2, h3 {
-            margin-top: 1.3em; /* h要素のmargin-topを調整 */
-            margin-bottom: 0.5em; /* h要素のmargin-bottomを調整 */
+        h1 {
+            font-size: 1.4em;
         }
-
         h2 {
-            font-size: 1.2em; /* h2のフォントサイズを調整 */
-            padding-bottom: 0.15em; /* h2のpadding-bottomを調整 */
-            border-bottom: 1px solid var(--border-color);
+            font-size: 1.1em;
         }
-
         h3 {
-            font-size: 1.1em; /* h3のフォントサイズを調整 */
-            margin-top: 0.9em; /* h3のmargin-topを調整 */
+            font-size: 1em;
         }
-
-        ul, ol {
-            padding-left: 1.4em; /* リストのpaddingを調整 */
-            margin-bottom: 1em; /* リストのmargin-bottomを調整 */
-        }
-
-        li {
-            margin-bottom: 0.6em; /* リストアイテムのmargin-bottomを調整 */
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: underline;
-        }
-
-        a:hover {
-            color: #0056b3;
-        }
-
-        /* ダークモードボタンのスタイル */
         #theme-toggle {
-            background: var(--accent);
-            border: none;
-            border-radius: 50%;
-            padding: 0.8em; /* ボタンのpaddingを調整 */
-            font-size: 1.1em; /* ボタンのフォントサイズを調整 */
-            position: fixed;
-            right: 15px;
-            bottom: 15px;
-            z-index: 9999;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        #theme-toggle:hover {
-            transform: scale(1.1);
-            background-color: #ffda44;
-        }
-
-        /* お問い合わせボタンのスタイル */
-        .contact-button {
-            display: inline-block;
-            padding: 0.6em 1.2em; /* ボタンのpaddingを調整 */
-            background-color: var(--accent);
-            color: #000;
-            font-weight: bold;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.9em; /* ボタンのフォントサイズを調整 */
-            transition: background-color 0.3s ease, color 0.3s ease;
-            text-align: center;
-        }
-
-        .contact-button:hover {
-            background-color: #ffd700;
-        }
-
-        /* スマホ対応のレスポンシブデザイン */
-        @media (max-width: 768px) {
-            body {
-                font-size: 0.9em;
-                line-height: 1.4;
-            }
-            header {
-                padding: 0.8em;
-            }
-            header img {
-                height: 35px;
-            }
-            header h1 {
-                font-size: 1.2em;
-                margin: 0.2em 0;
-            }
-            nav {
-                margin-top: 0.8em;
-                padding-top: 0.2em;
-            }
-            nav a {
-                margin: 0.3em 0.8em;
-                font-size: 0.8em;
-            }
-            main {
-                padding: 1em;
-                margin: 1.5em auto;
-            }
-            section {
-                margin-bottom: 1.5em;
-                padding: 0.8em;
-            }
-            h1 {
-                font-size: 1.4em;
-            }
-            h2 {
-                font-size: 1.1em;
-            }
-            h3 {
-                font-size: 1em;
-            }
-            #theme-toggle {
-                font-size: 1em;
-                padding: 0.6em;
-                right: 10px;
-                bottom: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                font-size: 0.8em;
-                line-height: 1.3;
-            }
-            header {
-                padding: 0.6em;
-            }
-            header img {
-                height: 30px;
-            }
-            header h1 {
-                font-size: 1em;
-            }
-            nav {
-                margin-top: 0.6em;
-                padding-top: 0.15em;
-            }
-            nav a {
-                margin: 0.2em 0.6em;
-                font-size: 0.7em;
-            }
-            main {
-                padding: 0.8em;
-                margin: 1em auto;
-            }
-            section {
-                margin-bottom: 1.2em;
-                padding: 0.6em;
-            }
-            h1 {
-                font-size: 1.2em;
-            }
-            h2 {
-                font-size: 1em;
-            }
-            h3 {
-                font-size: 0.9em;
-            }
-            #theme-toggle {
-                font-size: 0.9em;
-                padding: 0.5em;
-                right: 8px;
-                bottom: 8px;
-            }
-        }
-
-        /* ページごとのスタイル */
-        .page {
-            display: none;
-        }
-        .page#home {
-            display: block;
-        }
-
-        /* 都市ワールド紹介ページのスタイル */
-        #city-page {
-            padding: 0.8em;
-        }
-        #city-page h1 {
-            color: #2a7b59;
-            font-size: 1.4em;
-            padding-bottom: 0.2em;
-            border-bottom: 1px solid var(--border-color);
-        }
-        body.dark #city-page h1 {
-            color: #66cdaa;
-            border-bottom-color: #555;
-        }
-        #city-page section {
-            border: 1px solid var(--border-color);
-            padding: 0.8em;
-            margin-bottom: 1em;
-            border-radius: 8px;
-            background-color: var(--card-bg);
-        }
-        #city-page h2 {
-            font-size: 1.2em;
-            border-left: 3px solid var(--accent);
-            padding-left: 0.4em;
-            margin-top: 1em;
-            margin-bottom: 0.3em;
-            border-bottom: none;
-        }
-        #city-page h3 {
             font-size: 1em;
-            margin-top: 0.8em;
-            margin-bottom: 0.2em;
-            color: #333;
+            padding: 0.6em;
+            right: 10px;
+            bottom: 10px;
         }
-        body.dark #city-page h3 {
-            color: #ccc;
-        }
-        #city-page details {
-            margin-bottom: 1em;
-            background: var(--card-bg);
-            padding: 0.8em;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        #city-page summary {
-            font-weight: bold;
-            font-size: 1em;
-            cursor: pointer;
-            padding: 0.3em 0;
-        }
-        #city-page p {
-            font-size: 0.9em;
-            margin-top: 0.4em;
-            margin-bottom: 0.8em;
-        }
-        #city-page ul {
-            padding-left: 1.6em;
-            margin-bottom: 0.8em;
-            border: 1px solid var(--border-color);
-            padding: 0.8em;
-            border-radius: 8px;
-            background-color: var(--card-bg);
-        }
-        #city-page li {
-            font-size: 0.9em;
-            margin-bottom: 0.5em;
-        }
+    }
 
-        /* ギャラリーページのスタイル */
-        #gallery-page {
-            background: #fefefe;
-            color: #333;
-            padding: 0.8em;
-        }
-        body.dark #gallery-page {
-            background: #121212;
-            color: #f0f0f0;
-        }
-        #gallery-page h1 {
-            color: #2a7b59;
-            text-align: center;
-            font-size: 1.4em;
-            padding-bottom: 0.2em;
-            border-bottom: 1px solid var(--border-color);
-        }
-        body.dark #gallery-page h1 {
-            color: #90ee90;
-            border-bottom-color: #555;
-        }
-        #gallery-page .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* ギャラリーの画像サイズをさらに調整 */
-            gap: 0.6em; /* ギャラリーの画像間の余白をさらに調整 */
-            padding: 0.6em; /* ギャラリー全体のpaddingをさらに調整 */
-        }
-        #gallery-page .gallery img {
-            width: 100%;
-            border-radius: 6px;
-            transition: transform 0.2s;
-            cursor: pointer;
-            object-fit: cover;
-            aspect-ratio: 4/3;
-            border: 1px solid var(--border-color);
-        }
-        #gallery-page .gallery img:hover {
-            transform: scale(1.03);
-        }
-        #gallery-page footer {
-            text-align: center;
-            margin-top: 1.2em;
-            color: #666;
-            padding-top: 0.6em;
-            border-top: 1px solid var(--border-color);
+    @media (max-width: 480px) {
+        body {
             font-size: 0.8em;
+            line-height: 1.3;
         }
-        body.dark #gallery-page footer {
-            color: #aaa;
-            border-top-color: #333;
+        header {
+            padding: 0.6em;
         }
-        #gallery-page #modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
+        header img {
+            height: 30px;
         }
-        body.dark #gallery-page #modal {
-            background-color: rgba(0, 0, 0, 0.95);
+        header h1 {
+            font-size: 1em;
         }
-        #gallery-page #modal img {
-            max-width: 90%;
-            max-height: 85%;
-            border-radius: 8px;
-        }
-        #gallery-page #modal h2 {
-            color: white;
+        nav {
             margin-top: 0.6em;
-            text-align: center;
-            font-size: 1em;
+            padding-top: 0.15em;
         }
-        #gallery-page #modalClose {
-            color: white;
-            font-size: 1.4em;
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            cursor: pointer;
+        nav a {
+            margin: 0.2em 0.6em;
+            font-size: 0.7em;
         }
-        #gallery-page #modalControls {
-            margin-top: 0.6em;
-            display: flex;
-            gap: 0.6em;
-            justify-content: center;
-        }
-        #gallery-page .modalBtn {
-            background: #2a7b59;
-            color: white;
-            border: none;
-            padding: 0.5em 1em;
-            font-size: 0.8em;
-            border-radius: 6px;
-            cursor: pointer}
-        #gallery-page .modalBtn:hover {
-            background: #1e5c42;
-        }
-        body.dark #gallery-page .modalBtn {
-            background: #90ee90;
-            color: #000;
-        }
-        body.dark #gallery-page .modalBtn:hover {
-            background: #73ba73;
-        }
-
-        /* 利用規約・ルールページのスタイル */
-        #rules-page {
-            background: #fafafa;
-            color: #222;
+        main {
             padding: 0.8em;
+            margin: 1em auto;
         }
-        body.dark #rules-page {
-            background: #121212;
-            color: #eee;
+        section {
+            margin-bottom: 1.2em;
+            padding: 0.6em;
         }
-        #rules-page h1 {
-            color: #2a7b59;
-            font-size: 1.4em;
-            padding-bottom: 0.2em;
-            border-bottom: 1px solid var(--border-color);
-        }
-        body.dark #rules-page h1 {
-            color: #6af5a4;
-            border-bottom-color: #555;
-        }
-        #rules-page h2 {
-            border-left: 3px solid var(--accent);
-            padding-left: 0.5em;
-            margin-top: 1em;
-            margin-bottom: 0.3em;
+        h1 {
             font-size: 1.2em;
         }
-        body.dark #rules-page h2 {
-            border-left-color: #6af5a4;
+        h2 {
+            font-size: 1em;
         }
-        #rules-page ul {
-            padding-left: 1.6em;
-            margin-bottom: 0.8em;
-            border: 1px solid var(--border-color);
-            padding: 0.8em;
-            border-radius: 6px;
-            background-color: var(--bg);
-        }
-        #rules-page li {
-            margin-bottom: 0.5em;
+        h3 {
             font-size: 0.9em;
         }
-        #rules-page p {
-            margin-bottom: 0.8em;
+        #theme-toggle {
             font-size: 0.9em;
+            padding: 0.5em;
+            right: 8px;
+            bottom: 8px;
         }
-        #rules-page p[style] {
-            color: #555 !important;
-            font-size: 0.8em !important;
-        }
-        body.dark #rules-page p[style] {
-            color: #aaa !important;
-        }
-        #rules-page footer {
-            margin-top: 1.2em;
-            text-align: center;
-            color: #777;
-            padding-top: 0.6em;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.8em;
-        }
-        body.dark #rules-page footer {
-            color: #aaa;
-            border-top-color: #333;
-        }
-        #rules-page a {
-            color: #007bff;
-            font-size: 0.9em;
-        }
-        body.dark #rules-page a {
-            color: #6af5a4;
-        }
+    }
 
-        /* 都市ワールド紹介ページのスタイル */
-        #city-page {
-            padding: 0.8em;
-        }
-        #city-page h1 {
-            color: #2a7b59;
-            font-size: 1.4em;
-            padding-bottom: 0.2em;
-            border-bottom: 1px solid var(--border-color);
-        }
-        body.dark #city-page h1 {
-            color: #66cdaa;
-            border-bottom-color: #555;
-        }
-        #city-page section {
-            border: 1px solid var(--border-color);
-            padding: 0.8em;
-            margin-bottom: 1em;
-            border-radius: 6px;
-            background-color: var(--card-bg);
-        }
-        #city-page h2 {
-            font-size: 1.2em;
-            border-left: 3px solid var(--accent);
-            padding-left: 0.4em;
-            margin-top: 1em;
-            margin-bottom: 0.3em;
-            border-bottom: none;
-        }
-        #city-page h3 {
-            font-size: 1em;
-            margin-top: 0.8em;
-            margin-bottom: 0.2em;
-            color: #333;
-        }
-        body.dark #city-page h3 {
-            color: #ccc;
-        }
-        #city-page details {
-            margin-bottom: 1em;
-            background: var(--card-bg);
-            padding: 0.8em;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-        #city-page summary {
-            font-weight: bold;
-            font-size: 1em;
-            cursor: pointer;
-            padding: 0.3em 0;
-        }
-        #city-page p {
-            font-size: 0.9em;
-            margin-top: 0.4em;
-            margin-bottom: 0.8em;
-        }
-        #city-page ul {
-            padding-left: 1.6em;
-            margin-bottom: 0.8em;
-            border: 1px solid var(--border-color);
-            padding: 0.8em;
-            border-radius: 6px;
-            background-color: var(--card-bg);
-        }
-        #city-page li {
-            font-size: 0.9em;
-            margin-bottom: 0.5em;
-        }
-    </style>
-</head>
+    /* ページごとのスタイル */
+    .page {
+        display: none;
+    }
+    .page#home {
+        display: block;
+    }
+
+    /* 都市ワールド紹介ページのスタイル */
+    #city-page {
+        padding: 0.8em;
+    }
+    #city-page h1 {
+        color: #2a7b59;
+        font-size: 1.4em;
+        padding-bottom: 0.2em;
+        border-bottom: 1px solid var(--border-color);
+    }
+    body.dark #city-page h1 {
+        color: #66cdaa;
+        border-bottom-color: #555;
+    }
+    #city-page section {
+        border: 1px solid var(--border-color);
+        padding: 0.8em;
+        margin-bottom: 1em;
+        border-radius: 6px;
+        background-color: var(--card-bg);
+    }
+    #city-page h2 {
+        font-size: 1.2em;
+        border-left: 3px solid var(--accent);
+        padding-left: 0.4em;
+        margin-top: 1em;
+        margin-bottom: 0.3em;
+        border-bottom: none;
+    }
+    #city-page h3 {
+        font-size: 1em;
+        margin-top: 0.8em;
+        margin-bottom: 0.2em;
+        color: #333;
+    }
+    body.dark #city-page h3 {
+        color: #ccc;
+    }
+    #city-page details {
+        margin-bottom: 1em;
+        background: var(--card-bg);
+        padding: 0.8em;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    #city-page summary {
+        font-weight: bold;
+        font-size: 1em;
+        cursor: pointer;
+        padding: 0.3em 0;
+    }
+    #city-page p {
+        font-size: 0.9em;
+        margin-top: 0.4em;
+        margin-bottom: 0.8em;
+    }
+    #city-page ul {
+        padding-left: 1.6em;
+        margin-bottom: 0.8em;
+        border: 1px solid var(--border-color);
+        padding: 0.8em;
+        border-radius: 6px;
+        background-color: var(--card-bg);
+    }
+    #city-page li {
+        font-size: 0.9em;
+        margin-bottom: 0.5em;
+    }
+
+    /* ギャラリーページのスタイル */
+    #gallery-page {
+        background: #fefefe;
+        color: #333;
+        padding: 0.8em;
+    }
+    body.dark #gallery-page {
+        background: #121212;
+        color: #f0f0f0;
+    }
+    #gallery-page h1 {
+        color: #2a7b59;
+        text-align: center;
+        font-size: 1.4em;
+        padding-bottom: 0.2em;
+        border-bottom: 1px solid var(--border-color);
+    }
+    body.dark #gallery-page h1 {
+        color: #90ee90;
+        border-bottom-color: #555;
+    }
+    #gallery-page .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.6em;
+        padding: 0.6em;
+    }
+    #gallery-page .gallery img {
+        width: 100%;
+        border-radius: 6px;
+        transition: transform 0.2s;
+        cursor: pointer;
+        object-fit: cover;
+        aspect-ratio: 4/3;
+        border: 1px solid var(--border-color);
+    }
+    #gallery-page .gallery img:hover {
+        transform: scale(1.03);
+    }
+    #gallery-page footer {
+        text-align: center;
+        margin-top: 1.2em;
+        color: #666;
+        padding-top: 0.6em;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.8em;
+    }
+    body.dark #gallery-page footer {
+        color: #aaa;
+        border-top-color: #333;
+    }
+    #gallery-page #modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    body.dark #gallery-page #modal {
+        background-color: rgba(0, 0, 0, 0.95);
+    }
+    #gallery-page #modal img {
+        max-width: 90%;
+        max-height: 85%;
+        border-radius: 8px;
+    }
+    #gallery-page #modal h2 {
+        color: white;
+        margin-top: 0.6em;
+        text-align: center;
+        font-size: 1em;
+    }
+    #gallery-page #modalClose {
+        color: white;
+        font-size: 1.4em;
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        cursor: pointer;
+    }
+    #gallery-page #modalControls {
+        margin-top: 0.6em;
+        display: flex;
+        gap: 0.6em;
+        justify-content: center;
+    }
+    #gallery-page .modalBtn {
+        background: #2a7b59;
+        color: white;
+        border: none;
+        padding: 0.5em 1em;
+        font-size: 0.8em;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    #gallery-page .modalBtn:hover {
+        background: #1e5c42;
+    }
+    body.dark #gallery-page .modalBtn {
+        background: #90ee90;
+        color: #000;
+    }
+    body.dark #gallery-page .modalBtn:hover {
+        background: #73ba73;
+    }
+
+    /* 利用規約・ルールページのスタイル */
+    #rules-page {
+        background: #fafafa;
+        color: #222;
+        padding: 0.8em;
+    }
+    body.dark #rules-page {
+        background: #121212;
+        color: #eee;
+    }
+    #rules-page h1 {
+        color: #2a7b59;
+        font-size: 1.4em;
+        padding-bottom: 0.2em;
+        border-bottom: 1px solid var(--border-color);
+    }
+    body.dark #rules-page h1 {
+        color: #6af5a4;
+        border-bottom-color: #555;
+    }
+    #rules-page h2 {
+        border-left: 3px solid var(--accent);
+        padding-left: 0.5em;
+        margin-top: 1em;
+        margin-bottom: 0.3em;
+        font-size: 1.2em;
+    }
+    body.dark #rules-page h2 {
+        border-left-color: #6af5a4;
+    }
+    #rules-page ul {
+        padding-left: 1.6em;
+        margin-bottom: 0.8em;
+        border: 1px solid var(--border-color);
+        padding: 0.8em;
+        border-radius: 6px;
+        background-color: var(--bg);
+    }
+    #rules-page li {
+        margin-bottom: 0.5em;
+        font-size: 0.9em;
+    }
+    #rules-page p {
+        margin-bottom: 0.8em;
+        font-size: 0.9em;
+    }
+    #rules-page p[style] {
+        color: #555 !important;
+        font-size: 0.8em !important;
+    }
+    body.dark #rules-page p[style] {
+        color: #aaa !important;
+    }
+    #rules-page footer {
+        margin-top: 1.2em;
+        text-align: center;
+        color: #777;
+        padding-top: 0.6em;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.8em;
+    }
+    body.dark #rules-page footer {
+        color: #aaa;
+        border-top-color: #333;
+    }
+    #rules-page a {
+        color: #007bff;
+        font-size: 0.9em;
+    }
+    body.dark #rules-page a {
+        color: #6af5a4;
+    }
+
+    /* 都市ワールド紹介ページのスタイル */
+    #city-page {
+        padding: 0.8em;
+    }
+    #city-page h1 {
+        color: #2a7b59;
+        font-size: 1.4em;
+        padding-bottom: 0.2em;
+        border-bottom: 1px solid var(--border-color);
+    }
+    body.dark #city-page h1 {
+        color: #66cdaa;
+        border-bottom-color: #555;
+    }
+    #city-page section {
+        border: 1px solid var(--border-color);
+        padding: 0.8em;
+        margin-bottom: 1em;
+        border-radius: 6px;
+        background-color: var(--card-bg);
+    }
+    #city-page h2 {
+        font-size: 1.2em;
+        border-left: 3px solid var(--accent);
+        padding-left: 0.4em;
+        margin-top: 1em;
+        margin-bottom: 0.3em;
+        border-bottom: none;
+    }
+    #city-page h3 {
+        font-size: 1em;
+        margin-top: 0.8em;
+        margin-bottom: 0.2em;
+        color: #333;
+    }
+    body.dark #city-page h3 {
+        color: #ccc;
+    }
+    #city-page details {
+        margin-bottom: 1em;
+        background: var(--card-bg);
+        padding: 0.8em;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    #city-page summary {
+        font-weight: bold;
+        font-size: 1em;
+        cursor: pointer;
+        padding: 0.3em 0;
+    }
+    #city-page p {
+        font-size: 0.9em;
+        margin-top: 0.4em;
+        margin-bottom: 0.8em;
+    }
+    #city-page ul {
+        padding-left: 1.6em;
+        margin-bottom: 0.8em;
+        border: 1px solid var(--border-color);
+        padding: 0.8em;
+        border-radius: 6px;
+        background-color: var(--card-bg);
+    }
+    #city-page li {
+        font-size: 0.9em;
+        margin-bottom: 0.5em;
+    }
+</style>
 <body>
     <header>
         <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
@@ -841,7 +841,7 @@
         if (savedTheme) setTheme(savedTheme);
         else setTheme("light");
 
-        // ページ切り替え
+        // ページ切り替えとギャラリー機能
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('nav a[data-page]');
             const pages = document.querySelectorAll('.page');
@@ -872,28 +872,36 @@
                     const pageId = this.getAttribute('data-page');
                     showPage(pageId);
                     history.pushState(null, null, '#' + pageId);
+                    if (pageId === 'gallery') {
+                        loadGalleryImages();
+                    }
                 });
             });
 
             window.addEventListener('popstate', function() {
                 const hash = window.location.hash.substring(1);
                 showPage(hash || 'home');
+                if (hash === 'gallery') {
+                    loadGalleryImages();
+                }
             });
 
             // 初期表示
-            if (window.location.hash)
-{
+            if (window.location.hash) {
                 showPage(window.location.hash.substring(1));
+                if (window.location.hash.substring(1) === 'gallery') {
+                    loadGalleryImages();
+                }
             } else {
                 showPage('home');
             }
 
-            // ギャラリー機能
             async function loadGalleryImages() {
                 try {
                     const response = await fetch('images.json');
                     imageList = await response.json();
                     if (galleryDiv) {
+                        galleryDiv.innerHTML = ''; // Clear existing images
                         imageList.forEach((image, index) => {
                             const imgElement = document.createElement('img');
                             imgElement.src = image.src;
@@ -960,17 +968,10 @@
             if (prevBtn) prevBtn.addEventListener('click', showPrevImage);
             if (saveBtn) saveBtn.addEventListener('click', downloadImage);
 
+            // ギャラリーページが最初に表示された場合もロード
             if (window.location.hash === '#gallery') {
                 loadGalleryImages();
-            } else {
-                // ギャラリーページ以外ではロードしない
             }
-
-            navLinks.forEach(link => {
-                if (link.getAttribute('data-page') === 'gallery') {
-                    link.addEventListener('click', loadGalleryImages);
-                }
-            });
         });
     </script>
 </body>
