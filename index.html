@@ -6,22 +6,23 @@
     <title>Lemon Sea Server</title>
     <link rel="icon" href="Lemonsea.png" />
     <style>
-        /* 見やすさ改善のためのCSS */
         :root {
             --bg: #f5f9f7;
-            --text: #222; /* ライトモードの文字色を調整 */
+            --text: #222;
             --accent: #ffe66d;
             --section-bg: rgba(226, 243, 228, 0.85);
             --footer-bg: #eee;
             --bg-image: url('images/2.png');
+            --border-color: #ccc; /* 枠線の色 */
         }
         [data-theme="dark"] {
-            --bg: #181818; /* ダークモードの背景色を若干明るく */
+            --bg: #181818;
             --text: #eee;
             --accent: #ffda44;
             --section-bg: rgba(30, 45, 31, 0.85);
             --footer-bg: #1c1c1c;
             --bg-image: url('images/6.png');
+            --border-color: #555; /* ダークモードの枠線の色 */
         }
 
         body {
@@ -34,81 +35,100 @@
             background-size: cover;
             background-position: center;
             transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
-            font-size: 1.1em; /* 基本フォントサイズを少し大きく */
-            line-height: 1.6; /* 行間を調整 */
+            font-size: 1.2em; /* 基本フォントサイズを大きく */
+            line-height: 1.7; /* 行間を調整 */
         }
 
         header {
             background-color: var(--accent);
-            padding: 1em;
+            padding: 1.5em;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
             flex-direction: column;
+            border-bottom: 2px solid var(--border-color); /* ヘッダー下部に枠線 */
         }
 
         header img {
-            height: 50px;
+            height: 60px;
         }
 
         header h1 {
-            margin: 0;
+            margin: 0.5em 0;
             text-align: center;
             flex-grow: 1;
+            font-size: 1.8em;
         }
 
         nav {
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 1.5em;
             flex-wrap: wrap;
+            border-top: 1px solid var(--border-color); /* ナビゲーション上部に枠線 */
+            padding-top: 0.5em;
         }
 
         nav a {
-            margin: 5px 15px;
+            margin: 0.7em 1.5em;
             text-decoration: none;
             color: var(--text);
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.2em;
             cursor: pointer;
+            padding: 0.3em 0.5em;
+            border-radius: 5px;
+            transition: color 0.3s;
         }
 
         nav a:hover {
-            color: #007bff; /* ホバー時のリンク色を変更 */
+            color: #007bff;
         }
 
         main {
             padding: 2em;
-            max-width: 800px;
-            margin: 2em auto; /* 上下のmarginを追加 */
+            max-width: 900px;
+            margin: 2em auto;
         }
 
         section {
-            margin-bottom: 2em;
-            padding: 1em;
+            margin-bottom: 2.5em;
+            padding: 1.2em;
             border-radius: 8px;
             background-color: var(--section-bg);
+            border: 1px solid var(--border-color); /* セクションに枠線 */
         }
 
         h1, h2, h3 {
-            margin-top: 1.5em;
-            margin-bottom: 0.5em;
-        }
-
-        ul, ol {
-            padding-left: 1.5em;
-            margin-bottom: 1em;
-        }
-
-        li {
+            margin-top: 1.8em;
             margin-bottom: 0.7em;
         }
 
+        h2 {
+            font-size: 1.5em;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--border-color); /* h2にも下線 */
+        }
+
+        h3 {
+            font-size: 1.3em;
+            margin-top: 1.2em;
+        }
+
+        ul, ol {
+            padding-left: 1.8em;
+            margin-bottom: 1.2em;
+        }
+
+        li {
+            margin-bottom: 0.8em;
+        }
+
         a {
-            color: #007bff; /* より一般的なリンクの色 */
-            text-decoration: underline; /* 下線を付けて視認性を向上 */
+            color: #007bff;
+            text-decoration: underline;
         }
 
         a:hover {
@@ -120,8 +140,8 @@
             background: var(--accent);
             border: none;
             border-radius: 50%;
-            padding: 0.8em;
-            font-size: 1.2em;
+            padding: 1em;
+            font-size: 1.5em;
             position: fixed;
             right: 20px;
             bottom: 20px;
@@ -139,15 +159,15 @@
         /* お問い合わせボタンのスタイル */
         .contact-button {
             display: inline-block;
-            padding: 0.7em 1.4em;
+            padding: 0.8em 1.6em;
             background-color: var(--accent);
             color: #000;
             font-weight: bold;
-            border: none;
+            border: 1px solid var(--border-color); /* ボタンにも枠線 */
             border-radius: 8px;
             text-decoration: none;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
             text-align: center;
         }
 
@@ -157,41 +177,55 @@
 
         /* スマホ対応のレスポンシブデザイン */
         @media (max-width: 768px) {
+            body {
+                font-size: 1.1em;
+                line-height: 1.6;
+            }
             header {
                 flex-direction: column;
                 align-items: center;
+                padding: 1em;
             }
-
+            header h1 {
+                font-size: 1.6em;
+                margin: 0.3em 0;
+            }
             nav {
                 flex-direction: column;
                 align-items: center;
                 margin-top: 1em;
+                padding-top: 0.3em;
+                border-top: 1px solid var(--border-color);
             }
-
             nav a {
-                margin: 8px 0;
+                margin: 0.5em 0;
                 font-size: 1.1em;
             }
-
             main {
                 padding: 1.5em;
             }
-
             #theme-toggle {
-                font-size: 1.1em;
-                padding: 0.7em;
+                font-size: 1.3em;
+                padding: 0.8em;
                 right: 15px;
                 bottom: 15px;
             }
         }
 
         @media (max-width: 480px) {
+            body {
+                font-size: 1em;
+                line-height: 1.5;
+            }
+            header h1 {
+                font-size: 1.4em;
+            }
             nav a {
                 font-size: 1em;
             }
             #theme-toggle {
-                font-size: 1em;
-                padding: 0.6em;
+                font-size: 1.1em;
+                padding: 0.7em;
                 right: 10px;
                 bottom: 10px;
             }
@@ -220,21 +254,59 @@
         }
         #city-page h1 {
             color: var(--accent);
+            font-size: 1.8em; /* 都市ワールド紹介の見出しを大きく */
+            padding-bottom: 0.4em;
+            border-bottom: 1px solid var(--border-color);
+        }
+        #city-page section {
+            border: 1px solid var(--border-color); /* 都市ワールド紹介のセクションに枠線 */
+            padding: 1em;
+            margin-bottom: 1.5em;
+            border-radius: 8px;
+            background-color: var(--card-bg);
+        }
+        #city-page h2 {
+            font-size: 1.4em; /* 都市ワールド紹介のh2を大きく */
+            border-left: 3px solid var(--accent);
+            padding-left: 0.6em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            border-bottom: none; /* 重複する下線を削除 */
+        }
+        #city-page h3 {
+            font-size: 1.2em; /* 都市ワールド紹介のh3を大きく */
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+            color: #333;
+        }
+        body.dark #city-page h3 {
+            color: #ccc;
         }
         #city-page details {
             margin-bottom: 1.5em;
             background: var(--card-bg);
             padding: 1em;
             border-radius: 8px;
+            border: 1px solid var(--border-color); /* detailsにも枠線 */
         }
         #city-page summary {
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.2em; /* summaryを大きく */
             cursor: pointer;
             padding: 0.5em 0;
         }
         #city-page p {
-            margin-top: 0.5em;
+            font-size: 1.1em; /* 都市ワールド紹介のpを大きく */
+            margin-top: 0.6em;
+            margin-bottom: 1.2em;
+        }
+        #city-page ul {
+            padding-left: 2em;
+            margin-bottom: 1.2em;
+        }
+        #city-page li {
+            font-size: 1.1em; /* 都市ワールド紹介のliを大きく */
+            margin-bottom: 0.7em;
         }
 
         /* ギャラリーページのスタイル */
@@ -249,9 +321,13 @@
         #gallery-page h1 {
             color: #2a7b59;
             text-align: center;
+            font-size: 1.8em;
+            padding-bottom: 0.4em;
+            border-bottom: 1px solid var(--border-color);
         }
         body.dark #gallery-page h1 {
             color: #90ee90;
+            border-bottom-color: #555;
         }
         #gallery-page .gallery {
             display: grid;
@@ -266,7 +342,7 @@
             cursor: pointer;
             object-fit: cover;
             aspect-ratio: 4/3;
-            border: 1px solid #ccc;
+            border: 1px solid var(--border-color);
         }
         #gallery-page .gallery img:hover {
             transform: scale(1.03);
@@ -275,9 +351,12 @@
             text-align: center;
             margin-top: 2em;
             color: #666;
+            padding-top: 1em;
+            border-top: 1px solid var(--border-color);
         }
         body.dark #gallery-page footer {
             color: #aaa;
+            border-top-color: #333;
         }
         #gallery-page #modal {
             display: none;
@@ -343,7 +422,7 @@
         #rules-page {
             background: #fafafa;
             color: #222;
-            padding: 1em; /* 全体に追加 */
+            padding: 1em;
         }
         body.dark #rules-page {
             background: #121212;
@@ -351,34 +430,42 @@
         }
         #rules-page h1 {
             color: #2a7b59;
-            padding-bottom: 0.5em;
-            border-bottom: 2px solid #ddd; /* 区切り線を追加 */
+            font-size: 1.8em; /* 利用規約・ルールの見出しを大きく */
+            padding-bottom: 0.4em;
+            border-bottom: 1px solid var(--border-color);
         }
         body.dark #rules-page h1 {
             color: #6af5a4;
             border-bottom-color: #555;
         }
         #rules-page h2 {
-            border-left: 4px solid #2a7b59;
+            border-left: 4px solid var(--accent);
             padding-left: 0.7em;
             margin-top: 1.5em;
             margin-bottom: 0.5em;
+            font-size: 1.4em; /* 利用規約・ルールのh2を大きく */
         }
         body.dark #rules-page h2 {
             border-left-color: #6af5a4;
         }
         #rules-page ul {
-            padding-left: 1.8em;
-            margin-bottom: 1em;
+            padding-left: 2em;
+            margin-bottom: 1.2em;
+            border: 1px solid var(--border-color); /* 利用規約・ルールのリストに枠線 */
+            padding: 1em;
+            border-radius: 8px;
+            background-color: var(--bg); /* 背景色を明示 */
         }
         #rules-page li {
-            margin-bottom: 0.6em;
+            margin-bottom: 0.7em;
+            font-size: 1.1em; /* 利用規約・ルールのliを大きく */
         }
         #rules-page p {
-            margin-bottom: 1em;
+            margin-bottom: 1.2em;
+            font-size: 1.1em; /* 利用規約・ルールのpを大きく */
         }
         #rules-page p[style] {
-            color: #555 !important; /* 強調テキストの色を調整 */
+            color: #555 !important;
         }
         body.dark #rules-page p[style] {
             color: #aaa !important;
@@ -388,7 +475,7 @@
             text-align: center;
             color: #777;
             padding-top: 1em;
-            border-top: 1px solid #eee; /* 区切り線を追加 */
+            border-top: 1px solid var(--border-color);
         }
         body.dark #rules-page footer {
             color: #aaa;
@@ -403,47 +490,64 @@
 
         /* 都市ワールド紹介ページのスタイル */
         #city-page {
-            padding: 1em; /* 全体に追加 */
+            padding: 1em;
         }
         #city-page h1 {
             color: #2a7b59;
-            padding-bottom: 0.5em;
-            border-bottom: 2px solid #ddd; /* 区切り線を追加 */
+            font-size: 1.8em; /* 都市ワールド紹介の見出しを大きく */
+            padding-bottom: 0.4em;
+            border-bottom: 1px solid var(--border-color);
         }
         body.dark #city-page h1 {
             color: #66cdaa;
             border-bottom-color: #555;
         }
         #city-page details {
-            margin-bottom: 1.5em;
+            margin-bottom: 1.8em;
             background: var(--card-bg);
-            padding: 1em;
+            padding: 1.2em;
             border-radius: 8px;
+            border: 1px solid var(--border-color); /* detailsにも枠線 */
         }
         #city-page summary {
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.2em; /* summaryを大きく */
             cursor: pointer;
-            padding: 0.5em 0;
+            padding: 0.6em 0;
         }
         #city-page p {
-            margin-top: 0.5em;
-            margin-bottom: 1em;
+            font-size: 1.1em; /* 都市ワールド紹介のpを大きく */
+            margin-top: 0.7em;
+            margin-bottom: 1.4em;
+        }
+        #city-page h2 {
+            font-size: 1.4em; /* 都市ワールド紹介のh2を大きく */
+            border-left: 3px solid var(--accent);
+            padding-left: 0.6em;
+            margin-top: 1.8em;
+            margin-bottom: 0.7em;
+            border-bottom: none; /* 重複する下線を削除 */
         }
         #city-page h3 {
-            margin-top: 1em;
-            margin-bottom: 0.3em;
+            font-size: 1.2em; /* 都市ワールド紹介のh3を大きく */
+            margin-top: 1.4em;
+            margin-bottom: 0.5em;
             color: #333;
         }
         body.dark #city-page h3 {
             color: #ccc;
         }
         #city-page ul {
-            padding-left: 1.5em;
-            margin-bottom: 1em;
+            padding-left: 2.2em;
+            margin-bottom: 1.4em;
+            border: 1px solid var(--border-color); /* 都市ワールド紹介のリストに枠線 */
+            padding: 1.2em;
+            border-radius: 8px;
+            background-color: var(--card-bg);
         }
         #city-page li {
-            margin-bottom: 0.5em;
+            font-size: 1.1em; /* 都市ワールド紹介のliを大きく */
+            margin-bottom: 0.8em;
         }
     </style>
 </head>
@@ -505,8 +609,8 @@
                 茶番などの動画撮影もOKです！
             </p>
 
-            <details>
-                <summary>🌆 新都市サーバー</summary>
+            <section>
+                <h2 id="new-city">🌆 新都市サーバー</h2>
                 <p>
                     新都市鯖に関する解説<br>
                     新都市鯖は、現行メインの建設ワールドです。<br>
@@ -555,10 +659,10 @@
                         </ul>
                     </ul>
                 </details>
-            </details>
+            </section>
 
-            <details>
-                <summary>🏛️ 旧都市サーバー</summary>
+            <section>
+                <h2 id="old-city">🏛️ 旧都市サーバー</h2>
                 <p>
                     旧都市鯖は、れもんしーの初期から存在する歴史あるワールドです。<br>
                     さまざまな建築様式や、自然あふれる街並みが残されています。<br>
@@ -585,7 +689,7 @@
                         </ul>
                     </ul>
                 </details>
-            </details>
+            </section>
 
             <footer>
             </footer>
@@ -621,36 +725,42 @@
         <div id="rules" class="page">
             <h1 id="rules-page">れもんしー鯖 利用規約・ルール</h1>
 
-            <h2 id="ban-global">🚫 禁止事項</h2>
-            <h3>全体での禁止事項</h3>
-            <ul>
-                <li>スパム行為（連投行為など）</li>
-                <li>サーバーに関係のない取引 / 金銭の伴う取引</li>
-                <li>許可のない宣伝 / 売名行為</li>
-                <li>Minecraft の利用規約に違反する行為</li>
-                <li>Discordの利用規約に違反する行為</li>
-                <li>スタッフが不適切と判断する行為</li>
-                <li>あまりにも不適切な発言（暴言など、語録は一部容認）</li>
-            </ul>
+            <section>
+                <h2 id="ban-global">🚫 禁止事項</h2>
+                <h3>全体での禁止事項</h3>
+                <ul>
+                    <li>スパム行為（連投行為など）</li>
+                    <li>サーバーに関係のない取引 / 金銭の伴う取引</li>
+                    <li>許可のない宣伝 / 売名行為</li>
+                    <li>Minecraft の利用規約に違反する行為</li>
+                    <li>Discordの利用規約に違反する行為</li>
+                    <li>スタッフが不適切と判断する行為</li>
+                    <li>あまりにも不適切な発言（暴言など、語録は一部容認）</li>
+                </ul>
 
-            <h3>マイクラ内での禁止事項</h3>
-            <ul>
-                <li>荒らし行為（破壊・窃盗・同意なき殺害）</li>
-                <li>チート・不具合の悪用</li>
-                <li>意図的にサーバーへ過剰負荷をかける行為</li>
-            </ul>
+                <h3>マイクラ内での禁止事項</h3>
+                <ul>
+                    <li>荒らし行為（破壊・窃盗・同意なき殺害）</li>
+                    <li>チート・不具合の悪用</li>
+                    <li>意図的にサーバーへ過剰負荷をかける行為</li>
+                </ul>
+            </section>
 
-            <h2 id="disclaimer">📌 免責事項</h2>
-            <ul>
-                <li>当サーバーは、予告なしに本規約を変更できるものとします。</li>
-                <li>サーバーの利用時点で本規約に同意したとみなされます。</li>
-                <li>運営は最低限のルール違反を容認する場合があります。</li>
-                <li>常識的にNGな行為はルールに記載されていなくても禁止です。</li>
-            </ul>
+            <section>
+                <h2 id="disclaimer">📌 免責事項</h2>
+                <ul>
+                    <li>当サーバーは、予告なしに本規約を変更できるものとします。</li>
+                    <li>サーバーの利用時点で本規約に同意したとみなされます。</li>
+                    <li>運営は最低限のルール違反を容認する場合があります。</li>
+                    <li>常識的にNGな行為はルールに記載されていなくても禁止です。</li>
+                </ul>
+            </section>
 
-            <h2 id="ending">🎉 最後に</h2>
-            <p>これらのルールを守って、楽しくプレイしましょう！</p>
-            <p>2025年3月29日 第二版</p>
+            <section>
+                <h2 id="ending">🎉 最後に</h2>
+                <p>これらのルールを守って、楽しくプレイしましょう！</p>
+                <p>2025年3月29日 第二版</p>
+            </section>
 
             <footer>
                 <a href="#home" aria-label="ホームに戻る">← ホームに戻る</a>
