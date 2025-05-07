@@ -1,249 +1,474 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lemon Sea Server</title>
-  <link rel="icon" href="Lemonsea.png" />
-  <style>
-    :root {
-      --bg: #f5f9f7;
-      --text: #333;
-      --accent: #ffe66d;
-      --section-bg: rgba(226, 243, 228, 0.85);
-      --footer-bg: #eee;
-      --bg-image: url('images/2.png');
-    }
-    [data-theme="dark"] {
-      --bg: #121212;
-      --text: #eee;
-      --accent: #ffda44;
-      --section-bg: rgba(30, 45, 31, 0.85);
-      --footer-bg: #1c1c1c;
-      --bg-image: url('images/6.png');
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lemon Sea Server</title>
+    <link rel="icon" href="Lemonsea.png" />
+    <style>
+        :root {
+            --bg: #f5f9f7;
+            --text: #333;
+            --accent: #ffe66d;
+            --section-bg: rgba(226, 243, 228, 0.85);
+            --footer-bg: #eee;
+            --bg-image: url('images/2.png');
+        }
+        [data-theme="dark"] {
+            --bg: #121212;
+            --text: #eee;
+            --accent: #ffda44;
+            --section-bg: rgba(30, 45, 31, 0.85);
+            --footer-bg: #1c1c1c;
+            --bg-image: url('images/6.png');
+        }
 
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 0;
-      background-image: var(--bg-image);
-      background-size: cover;
-      background-position: center;
-      transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            background-image: var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
+        }
 
-    header {
-      background-color: var(--accent);
-      padding: 1em;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      flex-direction: column;
-    }
+        header {
+            background-color: var(--accent);
+            padding: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            flex-direction: column;
+        }
 
-    header img {
-      height: 50px;
-    }
+        header img {
+            height: 50px;
+        }
 
-    header h1 {
-      margin: 0;
-      text-align: center;
-      flex-grow: 1;
-    }
+        header h1 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
+        nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
 
-    nav a {
-      margin: 5px 15px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: bold;
-      font-size: 1.1em;
-    }
+        nav a {
+            margin: 5px 15px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
 
-    nav a:hover {
-      color: var(--accent);
-    }
+        nav a:hover {
+            color: var(--accent);
+        }
 
-    main {
-      padding: 2em;
-      max-width: 800px;
-      margin: auto;
-    }
+        main {
+            padding: 2em;
+            max-width: 800px;
+            margin: auto;
+        }
 
-    section {
-      margin-bottom: 2em;
-    }
+        section {
+            margin-bottom: 2em;
+        }
 
-    .box {
-      background-color: var(--section-bg);
-      padding: 1em;
-      border-radius: 8px;
-    }
+        .box {
+            background-color: var(--section-bg);
+            padding: 1em;
+            border-radius: 8px;
+        }
 
-    footer {
-      text-align: center;
-      padding: 1em;
-      background-color: var(--footer-bg);
-    }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: var(--footer-bg);
+        }
 
-    a {
-      color: #2a7b59;
-    }
+        a {
+            color: #2a7b59;
+        }
 
-    /* ダークモードボタンのスタイル */
-    #theme-toggle {
-      background: var(--accent);
-      border: none;
-      border-radius: 50%;
-      padding: 1em;
-      font-size: 1.5em;
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 9999;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
+        /* ダークモードボタンのスタイル */
+        #theme-toggle {
+            background: var(--accent);
+            border: none;
+            border-radius: 50%;
+            padding: 1em;
+            font-size: 1.5em;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 9999;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
 
-    #theme-toggle:hover {
-      transform: scale(1.1);
-      background-color: #ffda44;
-    }
+        #theme-toggle:hover {
+            transform: scale(1.1);
+            background-color: #ffda44;
+        }
 
-    /* お問い合わせボタンのスタイル */
-    .contact-button {
-      display: inline-block;
-      padding: 0.75em 1.5em;
-      background-color: var(--accent);
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 1.1em;
-      transition: background-color 0.3s ease;
-      text-align: center;
-    }
+        /* お問い合わせボタンのスタイル */
+        .contact-button {
+            display: inline-block;
+            padding: 0.75em 1.5em;
+            background-color: var(--accent);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
 
-    .contact-button:hover {
-      background-color: #ffd700;
-    }
+        .contact-button:hover {
+            background-color: #ffd700;
+        }
 
-    /* スマホ対応のレスポンシブデザイン */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-      }
+        /* スマホ対応のレスポンシブデザイン */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
 
-      nav {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 1em;
-      }
+            nav {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 1em;
+            }
 
-      nav a {
-        margin: 10px 0;
-        font-size: 1.2em;
-      }
+            nav a {
+                margin: 10px 0;
+                font-size: 1.2em;
+            }
 
-      #server-status {
-        text-align: center;
-      }
-    }
+            #server-status {
+                text-align: center;
+            }
+        }
 
-    @media (max-width: 480px) {
-      nav a {
-        font-size: 1em;
-      }
-    }
-  </style>
+        @media (max-width: 480px) {
+            nav a {
+                font-size: 1em;
+            }
+        }
+
+        /* ページごとのスタイル */
+        .page {
+            display: none;
+        }
+        .page#home {
+            display: block;
+        }
+
+        /* 都市ワールド紹介ページのスタイル */
+        #city-page {
+            --bg: #fefefe;
+            --text: #000;
+            --accent: #2a7b59;
+            --card-bg: #f2f2f2;
+        }
+        body.dark #city-page {
+            --bg: #121212;
+            --text: #eee;
+            --accent: #66cdaa;
+            --card-bg: #1e1e1e;
+        }
+        #city-page h1 {
+            color: var(--accent);
+        }
+        #city-page details {
+            margin-bottom: 1.5em;
+            background: var(--card-bg);
+            padding: 1em;
+            border-radius: 8px;
+        }
+        #city-page summary {
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        #city-page p {
+            margin-top: 0.5em;
+        }
+
+        /* ギャラリーページのスタイル */
+        #gallery-page {
+            background: #fefefe;
+            color: #333;
+        }
+        body.dark #gallery-page {
+            background: #121212;
+            color: #f0f0f0;
+        }
+        #gallery-page h1 {
+            color: #2a7b59;
+            text-align: center;
+        }
+        body.dark #gallery-page h1 {
+            color: #90ee90;
+        }
+        #gallery-page .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1em;
+        }
+        #gallery-page .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            transition: transform 0.2s;
+            cursor: pointer;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+        #gallery-page .gallery img:hover {
+            transform: scale(1.03);
+        }
+        #gallery-page footer {
+            text-align: center;
+            margin-top: 2em;
+            color: #666;
+        }
+        body.dark #gallery-page footer {
+            color: #aaa;
+        }
+        #gallery-page #modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        body.dark #gallery-page #modal {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        #gallery-page #modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+        #gallery-page #modal h2 {
+            color: white;
+            margin-top: 1em;
+        }
+        #gallery-page #modalClose {
+            color: white;
+            font-size: 2em;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            cursor: pointer;
+        }
+        #gallery-page #modalControls {
+            margin-top: 1em;
+            display: flex;
+            gap: 1em;
+        }
+        #gallery-page .modalBtn {
+            background: #2a7b59;
+            color: white;
+            border: none;
+            padding: 0.6em 1.2em;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        #gallery-page .modalBtn:hover {
+            background: #1e5c42;
+        }
+        body.dark #gallery-page .modalBtn {
+            background: #90ee90;
+            color: #000;
+        }
+        body.dark #gallery-page .modalBtn:hover {
+            background: #73ba73;
+        }
+
+        /* 利用規約・ルールページのスタイル */
+        #rules-page {
+            background: #fafafa;
+            color: #222;
+        }
+        body.dark #rules-page {
+            background: #121212;
+            color: #eee;
+        }
+        #rules-page h1 {
+            color: #2a7b59;
+        }
+        body.dark #rules-page h1 {
+            color: #6af5a4;
+        }
+        #rules-page h2 {
+            border-left: 4px solid #2a7b59;
+            padding-left: 0.5em;
+            margin-top: 2em;
+        }
+        body.dark #rules-page h2 {
+            border-left-color: #6af5a4;
+        }
+        #rules-page ul {
+            padding-left: 1.2em;
+        }
+        #rules-page li {
+            margin-bottom: 0.5em;
+        }
+        #rules-page p[style] {
+            color: #777 !important;
+        }
+        body.dark #rules-page p[style] {
+            color: #aaa !important;
+        }
+        #rules-page footer {
+            margin-top: 2em;
+            text-align: center;
+            color: #777;
+        }
+        body.dark #rules-page footer {
+            color: #aaa;
+        }
+        #rules-page a {
+            color: #2a7b59;
+        }
+        body.dark #rules-page a {
+            color: #6af5a4;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
-    <h1>Lemon Sea Server</h1>
-    <nav>
-      <a href="rules.html">📘 利用規約・ルール</a>
-      <a href="city.html">🏙️ 都市ワールドの紹介</a>
-      <a href="gallery.html">📷️ ギャラリー</a>
-      <a href="https://discord.gg/bheyZtN454" target="_blank">💬 Discordに参加</a>
-    </nav>
-  </header>
+    <header>
+        <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
+        <h1>Lemon Sea Server</h1>
+        <nav>
+            <a href="#rules" data-page="rules">📘 利用規約・ルール</a>
+            <a href="#city" data-page="city">🏙️ 都市ワールドの紹介</a>
+            <a href="#gallery" data-page="gallery">📷️ ギャラリー</a>
+            <a href="https://discord.gg/bheyZtN454" target="_blank">💬 Discordに参加</a>
+        </nav>
+    </header>
 
-  <main>
-    <section aria-labelledby="welcome-title" class="box">
-      <h2 id="welcome-title">🎉ようこそ！</h2>
-      <p>
-        この鯖はできたてほやほやのマイクラサーバー！<br />
-        🎮 Javaサーバーだよ♥️<br />
-        🗳️ 住民の要望や意見で運営してるよ！<br />
-        🐔 平和なサーバーなのでぜひ参加してね！<br />
-        <a href="https://discord.gg/bheyZtN454" target="_blank" aria-label="Discordリンクを開く">💬 Discordに参加</a>
-      </p>
-    </section>
+    <main>
+        <div id="home" class="page">
+            <section aria-labelledby="welcome-title" class="box">
+                <h2 id="welcome-title">🎉ようこそ！</h2>
+                <p>
+                    この鯖はできたてほやほやのマイクラサーバー！<br />
+                    🎮 Javaサーバーだよ♥️<br />
+                    🗳️ 住民の要望や意見で運営してるよ！<br />
+                    🐔 平和なサーバーなのでぜひ参加してね！<br />
+                    <a href="https://discord.gg/bheyZtN454" target="_blank" aria-label="Discordリンクを開く">💬 Discordに参加</a>
+                </p>
+            </section>
 
-    <section aria-labelledby="info-title" class="box">
-      <h2 id="info-title">🌍 サーバー情報</h2>
-      <ul>
-        <li><strong>アドレス：</strong>own-amazing.joinmc.link</li>
-        <li><strong>推奨バージョン：</strong>Java 1.20.4</li>
-        <li><strong>スタイル：</strong>都市建設、ミニゲーム</li>
-        <li><strong>プラグイン：</strong>IronElevator、Traincarts、GSitなど</li>
-      </ul>
-    </section>
+            <section aria-labelledby="info-title" class="box">
+                <h2 id="info-title">🌍 サーバー情報</h2>
+                <ul>
+                    <li><strong>アドレス：</strong>own-amazing.joinmc.link</li>
+                    <li><strong>推奨バージョン：</strong>Java 1.20.4</li>
+                    <li><strong>スタイル：</strong>都市建設、ミニゲーム</li>
+                    <li><strong>プラグイン：</strong>IronElevator、Traincarts、GSitなど</li>
+                </ul>
+            </section>
 
-    <section aria-labelledby="join-title" class="box">
-      <h2 id="join-title">🚪 参加方法</h2>
-      <p>マイクラの「マルチプレイ」から <strong>own-amazing.joinmc.link</strong> を入力してdiscordと連携するだけ！</p>
-    </section>
+            <section aria-labelledby="join-title" class="box">
+                <h2 id="join-title">🚪 参加方法</h2>
+                <p>マイクラの「マルチプレイ」から <strong>own-amazing.joinmc.link</strong> を入力してdiscordと連携するだけ！</p>
+            </section>
 
-    <section aria-labelledby="contact-title" class="box">
-      <h2 id="contact-title">📩 お問い合わせ</h2>
-      <p>バグ報告、要望、通報などはこちらからどうぞ！</p>
-      <p>
-        <a href="https://forms.gle/k1K5NLms5NL2HVCS8" target="_blank" class="contact-button" aria-label="Googleフォームでお問い合わせ">
-          Googleフォームを開く →
-        </a>
-      </p>
-    </section>
-  </main>
+            <section aria-labelledby="contact-title" class="box">
+                <h2 id="contact-title">📩 お問い合わせ</h2>
+                <p>バグ報告、要望、通報などはこちらからどうぞ！</p>
+                <p>
+                    <a href="https://forms.gle/k1K5NLms5NL2HVCS8" target="_blank" class="contact-button" aria-label="Googleフォームでお問い合わせ">
+                        Googleフォームを開く →
+                    </a>
+                </p>
+            </section>
+        </div>
 
-  <script>
-    // ダークモード切替
-    const themeToggle = document.createElement("button");
-    themeToggle.id = "theme-toggle";
-    themeToggle.textContent = "🌙";
-    document.body.appendChild(themeToggle);
+        <div id="city" class="page" style="display: none;">
+            <h1 id="city-page">🏙️ 都市ワールド紹介</h1>
+            <p>
+                サーバー内には、建設スタイルの異なる2つの都市があります。興味がある方をチェックしてね！<br>
+                茶番などの動画撮影もOKです！
+            </p>
 
-    const htmlEl = document.documentElement;
+            <details>
+                <summary>🌆 新都市サーバー</summary>
+                <p>
+                    新都市鯖に関する解説<br>
+                    新都市鯖は、現行メインの建設ワールドです。<br>
+                    現代建築を中心に、プレイヤー同士が協力して街を発展させています。<br>
+                    公共施設・駅・道路網なども整備中で、自由度の高い設計が可能です。<br>
+                    ワールド内には多数の「自治体」があり、それぞれの「自治体」には「市長」が任命されます。「市長」には、自治体内部の開発の主導権が与えられます。
+                </p>
 
-    function setTheme(mode) {
-      htmlEl.setAttribute("data-theme", mode);
-      localStorage.setItem("theme", mode);
-      themeToggle.textContent = mode === "dark" ? "☀️" : "🌙";
-    }
+                <details>
+                    <summary>🏙️ 自治体一覧</summary>
 
-    themeToggle.addEventListener("click", () => {
-      const currentTheme = htmlEl.getAttribute("data-theme");
-      setTheme(currentTheme === "dark" ? "light" : "dark");
-    });
+                    <h3>🍋 檸檬県</h3>
+                    <ul>
+                        <li><strong>檸檬市</strong>（県庁所在地）</li>
+                        <li>初野市</li>
+                        <li>桜木市</li>
+                        <li>孤城市</li>
+                        <li>海丘町</li>
+                    </ul>
 
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) setTheme(savedTheme);
-    else setTheme("light");
-  </script>
-</body>
-</html>
+                    <h3>🌸 春日野県</h3>
+                    <ul>
+                        <li><strong>春日野市</strong>（県庁所在地）</li>
+                        <li>森沢市</li>
+                        <li>堀岩町</li>
+                        <li>大岡町</li>
+                    </ul>
+
+                    <p>
+                        寄付や宣伝、マイクラ内の工事に尽力した場合、市長に任命されたり、特別な地位が与えられるかもしれません。
+                    </p>
+                </details>
+
+                <details>
+                    <summary>🚆 鉄道一覧</summary>
+                    <p>この新都市鯖では鉄道にも力を入れています。現在存在する路線は以下の通りです。</p>
+                    <ul>
+                        <li><strong>レモンメトロ</strong>（管理者：各自治体）</li>
+                        <ul>
+                            <li>レモンメトロ初野線：檸檬〜初野～孤城台</li>
+                            <li>レモンメトロ桜木線：新初野〜孤城～海丘</li>
+                        </ul>
+                        <li><strong>桜木登山鉄道</strong>（私鉄）</li>
+                        <ul>
+                            <li>桜木登山鉄道線：桜木山麓〜西桜木</li>
+                        </ul>
+                    </ul>
+                </details>
+            </details>
+
+            <details>
+                <summary>🏛️ 旧都市サーバー</summary>
+                <p>
