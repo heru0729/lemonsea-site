@@ -22,6 +22,7 @@
       --footer-bg: #1c1c1c;
       --bg-image: url('images/6.png');
     }
+
     body {
       font-family: 'Arial', sans-serif;
       background-color: var(--bg);
@@ -33,6 +34,7 @@
       background-position: center;
       transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
     }
+
     header {
       background-color: var(--accent);
       padding: 1em;
@@ -42,14 +44,17 @@
       position: relative;
       flex-direction: column;
     }
+
     header img {
       height: 50px;
     }
+
     header h1 {
       margin: 0;
       text-align: center;
       flex-grow: 1;
     }
+
     nav {
       display: flex;
       justify-content: center;
@@ -57,6 +62,7 @@
       margin-top: 10px;
       flex-wrap: wrap;
     }
+
     nav a {
       margin: 5px 15px;
       text-decoration: none;
@@ -64,30 +70,38 @@
       font-weight: bold;
       font-size: 1.1em;
     }
+
     nav a:hover {
       color: var(--accent);
     }
+
     main {
       padding: 2em;
       max-width: 800px;
       margin: auto;
     }
+
     section {
       margin-bottom: 2em;
     }
+
     .box {
       background-color: var(--section-bg);
       padding: 1em;
       border-radius: 8px;
     }
+
     footer {
       text-align: center;
       padding: 1em;
       background-color: var(--footer-bg);
     }
+
     a {
       color: #2a7b59;
     }
+
+    /* ダークモードボタンのスタイル */
     #theme-toggle {
       background: var(--accent);
       border: none;
@@ -102,10 +116,13 @@
       cursor: pointer;
       transition: transform 0.3s ease, background-color 0.3s ease;
     }
+
     #theme-toggle:hover {
       transform: scale(1.1);
       background-color: #ffda44;
     }
+
+    /* お問い合わせボタンのスタイル */
     .contact-button {
       display: inline-block;
       padding: 0.75em 1.5em;
@@ -119,27 +136,34 @@
       transition: background-color 0.3s ease;
       text-align: center;
     }
+
     .contact-button:hover {
       background-color: #ffd700;
     }
+
+    /* スマホ対応のレスポンシブデザイン */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
         align-items: center;
       }
+
       nav {
         flex-direction: column;
         align-items: center;
         margin-top: 1em;
       }
+
       nav a {
         margin: 10px 0;
         font-size: 1.2em;
       }
+
       #server-status {
         text-align: center;
       }
     }
+
     @media (max-width: 480px) {
       nav a {
         font-size: 1em;
@@ -152,12 +176,13 @@
     <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
     <h1>Lemon Sea Server</h1>
     <nav>
-      <a href="#rules">📘 利用規約・ルール</a>
-      <a href="#city">🏙️ 都市ワールドの紹介</a>
-      <a href="#gallery">📷️ ギャラリー</a>
+      <a href="rules.html">📘 利用規約・ルール</a>
+      <a href="city.html">🏙️ 都市ワールドの紹介</a>
+      <a href="gallery.html">📷️ ギャラリー</a>
       <a href="https://discord.gg/bheyZtN454" target="_blank">💬 Discordに参加</a>
     </nav>
   </header>
+
   <main>
     <section aria-labelledby="welcome-title" class="box">
       <h2 id="welcome-title">🎉ようこそ！</h2>
@@ -169,6 +194,7 @@
         <a href="https://discord.gg/bheyZtN454" target="_blank" aria-label="Discordリンクを開く">💬 Discordに参加</a>
       </p>
     </section>
+
     <section aria-labelledby="info-title" class="box">
       <h2 id="info-title">🌍 サーバー情報</h2>
       <ul>
@@ -178,68 +204,12 @@
         <li><strong>プラグイン：</strong>IronElevator、Traincarts、GSitなど</li>
       </ul>
     </section>
+
     <section aria-labelledby="join-title" class="box">
       <h2 id="join-title">🚪 参加方法</h2>
       <p>マイクラの「マルチプレイ」から <strong>own-amazing.joinmc.link</strong> を入力してdiscordと連携するだけ！</p>
     </section>
-    <section aria-labelledby="city-title" class="box">
-      <h2 id="city-title">🏙️ 都市ワールド紹介</h2>
-      <p>サーバー内には、建設スタイルの異なる2つの都市があります。興味がある方をチェックしてね！<br>茶番などの動画撮影もOKです！</p>
-      <details>
-        <summary>🌆 新都市サーバー</summary>
-        <p>新都市鯖は、現行メインの建設ワールドです。現代建築を中心に、プレイヤー同士が協力して街を発展させています。公共施設・駅・道路網なども整備中で、自由度の高い設計が可能です。</p>
-        <details>
-          <summary>🏙️ 自治体一覧</summary>
-          <h3>🍋 檸檬県</h3>
-          <ul>
-            <li><strong>檸檬市</strong>（県庁所在地）</li>
-            <li>初野市</li>
-            <li>桜木市</li>
-            <li>孤城市</li>
-            <li>海丘町</li>
-          </ul>
-          <h3>🌸 春日野県</h3>
-          <ul>
-            <li><strong>春日野市</strong>（県庁所在地）</li>
-            <li>森沢市</li>
-            <li>堀岩町</li>
-            <li>大岡町</li>
-          </ul>
-          <p>寄付や宣伝、マイクラ内の工事に尽力した場合、市長に任命されたり、特別な地位が与えられるかもしれません。</p>
-        </details>
-        <details>
-          <summary>🚆 鉄道一覧</summary>
-          <p>この新都市鯖では鉄道にも力を入れています。現在存在する路線は以下の通りです。</p>
-          <ul>
-            <li><strong>レモンメトロ</strong>（管理者：各自治体）</li>
-            <ul>
-              <li>レモンメトロ初野線：檸檬〜初野～孤城台</li>
-              <li>レモンメトロ桜木線：新初野〜孤城～海丘</li>
-            </ul>
-            <li><strong>桜木登山鉄道</strong>（私鉄）</li>
-            <ul>
-              <li>桜木登山鉄道線：桜木山麓〜西桜木</li>
-            </ul>
-          </ul>
-        </details>
-      </details>
-      <details>
-        <summary>🏛️ 旧都市サーバー</summary>
-        <p>旧都市鯖は、れもんしーの初期から存在する歴史あるワールドです。さまざまな建築様式や、自然あふれる街並みが残されています。ちゃんと鉄道も稼働中です。建物などが数多くあり、動画撮影に向いているワールドとなっています。</p>
-        <details>
-          <summary>🏙️ 自治体一覧</summary>
-          <ul>
-            <li>檸檬市</li>
-            <li>孤城市</li>
-            <li>鮭島村</li>
-          </ul>
-        </details>
-        <details>
-          <summary>🚆 鉄道一覧</summary>
-          <p>旧都市鯖において運行されている路線は...</p>
-        </details>
-      </details>
-    </section>
+
     <section aria-labelledby="contact-title" class="box">
       <h2 id="contact-title">📩 お問い合わせ</h2>
       <p>バグ報告、要望、通報などはこちらからどうぞ！</p>
@@ -250,21 +220,27 @@
       </p>
     </section>
   </main>
+
   <script>
+    // ダークモード切替
     const themeToggle = document.createElement("button");
     themeToggle.id = "theme-toggle";
     themeToggle.textContent = "🌙";
     document.body.appendChild(themeToggle);
+
     const htmlEl = document.documentElement;
+
     function setTheme(mode) {
       htmlEl.setAttribute("data-theme", mode);
       localStorage.setItem("theme", mode);
       themeToggle.textContent = mode === "dark" ? "☀️" : "🌙";
     }
+
     themeToggle.addEventListener("click", () => {
       const currentTheme = htmlEl.getAttribute("data-theme");
       setTheme(currentTheme === "dark" ? "light" : "dark");
     });
+
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) setTheme(savedTheme);
     else setTheme("light");
