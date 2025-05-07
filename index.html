@@ -13,7 +13,7 @@
             --section-bg: rgba(226, 243, 228, 0.85);
             --footer-bg: #eee;
             --bg-image: url('images/2.png');
-            --border-color: #ccc; /* 枠線の色 */
+            --border-color: #ccc;
         }
         [data-theme="dark"] {
             --bg: #181818;
@@ -22,7 +22,7 @@
             --section-bg: rgba(30, 45, 31, 0.85);
             --footer-bg: #1c1c1c;
             --bg-image: url('images/6.png');
-            --border-color: #555; /* ダークモードの枠線の色 */
+            --border-color: #555;
         }
 
         body {
@@ -35,50 +35,50 @@
             background-size: cover;
             background-position: center;
             transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
-            font-size: 1.2em; /* 基本フォントサイズを大きく */
-            line-height: 1.7; /* 行間を調整 */
+            font-size: 1.1em; /* 基本フォントサイズを調整 */
+            line-height: 1.6; /* 行間を調整 */
         }
 
         header {
             background-color: var(--accent);
-            padding: 1.5em;
+            padding: 1.2em;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
             flex-direction: column;
-            border-bottom: 2px solid var(--border-color); /* ヘッダー下部に枠線 */
+            border-bottom: 2px solid var(--border-color);
         }
 
         header img {
-            height: 60px;
+            height: 50px;
         }
 
         header h1 {
-            margin: 0.5em 0;
+            margin: 0.4em 0;
             text-align: center;
             flex-grow: 1;
-            font-size: 1.8em;
+            font-size: 1.6em;
         }
 
         nav {
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-top: 1.5em;
+            margin-top: 1.2em;
             flex-wrap: wrap;
-            border-top: 1px solid var(--border-color); /* ナビゲーション上部に枠線 */
-            padding-top: 0.5em;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.4em;
         }
 
         nav a {
-            margin: 0.7em 1.5em;
+            margin: 0.6em 1.2em;
             text-decoration: none;
             color: var(--text);
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.1em;
             cursor: pointer;
-            padding: 0.3em 0.5em;
+            padding: 0.2em 0.4em;
             border-radius: 5px;
             transition: color 0.3s;
         }
@@ -88,42 +88,42 @@
         }
 
         main {
-            padding: 2em;
+            padding: 1.8em;
             max-width: 900px;
             margin: 2em auto;
         }
 
         section {
-            margin-bottom: 2.5em;
-            padding: 1.2em;
+            margin-bottom: 2em;
+            padding: 1em;
             border-radius: 8px;
             background-color: var(--section-bg);
-            border: 1px solid var(--border-color); /* セクションに枠線 */
+            border: 1px solid var(--border-color);
         }
 
         h1, h2, h3 {
-            margin-top: 1.8em;
-            margin-bottom: 0.7em;
+            margin-top: 1.5em;
+            margin-bottom: 0.6em;
         }
 
         h2 {
-            font-size: 1.5em;
-            padding-bottom: 0.3em;
-            border-bottom: 1px solid var(--border-color); /* h2にも下線 */
+            font-size: 1.4em;
+            padding-bottom: 0.2em;
+            border-bottom: 1px solid var(--border-color);
         }
 
         h3 {
-            font-size: 1.3em;
-            margin-top: 1.2em;
+            font-size: 1.2em;
+            margin-top: 1em;
         }
 
         ul, ol {
-            padding-left: 1.8em;
-            margin-bottom: 1.2em;
+            padding-left: 1.6em;
+            margin-bottom: 1em;
         }
 
         li {
-            margin-bottom: 0.8em;
+            margin-bottom: 0.7em;
         }
 
         a {
@@ -140,11 +140,11 @@
             background: var(--accent);
             border: none;
             border-radius: 50%;
-            padding: 1em;
-            font-size: 1.5em;
+            padding: 0.9em;
+            font-size: 1.3em;
             position: fixed;
-            right: 20px;
-            bottom: 20px;
+            right: 15px;
+            bottom: 15px;
             z-index: 9999;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             cursor: pointer;
@@ -159,14 +159,14 @@
         /* お問い合わせボタンのスタイル */
         .contact-button {
             display: inline-block;
-            padding: 0.8em 1.6em;
+            padding: 0.7em 1.4em;
             background-color: var(--accent);
             color: #000;
             font-weight: bold;
-            border: 1px solid var(--border-color); /* ボタンにも枠線 */
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             text-decoration: none;
-            font-size: 1.1em;
+            font-size: 1em;
             transition: background-color 0.3s ease, color 0.3s ease;
             text-align: center;
         }
@@ -178,8 +178,8 @@
         /* スマホ対応のレスポンシブデザイン */
         @media (max-width: 768px) {
             body {
-                font-size: 1.1em;
-                line-height: 1.6;
+                font-size: 1em;
+                line-height: 1.5;
             }
             header {
                 flex-direction: column;
@@ -187,47 +187,47 @@
                 padding: 1em;
             }
             header h1 {
-                font-size: 1.6em;
-                margin: 0.3em 0;
+                font-size: 1.4em;
+                margin: 0.2em 0;
             }
             nav {
                 flex-direction: column;
                 align-items: center;
                 margin-top: 1em;
-                padding-top: 0.3em;
+                padding-top: 0.2em;
                 border-top: 1px solid var(--border-color);
             }
             nav a {
-                margin: 0.5em 0;
-                font-size: 1.1em;
+                margin: 0.4em 0;
+                font-size: 1em;
             }
             main {
-                padding: 1.5em;
-            }
-            #theme-toggle {
-                font-size: 1.3em;
-                padding: 0.8em;
-                right: 15px;
-                bottom: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                font-size: 1em;
-                line-height: 1.5;
-            }
-            header h1 {
-                font-size: 1.4em;
-            }
-            nav a {
-                font-size: 1em;
+                padding: 1.2em;
             }
             #theme-toggle {
                 font-size: 1.1em;
                 padding: 0.7em;
                 right: 10px;
                 bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 0.9em;
+                line-height: 1.4;
+            }
+            header h1 {
+                font-size: 1.2em;
+            }
+            nav a {
+                font-size: 0.9em;
+            }
+            #theme-toggle {
+                font-size: 1em;
+                padding: 0.6em;
+                right: 8px;
+                bottom: 8px;
             }
         }
 
@@ -241,40 +241,35 @@
 
         /* 都市ワールド紹介ページのスタイル */
         #city-page {
-            --bg: #fefefe;
-            --text: #000;
-            --accent: #2a7b59;
-            --card-bg: #f2f2f2;
-        }
-        body.dark #city-page {
-            --bg: #121212;
-            --text: #eee;
-            --accent: #66cdaa;
-            --card-bg: #1e1e1e;
+            padding: 1em;
         }
         #city-page h1 {
-            color: var(--accent);
-            font-size: 1.8em; /* 都市ワールド紹介の見出しを大きく */
-            padding-bottom: 0.4em;
+            color: #2a7b59;
+            font-size: 1.6em; /* 都市ワールド紹介の見出しを調整 */
+            padding-bottom: 0.3em;
             border-bottom: 1px solid var(--border-color);
         }
+        body.dark #city-page h1 {
+            color: #66cdaa;
+            border-bottom-color: #555;
+        }
         #city-page section {
-            border: 1px solid var(--border-color); /* 都市ワールド紹介のセクションに枠線 */
+            border: 1px solid var(--border-color);
             padding: 1em;
-            margin-bottom: 1.5em;
+            margin-bottom: 1.2em;
             border-radius: 8px;
             background-color: var(--card-bg);
         }
         #city-page h2 {
-            font-size: 1.4em; /* 都市ワールド紹介のh2を大きく */
+            font-size: 1.3em; /* 都市ワールド紹介のh2を調整 */
             border-left: 3px solid var(--accent);
-            padding-left: 0.6em;
-            margin-top: 1.5em;
-            margin-bottom: 0.5em;
-            border-bottom: none; /* 重複する下線を削除 */
+            padding-left: 0.5em;
+            margin-top: 1.2em;
+            margin-bottom: 0.4em;
+            border-bottom: none;
         }
         #city-page h3 {
-            font-size: 1.2em; /* 都市ワールド紹介のh3を大きく */
+            font-size: 1.1em; /* 都市ワールド紹介のh3を調整 */
             margin-top: 1em;
             margin-bottom: 0.3em;
             color: #333;
@@ -283,30 +278,34 @@
             color: #ccc;
         }
         #city-page details {
-            margin-bottom: 1.5em;
+            margin-bottom: 1.2em;
             background: var(--card-bg);
             padding: 1em;
             border-radius: 8px;
-            border: 1px solid var(--border-color); /* detailsにも枠線 */
+            border: 1px solid var(--border-color);
         }
         #city-page summary {
             font-weight: bold;
-            font-size: 1.2em; /* summaryを大きく */
+            font-size: 1.1em; /* summaryを調整 */
             cursor: pointer;
-            padding: 0.5em 0;
+            padding: 0.4em 0;
         }
         #city-page p {
-            font-size: 1.1em; /* 都市ワールド紹介のpを大きく */
-            margin-top: 0.6em;
-            margin-bottom: 1.2em;
+            font-size: 1em; /* 都市ワールド紹介のpを調整 */
+            margin-top: 0.5em;
+            margin-bottom: 1em;
         }
         #city-page ul {
-            padding-left: 2em;
-            margin-bottom: 1.2em;
+            padding-left: 1.8em;
+            margin-bottom: 1em;
+            border: 1px solid var(--border-color);
+            padding: 1em;
+            border-radius: 8px;
+            background-color: var(--card-bg);
         }
         #city-page li {
-            font-size: 1.1em; /* 都市ワールド紹介のliを大きく */
-            margin-bottom: 0.7em;
+            font-size: 1em; /* 都市ワールド紹介のliを調整 */
+            margin-bottom: 0.6em;
         }
 
         /* ギャラリーページのスタイル */
@@ -321,8 +320,8 @@
         #gallery-page h1 {
             color: #2a7b59;
             text-align: center;
-            font-size: 1.8em;
-            padding-bottom: 0.4em;
+            font-size: 1.6em; /* ギャラリーの見出しを調整 */
+            padding-bottom: 0.3em;
             border-bottom: 1px solid var(--border-color);
         }
         body.dark #gallery-page h1 {
@@ -331,9 +330,9 @@
         }
         #gallery-page .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1em;
-            padding: 1em;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* ギャラリーの画像サイズを調整 */
+            gap: 0.8em; /* ギャラリーの画像間の余白を調整 */
+            padding: 0.8em; /* ギャラリー全体のpaddingを調整 */
         }
         #gallery-page .gallery img {
             width: 100%;
@@ -349,10 +348,11 @@
         }
         #gallery-page footer {
             text-align: center;
-            margin-top: 2em;
+            margin-top: 1.5em;
             color: #666;
-            padding-top: 1em;
+            padding-top: 0.8em;
             border-top: 1px solid var(--border-color);
+            font-size: 0.9em;
         }
         body.dark #gallery-page footer {
             color: #aaa;
@@ -375,35 +375,36 @@
             background-color: rgba(0, 0, 0, 0.95);
         }
         #gallery-page #modal img {
-            max-width: 95%;
-            max-height: 90%;
+            max-width: 90%; /* モーダル内の画像サイズを調整 */
+            max-height: 85%; /* モーダル内の画像サイズを調整 */
             border-radius: 10px;
         }
         #gallery-page #modal h2 {
             color: white;
-            margin-top: 1em;
+            margin-top: 0.8em;
             text-align: center;
+            font-size: 1.2em;
         }
         #gallery-page #modalClose {
             color: white;
-            font-size: 2em;
+            font-size: 1.8em;
             position: absolute;
-            top: 15px;
-            right: 20px;
+            top: 10px;
+            right: 15px;
             cursor: pointer;
         }
         #gallery-page #modalControls {
-            margin-top: 1em;
+            margin-top: 0.8em;
             display: flex;
-            gap: 1em;
+            gap: 0.8em;
             justify-content: center;
         }
         #gallery-page .modalBtn {
             background: #2a7b59;
             color: white;
             border: none;
-            padding: 0.7em 1.4em;
-            font-size: 1em;
+            padding: 0.6em 1.2em;
+            font-size: 0.9em;
             border-radius: 8px;
             cursor: pointer;
         }
@@ -430,8 +431,8 @@
         }
         #rules-page h1 {
             color: #2a7b59;
-            font-size: 1.8em; /* 利用規約・ルールの見出しを大きく */
-            padding-bottom: 0.4em;
+            font-size: 1.6em; /* 利用規約・ルールの見出しを調整 */
+            padding-bottom: 0.3em;
             border-bottom: 1px solid var(--border-color);
         }
         body.dark #rules-page h1 {
@@ -440,42 +441,43 @@
         }
         #rules-page h2 {
             border-left: 4px solid var(--accent);
-            padding-left: 0.7em;
-            margin-top: 1.5em;
-            margin-bottom: 0.5em;
-            font-size: 1.4em; /* 利用規約・ルールのh2を大きく */
+            padding-left: 0.6em;
+            margin-top: 1.2em;
+            margin-bottom: 0.4em;font-size: 1.3em; /* 利用規約・ルールのh2を調整 */
         }
         body.dark #rules-page h2 {
             border-left-color: #6af5a4;
         }
         #rules-page ul {
-            padding-left: 2em;
-            margin-bottom: 1.2em;
-            border: 1px solid var(--border-color); /* 利用規約・ルールのリストに枠線 */
+            padding-left: 1.8em;
+            margin-bottom: 1em;
+            border: 1px solid var(--border-color);
             padding: 1em;
             border-radius: 8px;
-            background-color: var(--bg); /* 背景色を明示 */
+            background-color: var(--bg);
         }
         #rules-page li {
-            margin-bottom: 0.7em;
-            font-size: 1.1em; /* 利用規約・ルールのliを大きく */
+            margin-bottom: 0.6em;
+            font-size: 1em; /* 利用規約・ルールのliを調整 */
         }
         #rules-page p {
-            margin-bottom: 1.2em;
-            font-size: 1.1em; /* 利用規約・ルールのpを大きく */
+            margin-bottom: 1em;
+            font-size: 1em; /* 利用規約・ルールのpを調整 */
         }
         #rules-page p[style] {
             color: #555 !important;
+            font-size: 0.9em !important;
         }
         body.dark #rules-page p[style] {
             color: #aaa !important;
         }
         #rules-page footer {
-            margin-top: 2em;
+            margin-top: 1.5em;
             text-align: center;
             color: #777;
-            padding-top: 1em;
+            padding-top: 0.8em;
             border-top: 1px solid var(--border-color);
+            font-size: 0.9em;
         }
         body.dark #rules-page footer {
             color: #aaa;
@@ -494,60 +496,67 @@
         }
         #city-page h1 {
             color: #2a7b59;
-            font-size: 1.8em; /* 都市ワールド紹介の見出しを大きく */
-            padding-bottom: 0.4em;
+            font-size: 1.6em; /* 都市ワールド紹介の見出しを調整 */
+            padding-bottom: 0.3em;
             border-bottom: 1px solid var(--border-color);
         }
         body.dark #city-page h1 {
             color: #66cdaa;
             border-bottom-color: #555;
         }
-        #city-page details {
-            margin-bottom: 1.8em;
-            background: var(--card-bg);
-            padding: 1.2em;
+        #city-page section {
+            border: 1px solid var(--border-color);
+            padding: 1em;
+            margin-bottom: 1.2em;
             border-radius: 8px;
-            border: 1px solid var(--border-color); /* detailsにも枠線 */
-        }
-        #city-page summary {
-            font-weight: bold;
-            font-size: 1.2em; /* summaryを大きく */
-            cursor: pointer;
-            padding: 0.6em 0;
-        }
-        #city-page p {
-            font-size: 1.1em; /* 都市ワールド紹介のpを大きく */
-            margin-top: 0.7em;
-            margin-bottom: 1.4em;
+            background-color: var(--card-bg);
         }
         #city-page h2 {
-            font-size: 1.4em; /* 都市ワールド紹介のh2を大きく */
+            font-size: 1.3em; /* 都市ワールド紹介のh2を調整 */
             border-left: 3px solid var(--accent);
-            padding-left: 0.6em;
-            margin-top: 1.8em;
-            margin-bottom: 0.7em;
-            border-bottom: none; /* 重複する下線を削除 */
+            padding-left: 0.5em;
+            margin-top: 1.2em;
+            margin-bottom: 0.4em;
+            border-bottom: none;
         }
         #city-page h3 {
-            font-size: 1.2em; /* 都市ワールド紹介のh3を大きく */
-            margin-top: 1.4em;
-            margin-bottom: 0.5em;
+            font-size: 1.1em; /* 都市ワールド紹介のh3を調整 */
+            margin-top: 1em;
+            margin-bottom: 0.3em;
             color: #333;
         }
         body.dark #city-page h3 {
             color: #ccc;
         }
+        #city-page details {
+            margin-bottom: 1.2em;
+            background: var(--card-bg);
+            padding: 1em;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        #city-page summary {
+            font-weight: bold;
+            font-size: 1.1em; /* summaryを調整 */
+            cursor: pointer;
+            padding: 0.4em 0;
+        }
+        #city-page p {
+            font-size: 1em; /* 都市ワールド紹介のpを調整 */
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+        }
         #city-page ul {
-            padding-left: 2.2em;
-            margin-bottom: 1.4em;
-            border: 1px solid var(--border-color); /* 都市ワールド紹介のリストに枠線 */
-            padding: 1.2em;
+            padding-left: 1.8em;
+            margin-bottom: 1em;
+            border: 1px solid var(--border-color);
+            padding: 1em;
             border-radius: 8px;
             background-color: var(--card-bg);
         }
         #city-page li {
-            font-size: 1.1em; /* 都市ワールド紹介のliを大きく */
-            margin-bottom: 0.8em;
+            font-size: 1em; /* 都市ワールド紹介のliを調整 */
+            margin-bottom: 0.6em;
         }
     </style>
 </head>
