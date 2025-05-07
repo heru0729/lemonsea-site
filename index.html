@@ -410,7 +410,7 @@
             </section>
         </div>
 
-        <div id="city" class="page" style="display: none;">
+        <div id="city" class="page">
             <h1 id="city-page">🏙️ 都市ワールド紹介</h1>
             <p>
                 サーバー内には、建設スタイルの異なる2つの都市があります。興味がある方をチェックしてね！<br>
@@ -472,3 +472,256 @@
             <details>
                 <summary>🏛️ 旧都市サーバー</summary>
                 <p>
+旧都市鯖は、れもんしーの初期から存在する歴史あるワールドです。<br>
+さまざまな建築様式や、自然あふれる街並みが残されています。<br>
+ちゃんと鉄道も稼働中です。<br>
+建物などが数多くあり、動画撮影に向いているワールドとなっています。
+                </p>
+
+                <details>
+                    <summary>🏙️ 自治体一覧</summary>
+                    <ul>
+                        <li>檸檬市</li>
+                        <li>孤城市</li>
+                        <li>鮭島村</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>🚆 鉄道一覧</summary>
+                    <p>旧都市鯖において運行されている路線は以下の通りです。</p>
+                    <ul>
+                        <li><strong>レモンメトロ檸檬線</strong></li>
+                        <ul>
+                            <li>孤城～檸檬～鮭島</li>
+                        </ul>
+                    </ul>
+                </details>
+            </details>
+
+            <footer>
+                </footer>
+        </div>
+
+        <div id="gallery" class="page">
+            <h1 id="gallery-page">🖼️ ギャラリー</h1>
+            <p>れもんしーサーバーの建築や風景を集めたギャラリーページです。随時更新予定！<br>
+
+            <p style="text-align: center; margin-bottom: 1em;">
+                <a href="https://forms.gle/k1K5NLms5NL2HVCS8" target="_blank" class="modalBtn" style="text-decoration: none; display: inline-block;">📤 画像申請（Googleフォーム）</a>
+            </p>
+
+            <div class="gallery" id="gallery-images">
+                </div>
+
+            <div id="modal">
+                <div id="modalClose">✖</div>
+                <img id="modalImage" src="" alt="">
+                <h2 id="modalTitle"></h2>
+                <div id="modalControls">
+                    <button class="modalBtn" id="prevBtn">◀ 前へ</button>
+                    <button class="modalBtn" id="saveBtn">💾 保存</button>
+                    <button class="modalBtn" id="nextBtn">次へ ▶</button>
+                </div>
+            </div>
+
+            <footer>
+                <a href="#home">← ホームに戻る</a>
+            </footer>
+        </div>
+
+        <div id="rules" class="page">
+            <h1 id="rules-page">れもんしー鯖 利用規約・ルール</h1>
+
+            <h2 id="ban-global">🚫 禁止事項</h2>
+            <h3>全体での禁止事項</h3>
+            <ul>
+                <li>スパム行為（連投行為など）</li>
+                <li>サーバーに関係のない取引 / 金銭の伴う取引</li>
+                <li>許可のない宣伝 / 売名行為</li>
+                <li>Minecraft の利用規約に違反する行為</li>
+                <li>Discordの利用規約に違反する行為</li>
+                <li>スタッフが不適切と判断する行為</li>
+                <li>あまりにも不適切な発言（暴言など、語録は一部容認）</li>
+            </ul>
+
+            <h3>マイクラ内での禁止事項</h3>
+            <ul>
+                <li>荒らし行為（破壊・窃盗・同意なき殺害）</li>
+                <li>チート・不具合の悪用</li>
+                <li>意図的にサーバーへ過剰負荷をかける行為</li>
+            </ul>
+
+            <h2 id="disclaimer">📌 免責事項</h2>
+            <ul>
+                <li>当サーバーは、予告なしに本規約を変更できるものとします。</li>
+                <li>サーバーの利用時点で本規約に同意したとみなされます。</li>
+                <li>運営は最低限のルール違反を容認する場合があります。</li>
+                <li>常識的にNGな行為はルールに記載されていなくても禁止です。</li>
+            </ul>
+
+            <h2 id="ending">🎉 最後に</h2>
+            <p>これらのルールを守って、楽しくプレイしましょう！</p>
+            <p>2025年3月29日 第二版</p>
+
+            <footer>
+                <a href="#home" aria-label="ホームに戻る">← ホームに戻る</a>
+            </footer>
+        </div>
+    </main>
+
+    <button id="theme-toggle" aria-label="ダークモード切り替え">🌙</button>
+
+    <script>
+        // ダークモード切替
+        const themeToggle = document.getElementById("theme-toggle");
+        const htmlEl = document.documentElement;
+
+        function setTheme(mode) {
+            htmlEl.setAttribute("data-theme", mode);
+            localStorage.setItem("theme", mode);
+            themeToggle.textContent = mode === "dark" ? "☀️" : "🌙";
+        }
+
+        themeToggle.addEventListener("click", () => {
+            const currentTheme = htmlEl.getAttribute("data-theme");
+            setTheme(currentTheme === "dark" ? "light" : "dark");
+        });
+
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) setTheme(savedTheme);
+        else setTheme("light");
+
+        // ページ切り替え
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a[data-page]');
+            const pages = document.querySelectorAll('.page');
+            const galleryDiv = document.getElementById('gallery-images');
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalClose = document.getElementById('modalClose');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            let imageList = [];
+            let currentIndex = 0;
+
+            function showPage(pageId) {
+                pages.forEach(page => {
+                    page.style.display = 'none';
+                });
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.style.display = 'block';
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                    history.pushState(null, null, '#' + pageId);
+                });
+            });
+
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash.substring(1);
+                showPage(hash || 'home');
+            });
+
+            // 初期表示
+            if (window.location.hash) {
+                showPage(window.location.hash.substring(1));
+            } else {
+                showPage('home');
+            }
+
+            // ギャラリー機能
+            async function loadGalleryImages() {
+                try {
+                    const response = await fetch('images.json');
+                    imageList = await response.json();
+                    if (galleryDiv) {
+                        imageList.forEach((image, index) => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = image.src;
+                            imgElement.alt = image.alt;
+                            imgElement.addEventListener('click', () => {
+                                showModal(index);
+                            });
+                            galleryDiv.appendChild(imgElement);
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error loading gallery images:", error);
+                    if (galleryDiv) {
+                        galleryDiv.innerHTML = '<p>ギャラリーの読み込みに失敗しました。</p>';
+                    }
+                }
+            }
+
+            function showModal(index) {
+                currentIndex = index;
+                const image = imageList[currentIndex];
+                modalImage.src = image.src;
+                modalTitle.textContent = image.alt;
+                modal.style.display = 'flex';
+            }
+
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % imageList.length;
+                showModal(currentIndex);
+            }
+
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+                showModal(currentIndex);
+            }
+
+            function downloadImage() {
+                if (imageList.length > 0) {
+                    const image = imageList[currentIndex];
+                    const a = document.createElement('a');
+                    a.href = image.src;
+                    a.download = image.name || 'image.jpg';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+            }
+
+            if (modalClose) {
+                modalClose.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                });
+            }
+
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+
+            if (nextBtn) nextBtn.addEventListener('click', showNextImage);
+            if (prevBtn) prevBtn.addEventListener('click', showPrevImage);
+            if (saveBtn) saveBtn.addEventListener('click', downloadImage);
+
+            if (window.location.hash === '#gallery') {
+                loadGalleryImages();
+            } else {
+                // ギャラリーページ以外ではロードしない
+            }
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-page') === 'gallery') {
+                    link.addEventListener('click', loadGalleryImages);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
