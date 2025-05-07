@@ -5,603 +5,424 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lemon Sea Server</title>
     <link rel="icon" href="Lemonsea.png" />
-<style>
-    :root {
-        --bg: #f5f9f7;
-        --text: #222;
-        --accent: #ffe66d;
-        --section-bg: rgba(226, 243, 228, 0.85);
-        --footer-bg: #eee;
-        --bg-image: url('images/2.png');
-        --border-color: #ccc;
-    }
-    [data-theme="dark"] {
-        --bg: #181818;
-        --text: #eee;
-        --accent: #ffda44;
-        --section-bg: rgba(30, 45, 31, 0.85);
-        --footer-bg: #1c1c1c;
-        --bg-image: url('images/6.png');
-        --border-color: #555;
-    }
+    <style>
+        :root {
+            --bg: #f5f9f7;
+            --text: #222;
+            --accent: #ffe66d;
+            --section-bg: rgba(226, 243, 228, 0.85);
+            --footer-bg: #eee;
+            --bg-image: url('images/2.png');
+            --border-color: #ccc;
+        }
+        [data-theme="dark"] {
+            --bg: #181818;
+            --text: #eee;
+            --accent: #ffda44;
+            --section-bg: rgba(30, 45, 31, 0.85);
+            --footer-bg: #1c1c1c;
+            --bg-image: url('images/6.png');
+            --border-color: #555;
+        }
 
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: var(--bg);
-        color: var(--text);
-        margin: 0;
-        padding: 0;
-        background-image: var(--bg-image);
-        background-size: cover;
-        background-position: center;
-        transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
-        font-size: 1.0em;
-        line-height: 1.5;
-    }
-
-    header {
-        background-color: var(--accent);
-        padding: 1em;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-        flex-direction: column;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    header img {
-        height: 40px;
-    }
-
-    header h1 {
-        margin: 0.3em 0;
-        text-align: center;
-        flex-grow: 1;
-        font-size: 1.4em;
-    }
-
-    nav {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        margin-top: 1em;
-        flex-wrap: wrap;
-        border-top: 1px solid var(--border-color);
-        padding-top: 0.3em;
-    }
-
-    nav a {
-        margin: 0.5em 1em;
-        text-decoration: none;
-        color: var(--text);
-        font-weight: bold;
-        font-size: 0.9em;
-        cursor: pointer;
-        padding: 0.2em 0.4em;
-        border-radius: 5px;
-        transition: color 0.3s;
-    }
-
-    nav a:hover {
-        color: #007bff;
-    }
-
-    main {
-        padding: 1.5em;
-        max-width: 900px;
-        margin: 1.5em auto;
-    }
-
-    section {
-        margin-bottom: 1.8em;
-        padding: 0.9em;
-        border-radius: 8px;
-        background-color: var(--section-bg);
-        border: 1px solid var(--border-color);
-    }
-
-    h1, h2, h3 {
-        margin-top: 1.3em;
-        margin-bottom: 0.5em;
-    }
-
-    h2 {
-        font-size: 1.2em;
-        padding-bottom: 0.15em;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    h3 {
-        font-size: 1.1em;
-        margin-top: 0.9em;
-    }
-
-    ul, ol {
-        padding-left: 1.4em;
-        margin-bottom: 1em;
-    }
-
-    li {
-        margin-bottom: 0.6em;
-    }
-
-    a {
-        color: #007bff;
-        text-decoration: underline;
-    }
-
-    a:hover {
-        color: #0056b3;
-    }
-
-    /* ダークモードボタンのスタイル */
-    #theme-toggle {
-        background: var(--accent);
-        border: none;
-        border-radius: 50%;
-        padding: 0.8em;
-        font-size: 1.1em;
-        position: fixed;
-        right: 15px;
-        bottom: 15px;
-        z-index: 9999;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        cursor: pointer;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    #theme-toggle:hover {
-        transform: scale(1.1);
-        background-color: #ffda44;
-    }
-
-    /* お問い合わせボタンのスタイル */
-    .contact-button {
-        display: inline-block;
-        padding: 0.6em 1.2em;
-        background-color: var(--accent);
-        color: #000;
-        font-weight: bold;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 0.9em;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        text-align: center;
-    }
-
-    .contact-button:hover {
-        background-color: #ffd700;
-    }
-
-    /* スマホ対応のレスポンシブデザイン */
-    @media (max-width: 768px) {
         body {
-            font-size: 0.9em;
-            line-height: 1.4;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            background-image: var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
+            font-size: 1.0em;
+            line-height: 1.5;
         }
+
         header {
-            padding: 0.8em;
-        }
-        header img {
-            height: 35px;
-        }
-        header h1 {
-            font-size: 1.2em;
-            margin: 0.2em 0;
-        }
-        nav {
-            margin-top: 0.8em;
-            padding-top: 0.2em;
-        }
-        nav a {
-            margin: 0.3em 0.8em;
-            font-size: 0.8em;
-        }
-        main {
+            background-color: var(--accent);
             padding: 1em;
-            margin: 1.5em auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            flex-direction: column;
+            border-bottom: 1px solid var(--border-color);
         }
-        section {
-            margin-bottom: 1.5em;
-            padding: 0.8em;
+
+        header img {
+            height: 40px;
         }
-        h1 {
+
+        header h1 {
+            margin: 0.3em 0;
+            text-align: center;
+            flex-grow: 1;
             font-size: 1.4em;
         }
-        h2 {
-            font-size: 1.1em;
-        }
-        h3 {
-            font-size: 1em;
-        }
-        #theme-toggle {
-            font-size: 1em;
-            padding: 0.6em;
-            right: 10px;
-            bottom: 10px;
-        }
-    }
 
-    @media (max-width: 480px) {
-        body {
-            font-size: 0.8em;
-            line-height: 1.3;
-        }
-        header {
-            padding: 0.6em;
-        }
-        header img {
-            height: 30px;
-        }
-        header h1 {
-            font-size: 1em;
-        }
         nav {
-            margin-top: 0.6em;
-            padding-top: 0.15em;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 1em;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.3em;
         }
+
         nav a {
-            margin: 0.2em 0.6em;
-            font-size: 0.7em;
+            margin: 0.5em 1em;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: bold;
+            font-size: 0.9em;
+            cursor: pointer;
+            padding: 0.2em 0.4em;
+            border-radius: 5px;
+            transition: color 0.3s;
         }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
         main {
-            padding: 0.8em;
-            margin: 1em auto;
+            padding: 1.5em;
+            max-width: 900px;
+            margin: 1.5em auto;
         }
+
         section {
-            margin-bottom: 1.2em;
-            padding: 0.6em;
+            margin-bottom: 1.8em;
+            padding: 0.9em;
+            border-radius: 8px;
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
         }
-        h1 {
+
+        h1, h2, h3 {
+            margin-top: 1.3em;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            padding-bottom: 0.15em;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.1em;
+            margin-top: 0.9em;
+            margin-bottom: 0.2em;
+        }
+
+        ul, ol {
+            padding-left: 1.4em;
+            margin-bottom: 1em;
+        }
+
+        li {
+            margin-bottom: 0.6em;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* ダークモードボタンのスタイル */
+        #theme-toggle {
+            background: var(--accent);
+            border: none;
+            border-radius: 50%;
+            padding: 0.8em;
+            font-size: 1.1em;
+            position: fixed;
+            right: 15px;
+            bottom: 15px;
+            z-index: 9999;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.1);
+            background-color: #ffda44;
+        }
+
+        /* お問い合わせボタンのスタイル */
+        .contact-button {
+            display: inline-block;
+            padding: 0.6em 1.2em;
+            background-color: var(--accent);
+            color: #000;
+            font-weight: bold;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-button:hover {
+            background-color: #ffd700;
+        }
+
+        /* スマホ対応のレスポンシブデザイン */
+        @media (max-width: 768px) {
+            body {
+                font-size: 0.9em;
+                line-height: 1.4;
+            }
+            header {
+                padding: 0.8em;
+            }
+            header img {
+                height: 35px;
+            }
+            header h1 {
+                font-size: 1.2em;
+                margin: 0.2em 0;
+            }
+            nav {
+                margin-top: 0.8em;
+                padding-top: 0.2em;
+            }
+            nav a {
+                margin: 0.3em 0.8em;
+                font-size: 0.8em;
+            }
+            main {
+                padding: 1em;
+                margin: 1.5em auto;
+            }
+            section {
+                margin-bottom: 1.5em;
+                padding: 0.8em;
+            }
+            h1 {
+                font-size: 1.4em;
+            }
+            h2 {
+                font-size: 1.1em;
+            }
+            h3 {
+                font-size: 1em;
+            }
+            #theme-toggle {
+                font-size: 1em;
+                padding: 0.6em;
+                right: 10px;
+                bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 0.8em;
+                line-height: 1.3;
+            }
+            header {
+                padding: 0.6em;
+            }
+            header img {
+                height: 30px;
+            }
+            header h1 {
+                font-size: 1em;
+            }
+            nav {
+                margin-top: 0.6em;
+                padding-top: 0.15em;
+            }
+            nav a {
+                margin: 0.2em 0.6em;
+                font-size: 0.7em;
+            }
+            main {
+                padding: 0.8em;
+                margin: 1em auto;
+            }
+            section {
+                margin-bottom: 1.2em;
+                padding: 0.6em;
+            }
+            h1 {
+                font-size: 1.2em;
+            }
+            h2 {
+                font-size: 1em;
+            }
+            h3 {
+                font-size: 0.9em;
+            }
+            #theme-toggle {
+                font-size: 0.9em;
+                padding: 0.5em;
+                right: 8px;
+                bottom: 8px;
+            }
+        }
+
+        /* ページごとのスタイル */
+        .page {
+            display: none;
+        }
+        .page#home {
+            display: block;
+        }
+
+        /* 都市ワールド紹介ページのスタイル */
+        #city-page {
+            padding: 0.8em;
+        }
+        #city-page h1 {
+            color: #2a7b59;
+            font-size: 1.4em;
+            padding-bottom: 0.2em;
+            border-bottom: 1px solid var(--border-color);
+        }
+        body.dark #city-page h1 {
+            color: #66cdaa;
+            border-bottom-color: #555;
+        }
+        #city-page section {
+            border: 1px solid var(--border-color);
+            padding: 0.8em;
+            margin-bottom: 1em;
+            border-radius: 6px;
+            background-color: var(--card-bg);
+        }
+        #city-page h2 {
+            font-size: 1.2em;
+            border-left: 3px solid var(--accent);
+            padding-left: 0.4em;
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+            border-bottom: none;
+        }
+        #city-page h3 {
+            font-size: 1em;
+            margin-top: 0.8em;
+            margin-bottom: 0.2em;
+            color: #333;
+        }
+        body.dark #city-page h3 {
+            color: #ccc;
+        }
+        #city-page details {
+            margin-bottom: 1em;
+            background: var(--card-bg);
+            padding: 0.8em;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+        #city-page summary {
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 0.3em 0;
+        }
+        #city-page p {
+            font-size: 0.9em;
+            margin-top: 0.4em;
+            margin-bottom: 0.8em;
+        }
+        #city-page ul {
+            padding-left: 1.6em;
+            margin-bottom: 0.8em;
+            border: 1px solid var(--border-color);
+            padding: 0.8em;
+            border-radius: 6px;
+            background-color: var(--card-bg);
+        }
+        #city-page li {
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+        }
+
+        /* 利用規約・ルールページのスタイル */
+        #rules-page {
+            background: #fafafa;
+            color: #222;
+            padding: 0.8em;
+        }
+        body.dark #rules-page {
+            background: #121212;
+            color: #eee;
+        }
+        #rules-page h1 {
+            color: #2a7b59;
+            font-size: 1.4em;
+            padding-bottom: 0.2em;
+            border-bottom: 1px solid var(--border-color);
+        }
+        body.dark #rules-page h1 {
+            color: #6af5a4;
+            border-bottom-color: #555;
+        }
+        #rules-page h2 {
+            border-left: 3px solid var(--accent);
+            padding-left: 0.5em;
+            margin-top: 1em;
+            margin-bottom: 0.3em;
             font-size: 1.2em;
         }
-        h2 {
-            font-size: 1em;
+        body.dark #rules-page h2 {
+            border-left-color: #6af5a4;
         }
-        h3 {
+        #rules-page ul {
+            padding-left: 1.6em;
+            margin-bottom: 0.8em;
+            border: 1px solid var(--border-color);
+            padding: 0.8em;
+            border-radius: 6px;
+            background-color: var(--bg);
+        }
+        #rules-page li {
+            margin-bottom: 0.5em;
             font-size: 0.9em;
         }
-        #theme-toggle {
+        #rules-page p {
+            margin-bottom: 0.8em;
             font-size: 0.9em;
-            padding: 0.5em;
-            right: 8px;
-            bottom: 8px;
         }
-    }
-
-    /* ページごとのスタイル */
-    .page {
-        display: none;
-    }
-    .page#home {
-        display: block;
-    }
-
-    /* 都市ワールド紹介ページのスタイル */
-    #city-page {
-        padding: 0.8em;
-    }
-    #city-page h1 {
-        color: #2a7b59;
-        font-size: 1.4em;
-        padding-bottom: 0.2em;
-        border-bottom: 1px solid var(--border-color);
-    }
-    body.dark #city-page h1 {
-        color: #66cdaa;
-        border-bottom-color: #555;
-    }
-    #city-page section {
-        border: 1px solid var(--border-color);
-        padding: 0.8em;
-        margin-bottom: 1em;
-        border-radius: 6px;
-        background-color: var(--card-bg);
-    }
-    #city-page h2 {
-        font-size: 1.2em;
-        border-left: 3px solid var(--accent);
-        padding-left: 0.4em;
-        margin-top: 1em;
-        margin-bottom: 0.3em;
-        border-bottom: none;
-    }
-    #city-page h3 {
-        font-size: 1em;
-        margin-top: 0.8em;
-        margin-bottom: 0.2em;
-        color: #333;
-    }
-    body.dark #city-page h3 {
-        color: #ccc;
-    }
-    #city-page details {
-        margin-bottom: 1em;
-        background: var(--card-bg);
-        padding: 0.8em;
-        border-radius: 6px;
-        border: 1px solid var(--border-color);
-    }
-    #city-page summary {
-        font-weight: bold;
-        font-size: 1em;
-        cursor: pointer;
-        padding: 0.3em 0;
-    }
-    #city-page p {
-        font-size: 0.9em;
-        margin-top: 0.4em;
-        margin-bottom: 0.8em;
-    }
-    #city-page ul {
-        padding-left: 1.6em;
-        margin-bottom: 0.8em;
-        border: 1px solid var(--border-color);
-        padding: 0.8em;
-        border-radius: 6px;
-        background-color: var(--card-bg);
-    }
-    #city-page li {
-        font-size: 0.9em;
-        margin-bottom: 0.5em;
-    }
-
-    /* ギャラリーページのスタイル */
-    #gallery-page {
-        background: #fefefe;
-        color: #333;
-        padding: 0.8em;
-    }
-    body.dark #gallery-page {
-        background: #121212;
-        color: #f0f0f0;
-    }
-    #gallery-page h1 {
-        color: #2a7b59;
-        text-align: center;
-        font-size: 1.4em;
-        padding-bottom: 0.2em;
-        border-bottom: 1px solid var(--border-color);
-    }
-    body.dark #gallery-page h1 {
-        color: #90ee90;
-        border-bottom-color: #555;
-    }
-    #gallery-page .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 0.6em;
-        padding: 0.6em;
-    }
-    #gallery-page .gallery img {
-        width: 100%;
-        border-radius: 6px;
-        transition: transform 0.2s;
-        cursor: pointer;
-        object-fit: cover;
-        aspect-ratio: 4/3;
-        border: 1px solid var(--border-color);
-    }
-    #gallery-page .gallery img:hover {
-        transform: scale(1.03);
-    }
-    #gallery-page footer {
-        text-align: center;
-        margin-top: 1.2em;
-        color: #666;
-        padding-top: 0.6em;
-        border-top: 1px solid var(--border-color);
-        font-size: 0.8em;
-    }
-    body.dark #gallery-page footer {
-        color: #aaa;
-        border-top-color: #333;
-    }
-    #gallery-page #modal {
-        display: none;
-        position: fixed;
-        z-index: 9999;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.9);
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-    body.dark #gallery-page #modal {
-        background-color: rgba(0, 0, 0, 0.95);
-    }
-    #gallery-page #modal img {
-        max-width: 90%;
-        max-height: 85%;
-        border-radius: 8px;
-    }
-    #gallery-page #modal h2 {
-        color: white;
-        margin-top: 0.6em;
-        text-align: center;
-        font-size: 1em;
-    }
-    #gallery-page #modalClose {
-        color: white;
-        font-size: 1.4em;
-        position: absolute;
-        top: 8px;
-        right: 12px;
-        cursor: pointer;
-    }
-    #gallery-page #modalControls {
-        margin-top: 0.6em;
-        display: flex;
-        gap: 0.6em;
-        justify-content: center;
-    }
-    #gallery-page .modalBtn {
-        background: #2a7b59;
-        color: white;
-        border: none;
-        padding: 0.5em 1em;
-        font-size: 0.8em;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-    #gallery-page .modalBtn:hover {
-        background: #1e5c42;
-    }
-    body.dark #gallery-page .modalBtn {
-        background: #90ee90;
-        color: #000;
-    }
-    body.dark #gallery-page .modalBtn:hover {
-        background: #73ba73;
-    }
-
-    /* 利用規約・ルールページのスタイル */
-    #rules-page {
-        background: #fafafa;
-        color: #222;
-        padding: 0.8em;
-    }
-    body.dark #rules-page {
-        background: #121212;
-        color: #eee;
-    }
-    #rules-page h1 {
-        color: #2a7b59;
-        font-size: 1.4em;
-        padding-bottom: 0.2em;
-        border-bottom: 1px solid var(--border-color);
-    }
-    body.dark #rules-page h1 {
-        color: #6af5a4;
-        border-bottom-color: #555;
-    }
-    #rules-page h2 {
-        border-left: 3px solid var(--accent);
-        padding-left: 0.5em;
-        margin-top: 1em;
-        margin-bottom: 0.3em;
-        font-size: 1.2em;
-    }
-    body.dark #rules-page h2 {
-        border-left-color: #6af5a4;
-    }
-    #rules-page ul {
-        padding-left: 1.6em;
-        margin-bottom: 0.8em;
-        border: 1px solid var(--border-color);
-        padding: 0.8em;
-        border-radius: 6px;
-        background-color: var(--bg);
-    }
-    #rules-page li {
-        margin-bottom: 0.5em;
-        font-size: 0.9em;
-    }
-    #rules-page p {
-        margin-bottom: 0.8em;
-        font-size: 0.9em;
-    }
-    #rules-page p[style] {
-        color: #555 !important;
-        font-size: 0.8em !important;
-    }
-    body.dark #rules-page p[style] {
-        color: #aaa !important;
-    }
-    #rules-page footer {
-        margin-top: 1.2em;
-        text-align: center;
-        color: #777;
-        padding-top: 0.6em;
-        border-top: 1px solid var(--border-color);
-        font-size: 0.8em;
-    }
-    body.dark #rules-page footer {
-        color: #aaa;
-        border-top-color: #333;
-    }
-    #rules-page a {
-        color: #007bff;
-        font-size: 0.9em;
-    }
-    body.dark #rules-page a {
-        color: #6af5a4;
-    }
-
-    /* 都市ワールド紹介ページのスタイル */
-    #city-page {
-        padding: 0.8em;
-    }
-    #city-page h1 {
-        color: #2a7b59;
-        font-size: 1.4em;
-        padding-bottom: 0.2em;
-        border-bottom: 1px solid var(--border-color);
-    }
-    body.dark #city-page h1 {
-        color: #66cdaa;
-        border-bottom-color: #555;
-    }
-    #city-page section {
-        border: 1px solid var(--border-color);
-        padding: 0.8em;
-        margin-bottom: 1em;
-        border-radius: 6px;
-        background-color: var(--card-bg);
-    }
-    #city-page h2 {
-        font-size: 1.2em;
-        border-left: 3px solid var(--accent);
-        padding-left: 0.4em;
-        margin-top: 1em;
-        margin-bottom: 0.3em;
-        border-bottom: none;
-    }
-    #city-page h3 {
-        font-size: 1em;
-        margin-top: 0.8em;
-        margin-bottom: 0.2em;
-        color: #333;
-    }
-    body.dark #city-page h3 {
-        color: #ccc;
-    }
-    #city-page details {
-        margin-bottom: 1em;
-        background: var(--card-bg);
-        padding: 0.8em;
-        border-radius: 6px;
-        border: 1px solid var(--border-color);
-    }
-    #city-page summary {
-        font-weight: bold;
-        font-size: 1em;
-        cursor: pointer;
-        padding: 0.3em 0;
-    }
-    #city-page p {
-        font-size: 0.9em;
-        margin-top: 0.4em;
-        margin-bottom: 0.8em;
-    }
-    #city-page ul {
-        padding-left: 1.6em;
-        margin-bottom: 0.8em;
-        border: 1px solid var(--border-color);
-        padding: 0.8em;
-        border-radius: 6px;
-        background-color: var(--card-bg);
-    }
-    #city-page li {
-        font-size: 0.9em;
-        margin-bottom: 0.5em;
-    }
-</style>
+        #rules-page p[style] {
+            color: #555 !important;
+            font-size: 0.8em !important;
+        }
+        body.dark #rules-page p[style] {
+            color: #aaa !important;
+        }
+        #rules-page footer {
+            margin-top: 1.2em;
+            text-align: center;
+            color: #777;
+            padding-top: 0.6em;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.8em;
+        }
+        body.dark #rules-page footer {
+            color: #aaa;
+            border-top-color: #333;
+        }
+        #rules-page a {
+            color: #007bff;
+            font-size: 0.9em;
+        }
+        body.dark #rules-page a {
+            color: #6af5a4;
+        }
+    </style>
+</head>
 <body>
     <header>
         <img src="Lemonsea.png" alt="Lemon Sea ロゴ" />
@@ -609,7 +430,7 @@
         <nav>
             <a href="#rules" data-page="rules">📘 利用規約・ルール</a>
             <a href="#city" data-page="city">🏙️ 都市ワールドの紹介</a>
-            <a href="#gallery" data-page="gallery">📷️ ギャラリー</a>
+            <a href="gallery.html">📷️ ギャラリー</a>
             <a href="https://discord.gg/bheyZtN454" target="_blank">💬 Discordに参加</a>
         </nav>
     </header>
@@ -653,127 +474,103 @@
             </section>
         </div>
 
-<div id="city" class="page">
-    <div style="position: relative;">
-        <h1 id="city-page">🏙️ 都市ワールド紹介</h1>
-        <a href="#home" style="position: absolute; top: -1.5em; right: 0; background: var(--accent); color: #000; padding: 0.5em 1em; border-radius: 6px; text-decoration: none; font-size: 0.9em; transition: background-color 0.3s ease;">← ホーム</a>
-    </div>
-    <p>
-        サーバー内には、建設スタイルの異なる2つの都市があります。興味がある方をチェックしてね！<br>
-        茶番などの動画撮影もOKです！
-    </p>
-
-    <section>
-        <h2 id="new-city">🌆 新都市サーバー</h2>
-        <p>
-            新都市鯖に関する解説<br>
-            新都市鯖は、現行メインの建設ワールドです。<br>
-            現代建築を中心に、プレイヤー同士が協力して街を発展させています。<br>
-            公共施設・駅・道路網なども整備中で、自由度の高い設計が可能です。<br>
-            ワールド内には多数の「自治体」があり、それぞれの「自治体」には「市長」が任命されます。「市長」には、自治体内部の開発の主導権が与えられます。
-        </p>
-
-        <details>
-            <summary>🏙️ 自治体一覧</summary>
-
-            <h3>🍋 檸檬県</h3>
-            <ul>
-                <li><strong>檸檬市</strong>（県庁所在地）</li>
-                <li>初野市</li>
-                <li>桜木市</li>
-                <li>孤城市</li>
-                <li>海丘町</li>
-            </ul>
-
-            <h3>🌸 春日野県</h3>
-            <ul>
-                <li><strong>春日野市</strong>（県庁所在地）</li>
-                <li>森沢市</li>
-                <li>堀岩町</li>
-                <li>大岡町</li>
-            </ul>
-
+        <div id="city" class="page">
+            <div style="position: relative;">
+                <h1 id="city-page">🏙️ 都市ワールド紹介</h1>
+                <a href="#home" style="position: absolute; top: -1.5em; right: 0; background: var(--accent); color: #000; padding: 0.5em 1em; border-radius: 6px; text-decoration: none; font-size: 0.9em; transition: background-color 0.3s ease;">← ホーム</a>
+            </div>
             <p>
-                寄付や宣伝、マイクラ内の工事に尽力した場合、市長に任命されたり、特別な地位が与えられるかもしれません。
-            </p>
-        </details>
-
-        <details>
-            <summary>🚆 鉄道一覧</summary>
-            <p>この新都市鯖では鉄道にも力を入れています。現在存在する路線は以下の通りです。</p>
-            <ul>
-                <li><strong>レモンメトロ</strong>（管理者：各自治体）</li>
-                <ul>
-                    <li>レモンメトロ初野線：檸檬〜初野～孤城台</li>
-                    <li>レモンメトロ桜木線：新初野〜孤城～海丘</li>
-                </ul>
-                <li><strong>桜木登山鉄道</strong>（私鉄）</li>
-                <ul>
-                    <li>桜木登山鉄道線：桜木山麓〜西桜木</li>
-                </ul>
-            </ul>
-        </details>
-    </section>
-
-    <section>
-        <h2 id="old-city">🏛️ 旧都市サーバー</h2>
-        <p>
-            旧都市鯖は、れもんしーの初期から存在する歴史あるワールドです。<br>
-            さまざまな建築様式や、自然あふれる街並みが残されています。<br>
-            ちゃんと鉄道も稼働中です。<br>
-            建物などが数多くあり、動画撮影に向いているワールドとなっています。
-        </p>
-
-        <details>
-            <summary>🏙️ 自治体一覧</summary>
-            <ul>
-                <li>檸檬市</li>
-                <li>孤城市</li>
-                <li>鮭島村</li>
-            </ul>
-        </details>
-
-        <details>
-            <summary>🚆 鉄道一覧</summary>
-            <p>旧都市鯖において運行されている路線は以下の通りです。</p>
-            <ul>
-                <li><strong>レモンメトロ檸檬線</strong></li>
-                <ul>
-                    <li>孤城～檸檬～鮭島</li>
-                </ul>
-            </ul>
-        </details>
-    </section>
-
-    <footer>
-    </footer>
-</div>
-        
-        <div id="gallery" class="page">
-            <h1 id="gallery-page">🖼️ ギャラリー</h1>
-            <p>れもんしーサーバーの建築や風景を集めたギャラリーページです。随時更新予定！<br>
-
-            <p style="text-align: center; margin-bottom: 1em;">
-                <a href="https://forms.gle/k1K5NLms5NL2HVCS8" target="_blank" class="modalBtn" style="text-decoration: none; display: inline-block;">📤 画像申請（Googleフォーム）</a>
+                サーバー内には、建設スタイルの異なる2つの都市があります。興味がある方をチェックしてね！<br>
+                茶番などの動画撮影もOKです！
             </p>
 
-            <div class="gallery" id="gallery-images">
-            </div>
+            <section>
+                <h2 id="new-city">🌆 新都市サーバー</h2>
+                <p>
+                    新都市鯖に関する解説<br>
+                    新都市鯖は、現行メインの建設ワールドです。<br>
+                    現代建築を中心に、プレイヤー同士が協力して街を発展させています。<br>
+                    公共施設・駅・道路網なども整備中で、自由度の高い設計が可能です。<br>
+                    ワールド内には多数の「自治体」があり、それぞれの「自治体」には「市長」が任命されます。「市長」には、自治体内部の開発の主導権が与えられます。
+                </p>
 
-            <div id="modal">
-                <div id="modalClose">✖</div>
-                <img id="modalImage" src="" alt="">
-                <h2 id="modalTitle"></h2>
-                <div id="modalControls">
-                    <button class="modalBtn" id="prevBtn">◀ 前へ</button>
-                    <button class="modalBtn" id="saveBtn">💾 保存</button>
-                    <button class="modalBtn" id="nextBtn">次へ ▶</button>
-                </div>
-            </div>
+                <details>
+                    <summary>🏙️ 自治体一覧</summary>
+
+                    <h3>🍋 檸檬県</h3>
+                    <ul>
+                        <li><strong>檸檬市</strong>（県庁所在地）</li>
+                        <li>初野市</li>
+                        <li>桜木市</li>
+                        <li>孤城市</li>
+                        <li>海丘町</li>
+                    </ul>
+
+                    <h3>🌸 春日野県</h3>
+                    <ul>
+                        <li><strong>春日野市</strong>（県庁所在地）</li>
+                        <li>森沢市</li>
+                        <li>堀岩町</li>
+                        <li>大岡町</li>
+                    </ul>
+
+                    <p>
+                        寄付や宣伝、マイクラ内の工事に尽力した場合、市長に任命されたり、特別な地位が与えられるかもしれません。
+                    </p>
+                </details>
+
+                <details>
+                    <summary>🚆 鉄道一覧</summary>
+                    <p>この新都市鯖では鉄道にも力を入れています。現在存在する路線は以下の通りです。</p>
+                    <ul>
+                        <li><strong>レモンメトロ</strong>（管理者：各自治体）</li>
+                        <ul>
+                            <li>レモンメトロ初野線：檸檬〜初野～孤城台</li>
+                            <li>レモンメトロ桜木線：新初野〜孤城～海丘</li>
+                        </ul>
+                        <li><strong>桜木登山鉄道</strong>（私鉄）</li>
+                        <ul>
+                            <li>桜木登山鉄道線：桜木山麓〜西桜木</li>
+                        </ul>
+                    </ul>
+                </details>
+            </section>
+
+            <section>
+                <h2 id="old-city">🏛️ 旧都市サーバー</h2>
+                <p>
+                    旧都市鯖は、れもんしーの初期から存在する歴史あるワールドです。<br>
+                    さまざまな建築様式や、自然あふれる街並みが残されています。<br>
+                    ちゃんと鉄道も稼働中です。<br>
+                    建物などが数多くあり、動画撮影に向いているワールドとなっています。
+                </p>
+
+                <details>
+                    <summary>🏙️ 自治体一覧</summary>
+                    <ul>
+                        <li>檸檬市</li>
+                        <li>孤城市</li>
+                        <li>鮭島村</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>🚆 鉄道一覧</summary>
+                    <p>旧都市鯖において運行されている路線は以下の通りです。</p>
+                    <ul>
+                        <li><strong>レモンメトロ檸檬線</strong></li>
+                        <ul>
+                            <li>孤城～檸檬～鮭島</li>
+                        </ul>
+                    </ul>
+                </details>
+            </section>
 
             <footer>
-                <a href="#home">← ホームに戻る</a>
             </footer>
+        </div>
+
+        <div id="gallery" class="page">
         </div>
 
         <div id="rules" class="page">
@@ -844,20 +641,10 @@
         if (savedTheme) setTheme(savedTheme);
         else setTheme("light");
 
-        // ページ切り替えとギャラリー機能
+        // ページ切り替え
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('nav a[data-page]');
             const pages = document.querySelectorAll('.page');
-            const galleryDiv = document.getElementById('gallery-images');
-            const modal = document.getElementById('modal');
-            const modalImage = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalClose = document.getElementById('modalClose');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const saveBtn = document.getElementById('saveBtn');
-            let imageList = [];
-            let currentIndex = 0;
 
             function showPage(pageId) {
                 pages.forEach(page => {
@@ -875,105 +662,19 @@
                     const pageId = this.getAttribute('data-page');
                     showPage(pageId);
                     history.pushState(null, null, '#' + pageId);
-                    if (pageId === 'gallery') {
-                        loadGalleryImages();
-                    }
                 });
             });
 
             window.addEventListener('popstate', function() {
                 const hash = window.location.hash.substring(1);
                 showPage(hash || 'home');
-                if (hash === 'gallery') {
-                    loadGalleryImages();
-                }
             });
 
             // 初期表示
             if (window.location.hash) {
                 showPage(window.location.hash.substring(1));
-                if (window.location.hash.substring(1) === 'gallery') {
-                    loadGalleryImages();
-                }
             } else {
                 showPage('home');
-            }
-
-            async function loadGalleryImages() {
-                try {
-                    const response = await fetch('images.json');
-                    imageList = await response.json();
-                    if (galleryDiv) {
-                        galleryDiv.innerHTML = ''; // Clear existing images
-                        imageList.forEach((image, index) => {
-                            const imgElement = document.createElement('img');
-                            imgElement.src = image.src;
-                            imgElement.alt = image.alt;
-                            imgElement.addEventListener('click', () => {
-                                showModal(index);
-                            });
-                            galleryDiv.appendChild(imgElement);
-                        });
-                    }
-                } catch (error) {
-                    console.error("Error loading gallery images:", error);
-                    if (galleryDiv) {
-                        galleryDiv.innerHTML = '<p>ギャラリーの読み込みに失敗しました。</p>';
-                    }
-                }
-            }
-
-            function showModal(index) {
-                currentIndex = index;
-                const image = imageList[currentIndex];
-                modalImage.src = image.src;
-                modalTitle.textContent = image.alt;
-                modal.style.display = 'flex';
-            }
-
-            function showNextImage() {
-                currentIndex = (currentIndex + 1) % imageList.length;
-                showModal(currentIndex);
-            }
-
-            function showPrevImage() {
-                currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-                showModal(currentIndex);
-            }
-
-            function downloadImage() {
-                if (imageList.length > 0) {
-                    const image = imageList[currentIndex];
-                    const a = document.createElement('a');
-                    a.href = image.src;
-                    a.download = image.name || 'image.jpg';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                }
-            }
-
-            if (modalClose) {
-                modalClose.addEventListener('click', () => {
-                    modal.style.display = 'none';
-                });
-            }
-
-            if (modal) {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.style.display = 'none';
-                    }
-                });
-            }
-
-            if (nextBtn) nextBtn.addEventListener('click', showNextImage);
-            if (prevBtn) prevBtn.addEventListener('click', showPrevImage);
-            if (saveBtn) saveBtn.addEventListener('click', downloadImage);
-
-            // ギャラリーページが最初に表示された場合もロード
-            if (window.location.hash === '#gallery') {
-                loadGalleryImages();
             }
         });
     </script>
