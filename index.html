@@ -6,16 +6,17 @@
     <title>Lemon Sea Server</title>
     <link rel="icon" href="Lemonsea.png" />
     <style>
+        /* 見やすさ改善のためのCSS */
         :root {
             --bg: #f5f9f7;
-            --text: #333;
+            --text: #222; /* ライトモードの文字色を調整 */
             --accent: #ffe66d;
             --section-bg: rgba(226, 243, 228, 0.85);
             --footer-bg: #eee;
             --bg-image: url('images/2.png');
         }
         [data-theme="dark"] {
-            --bg: #121212;
+            --bg: #181818; /* ダークモードの背景色を若干明るく */
             --text: #eee;
             --accent: #ffda44;
             --section-bg: rgba(30, 45, 31, 0.85);
@@ -33,6 +34,8 @@
             background-size: cover;
             background-position: center;
             transition: background-color 0.5s, color 0.5s, background-image 0.5s ease-in-out;
+            font-size: 1.1em; /* 基本フォントサイズを少し大きく */
+            line-height: 1.6; /* 行間を調整 */
         }
 
         header {
@@ -73,33 +76,43 @@
         }
 
         nav a:hover {
-            color: var(--accent);
+            color: #007bff; /* ホバー時のリンク色を変更 */
         }
 
         main {
             padding: 2em;
             max-width: 800px;
-            margin: auto;
+            margin: 2em auto; /* 上下のmarginを追加 */
         }
 
         section {
             margin-bottom: 2em;
-        }
-
-        .box {
-            background-color: var(--section-bg);
             padding: 1em;
             border-radius: 8px;
+            background-color: var(--section-bg);
         }
 
-        footer {
-            text-align: center;
-            padding: 1em;
-            background-color: var(--footer-bg);
+        h1, h2, h3 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        ul, ol {
+            padding-left: 1.5em;
+            margin-bottom: 1em;
+        }
+
+        li {
+            margin-bottom: 0.7em;
         }
 
         a {
-            color: #2a7b59;
+            color: #007bff; /* より一般的なリンクの色 */
+            text-decoration: underline; /* 下線を付けて視認性を向上 */
+        }
+
+        a:hover {
+            color: #0056b3;
         }
 
         /* ダークモードボタンのスタイル */
@@ -107,8 +120,8 @@
             background: var(--accent);
             border: none;
             border-radius: 50%;
-            padding: 1em;
-            font-size: 1.5em;
+            padding: 0.8em;
+            font-size: 1.2em;
             position: fixed;
             right: 20px;
             bottom: 20px;
@@ -126,14 +139,14 @@
         /* お問い合わせボタンのスタイル */
         .contact-button {
             display: inline-block;
-            padding: 0.75em 1.5em;
+            padding: 0.7em 1.4em;
             background-color: var(--accent);
             color: #000;
             font-weight: bold;
             border: none;
             border-radius: 8px;
             text-decoration: none;
-            font-size: 1.1em;
+            font-size: 1em;
             transition: background-color 0.3s ease;
             text-align: center;
         }
@@ -156,18 +169,31 @@
             }
 
             nav a {
-                margin: 10px 0;
-                font-size: 1.2em;
+                margin: 8px 0;
+                font-size: 1.1em;
             }
 
-            #server-status {
-                text-align: center;
+            main {
+                padding: 1.5em;
+            }
+
+            #theme-toggle {
+                font-size: 1.1em;
+                padding: 0.7em;
+                right: 15px;
+                bottom: 15px;
             }
         }
 
         @media (max-width: 480px) {
             nav a {
                 font-size: 1em;
+            }
+            #theme-toggle {
+                font-size: 1em;
+                padding: 0.6em;
+                right: 10px;
+                bottom: 10px;
             }
         }
 
@@ -205,6 +231,7 @@
             font-weight: bold;
             font-size: 1.1em;
             cursor: pointer;
+            padding: 0.5em 0;
         }
         #city-page p {
             margin-top: 0.5em;
@@ -228,8 +255,9 @@
         }
         #gallery-page .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1em;
+            padding: 1em;
         }
         #gallery-page .gallery img {
             width: 100%;
@@ -238,6 +266,7 @@
             cursor: pointer;
             object-fit: cover;
             aspect-ratio: 4/3;
+            border: 1px solid #ccc;
         }
         #gallery-page .gallery img:hover {
             transform: scale(1.03);
@@ -258,41 +287,43 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.9);
             align-items: center;
             justify-content: center;
             flex-direction: column;
         }
         body.dark #gallery-page #modal {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
         }
         #gallery-page #modal img {
-            max-width: 90%;
-            max-height: 80%;
+            max-width: 95%;
+            max-height: 90%;
             border-radius: 10px;
         }
         #gallery-page #modal h2 {
             color: white;
             margin-top: 1em;
+            text-align: center;
         }
         #gallery-page #modalClose {
             color: white;
             font-size: 2em;
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 15px;
+            right: 20px;
             cursor: pointer;
         }
         #gallery-page #modalControls {
             margin-top: 1em;
             display: flex;
             gap: 1em;
+            justify-content: center;
         }
         #gallery-page .modalBtn {
             background: #2a7b59;
             color: white;
             border: none;
-            padding: 0.6em 1.2em;
+            padding: 0.7em 1.4em;
             font-size: 1em;
             border-radius: 8px;
             cursor: pointer;
@@ -312,6 +343,7 @@
         #rules-page {
             background: #fafafa;
             color: #222;
+            padding: 1em; /* 全体に追加 */
         }
         body.dark #rules-page {
             background: #121212;
@@ -319,26 +351,34 @@
         }
         #rules-page h1 {
             color: #2a7b59;
+            padding-bottom: 0.5em;
+            border-bottom: 2px solid #ddd; /* 区切り線を追加 */
         }
         body.dark #rules-page h1 {
             color: #6af5a4;
+            border-bottom-color: #555;
         }
         #rules-page h2 {
             border-left: 4px solid #2a7b59;
-            padding-left: 0.5em;
-            margin-top: 2em;
+            padding-left: 0.7em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
         }
         body.dark #rules-page h2 {
             border-left-color: #6af5a4;
         }
         #rules-page ul {
-            padding-left: 1.2em;
+            padding-left: 1.8em;
+            margin-bottom: 1em;
         }
         #rules-page li {
-            margin-bottom: 0.5em;
+            margin-bottom: 0.6em;
+        }
+        #rules-page p {
+            margin-bottom: 1em;
         }
         #rules-page p[style] {
-            color: #777 !important;
+            color: #555 !important; /* 強調テキストの色を調整 */
         }
         body.dark #rules-page p[style] {
             color: #aaa !important;
@@ -347,15 +387,63 @@
             margin-top: 2em;
             text-align: center;
             color: #777;
+            padding-top: 1em;
+            border-top: 1px solid #eee; /* 区切り線を追加 */
         }
         body.dark #rules-page footer {
             color: #aaa;
+            border-top-color: #333;
         }
         #rules-page a {
-            color: #2a7b59;
+            color: #007bff;
         }
         body.dark #rules-page a {
             color: #6af5a4;
+        }
+
+        /* 都市ワールド紹介ページのスタイル */
+        #city-page {
+            padding: 1em; /* 全体に追加 */
+        }
+        #city-page h1 {
+            color: #2a7b59;
+            padding-bottom: 0.5em;
+            border-bottom: 2px solid #ddd; /* 区切り線を追加 */
+        }
+        body.dark #city-page h1 {
+            color: #66cdaa;
+            border-bottom-color: #555;
+        }
+        #city-page details {
+            margin-bottom: 1.5em;
+            background: var(--card-bg);
+            padding: 1em;
+            border-radius: 8px;
+        }
+        #city-page summary {
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            padding: 0.5em 0;
+        }
+        #city-page p {
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+        }
+        #city-page h3 {
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+            color: #333;
+        }
+        body.dark #city-page h3 {
+            color: #ccc;
+        }
+        #city-page ul {
+            padding-left: 1.5em;
+            margin-bottom: 1em;
+        }
+        #city-page li {
+            margin-bottom: 0.5em;
         }
     </style>
 </head>
@@ -472,10 +560,10 @@
             <details>
                 <summary>🏛️ 旧都市サーバー</summary>
                 <p>
-旧都市鯖は、れもんしーの初期から存在する歴史あるワールドです。<br>
-さまざまな建築様式や、自然あふれる街並みが残されています。<br>
-ちゃんと鉄道も稼働中です。<br>
-建物などが数多くあり、動画撮影に向いているワールドとなっています。
+                    旧都市鯖は、れもんしーの初期から存在する歴史あるワールドです。<br>
+                    さまざまな建築様式や、自然あふれる街並みが残されています。<br>
+                    ちゃんと鉄道も稼働中です。<br>
+                    建物などが数多くあり、動画撮影に向いているワールドとなっています。
                 </p>
 
                 <details>
@@ -500,7 +588,7 @@
             </details>
 
             <footer>
-                </footer>
+            </footer>
         </div>
 
         <div id="gallery" class="page">
@@ -512,7 +600,7 @@
             </p>
 
             <div class="gallery" id="gallery-images">
-                </div>
+            </div>
 
             <div id="modal">
                 <div id="modalClose">✖</div>
